@@ -48,5 +48,5 @@ export const SeriesSymbol = styled.img`
 
 export const SeriesLogo = styled.img`
   max-width: 150px;
-  height: 100px;
+  height: 80px;
 `;

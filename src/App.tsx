@@ -2,6 +2,7 @@ import React from "react";
 import { Routes, Route } from "react-router-dom";
 
 import Navbar from "./components/Navbar/Navbar";
+import HeroDetails from "./pages/HeroDetails";
 import Series from "./pages/Series";
 
 function App() {
@@ -12,7 +13,7 @@ function App() {
         <Route path="/" element={<Series />} />
         <Route path="/teams" />
         <Route path="/team/:teamId" />
-        <Route path="/hero/:heroId" />
+        <Route path="/hero/:heroId" element={<HeroDetails />} />
       </Routes>
     </div>
   );
