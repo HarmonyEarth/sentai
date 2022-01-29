@@ -1,5 +1,5 @@
-import { Grid, useMediaQuery, useTheme } from "@mui/material";
 import React from "react";
+import { Grid, useMediaQuery, useTheme } from "@mui/material";
 import { Link } from "react-router-dom";
 import HeroCard from "./HeroCard";
 
@@ -9,8 +9,8 @@ const list: number[] = [];
 for (let i = 0; i < 10; i++) {
   list.push(i);
 }
-const blackTurboImg = turbo.teamMembers[0].heroImage2Url;
-const blueTurboImg = turbo.teamMembers[1].heroImage2Url;
+const blackTurbo = turbo.teamMembers[0];
+const blueTurbo = turbo.teamMembers[1];
 
 const HeroBanner = () => {
   const theme = useTheme();
@@ -20,14 +20,18 @@ const HeroBanner = () => {
       <Grid container item xs={12} md={4}>
         {list.slice(0, 3).map(() => (
           <Grid container item xs={4} sm={4}>
-            <HeroCard heroImage2Url={blackTurboImg} />
+            <Link to={`/hero/${blackTurbo.heroId}`}>
+              <HeroCard heroImage2Url={blackTurbo.heroImage2Url} />
+            </Link>
           </Grid>
         ))}
       </Grid>
       <Grid container item xs={12} md={8}>
         {list.slice(mobile ? -4 : 4).map(() => (
           <Grid container item xs={3} sm={2}>
-            <HeroCard heroImage2Url={blueTurboImg} />
+            <Link to={`/hero/${blueTurbo.heroId}`}>
+              <HeroCard heroImage2Url={blueTurbo.heroImage2Url} />
+            </Link>
           </Grid>
         ))}
       </Grid>
