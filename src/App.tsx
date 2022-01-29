@@ -11,9 +11,9 @@ function App() {
       <Navbar />
       <Routes>
         <Route path="/" element={<Series />} />
-        <Route path="/teams" />
-        <Route path="/team/:teamId" />
-        <Route path="/hero/:heroId" element={<HeroDetails />} />
+        {/* <Route path="/teams" />
+        <Route path="/team/:teamId" /> */}
+        {/* <Route path="/hero/:heroId" element={<HeroDetails />} /> */}
       </Routes>
     </div>
   );
