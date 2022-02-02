@@ -21,6 +21,7 @@ const turbo = {
       heroImage2Url:
         "https://static.wikia.nocookie.net/powerrangers/images/f/f6/Turbo-black.png",
       heroHelmetUrl: BlackHelmet,
+      heroHueRotation: "219deg",
     },
     {
       heroId: "turbo3",
@@ -33,6 +34,7 @@ const turbo = {
       heroImage2Url:
         "https://static.wikia.nocookie.net/powerrangers/images/f/f8/Turbo-blue.png",
       heroHelmetUrl: BlueHelmet,
+      heroHueRotation: "180deg",
     },
   ],
 };

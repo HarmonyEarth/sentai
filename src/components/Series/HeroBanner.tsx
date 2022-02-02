@@ -18,20 +18,22 @@ const HeroBanner = () => {
   return (
     <Grid container>
       <Grid container item xs={12} md={4}>
-        {list.slice(0, 3).map(() => (
-          <Grid container item xs={4} sm={4}>
-            <Link to={`/hero/${blackTurbo.heroId}`}>
-              <HeroCard heroImage2Url={blackTurbo.heroImage2Url} />
-            </Link>
+        {list.slice(0, 3).map((item) => (
+          <Grid container item xs={4} sm={4} key={list[item]}>
+            <HeroCard
+              heroImage2Url={blackTurbo.heroImage2Url}
+              to={`/hero/${blackTurbo.heroId}`}
+            />
           </Grid>
         ))}
       </Grid>
       <Grid container item xs={12} md={8}>
-        {list.slice(mobile ? -4 : 4).map(() => (
-          <Grid container item xs={3} sm={2}>
-            <Link to={`/hero/${blueTurbo.heroId}`}>
-              <HeroCard heroImage2Url={blueTurbo.heroImage2Url} />
-            </Link>
+        {list.slice(mobile ? -4 : 4).map((item) => (
+          <Grid container item xs={3} sm={2} key={list[item]}>
+            <HeroCard
+              heroImage2Url={blueTurbo.heroImage2Url}
+              to={`/hero/${blueTurbo.heroId}`}
+            />
           </Grid>
         ))}
       </Grid>
