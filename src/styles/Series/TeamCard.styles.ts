@@ -4,6 +4,10 @@ interface Props {
   randomColor: string;
 }
 
+interface MobileProps {
+  isMobile: boolean;
+}
+
 export const SeriesCard = styled.div<Props>`
   max-width: 100%;
   height: 120px;
@@ -17,7 +21,7 @@ export const SeriesCard = styled.div<Props>`
   );
 `;
 
-export const SeriesLeftSide = styled.div`
+export const SeriesLeftSide = styled.div<MobileProps>`
   width: 150px;
   height: 100px;
   color: white;
@@ -25,6 +29,7 @@ export const SeriesLeftSide = styled.div`
   align-items: center;
   justify-content: center;
   position: relative;
+  flex-wrap: ${(props) => (props.isMobile ? "wrap" : "nowrap")};
 `;
 
 export const SeriesYearText = styled.h1`
@@ -40,7 +45,7 @@ export const SeriesTeamText = styled.h1`
 
 export const SeriesSymbol = styled.img`
   position: absolute;
-  width: 100px;
+  width: 80px;
   height: auto;
   opacity: 0.5;
   filter: grayscale(1);

@@ -1,4 +1,3 @@
-import { Link } from "react-router-dom";
 import styled from "styled-components";
 
 interface Props {
@@ -7,7 +6,7 @@ interface Props {
   heroImage2Url: string;
   isMobile: boolean;
 }
-export const SenshiCard = styled(Link)<Props>`
+export const SenshiCard = styled.div<Props>`
   background: url(${(props) => props.heroImage2Url}),
     linear-gradient(
       ${Math.random()}turn,
@@ -16,7 +15,8 @@ export const SenshiCard = styled(Link)<Props>`
     );
   background-repeat: no-repeat;
   background-position: center top;
-  background-size: 140%;
+  background-size: contain;
+  background-size: 200%;
   height: ${(props) => (props.isMobile ? "200px" : "500px")};
   width: 100%;
 `;
