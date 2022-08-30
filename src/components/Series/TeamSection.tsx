@@ -38,7 +38,7 @@ onSnapshot(colRef, (snapshot) => {
   snapshot.docs.forEach((doc) => {
     teams.push({ ...doc.data(), id: doc.id });
   });
-  console.log(teams);
+  console.log('Teams', teams);
 });
 
 const TeamSection = () => {

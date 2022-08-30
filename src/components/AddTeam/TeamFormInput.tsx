@@ -1,5 +1,4 @@
 import React from 'react';
-import { UseFormRegister } from 'react-hook-form';
 
 interface Props {
   teamFormData: string;
@@ -8,8 +7,7 @@ interface Props {
   accept: string;
   readonly: boolean;
   id: string;
-  register: UseFormRegister<any>;
-  // handleInput: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  handleInput(e: React.ChangeEvent<HTMLInputElement>): void;
 }
 
 const TeamFormInput: React.FC<Props> = ({
@@ -19,8 +17,7 @@ const TeamFormInput: React.FC<Props> = ({
   accept,
   readonly,
   id,
-  register,
-  // handleInput,
+  handleInput,
 }) => {
   return (
     <>
@@ -31,9 +28,8 @@ const TeamFormInput: React.FC<Props> = ({
         accept={accept}
         readOnly={readonly}
         id={teamFormData}
-        {...register(teamFormData)}
-        // name={teamFormData}
-        // onChange={handleInput}
+        name={teamFormData}
+        onChange={handleInput}
         required={!readonly}
       />
     </>

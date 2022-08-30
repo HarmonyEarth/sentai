@@ -15,33 +15,61 @@ export interface TeamMember {
   heroNameEN2: string;
   heroNameJP1: string;
   heroNameJP2: string;
-  heroImage1Url: string;
-  heroImage2Url: string;
-  heroHelmetUrl: string;
+  heroImage1: string;
+  heroImage2: string;
+  heroHelmet: string;
   color: string;
 }
 
-export const memberFormInputData = [
+export const memberInputData = [
+  {
+    formData: 'heroId',
+    defaultValue: 'harmony01',
+    type: 'text',
+  },
+  {
+    formData: 'heroNameEN1',
+    defaultValue: 'Akaki Sugata',
+    type: 'text',
+  },
+  {
+    formData: 'heroNameEN2',
+    defaultValue: 'Harmony White',
+    type: 'text',
+  },
+  {
+    formData: 'heroNameJP1',
+    defaultValue: '獅子 走',
+    type: 'text',
+  },
+  {
+    formData: 'heroNameJP2',
+    defaultValue: 'ガオレッド',
+    type: 'text',
+  },
+  {
+    formData: 'heroImage1',
+    type: 'file',
+    accept: 'image/*',
+  },
+  {
+    formData: 'heroImage2',
+    type: 'file',
+    accept: 'image/*',
+  },
+  {
+    formData: 'heroHelmet',
+    type: 'file',
+    accept: 'image/*',
+  },
   {
     formData: 'color',
     defaultValue: 'white',
     type: 'text',
   },
-  {
-    formData: 'heroId',
-    defaultValue: 'Crimson Cardinal',
-    type: 'text',
-    readonly: true,
-  },
-
-  {
-    formData: 'heroImage',
-    type: 'file',
-    accept: 'image/*',
-  },
 ];
 
-export const teamFormInputData = [
+export const teamInputData = [
   {
     formData: 'shortTeamName',
     defaultValue: 'Harmonyranger',
