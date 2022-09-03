@@ -6,10 +6,10 @@ export interface Team {
   logo: string;
   symbol: string;
   teamId: string;
-  teamMembers: TeamMember[];
+  teamMembers: Member[];
 }
 
-export interface TeamMember {
+export interface Member {
   heroId: string;
   heroNameEN1: string;
   heroNameEN2: string;
@@ -47,21 +47,21 @@ export const memberInputData = [
     defaultValue: 'ガオレッド',
     type: 'text',
   },
-  {
-    formData: 'heroImage1',
-    type: 'file',
-    accept: 'image/*',
-  },
-  {
-    formData: 'heroImage2',
-    type: 'file',
-    accept: 'image/*',
-  },
-  {
-    formData: 'heroHelmet',
-    type: 'file',
-    accept: 'image/*',
-  },
+  // {
+  //   formData: 'heroImage1',
+  //   type: 'file',
+  //   accept: 'image/*',
+  // },
+  // {
+  //   formData: 'heroImage2',
+  //   type: 'file',
+  //   accept: 'image/*',
+  // },
+  // {
+  //   formData: 'heroHelmet',
+  //   type: 'file',
+  //   accept: 'image/*',
+  // },
   {
     formData: 'color',
     defaultValue: 'white',
@@ -95,14 +95,14 @@ export const teamInputData = [
     defaultValue: 'melody21',
     type: 'text',
   },
-  // {
-  //   formData: 'logo',
-  //   type: 'file',
-  //   accept: 'image/*',
-  // },
-  // {
-  //   formData: 'symbol',
-  //   type: 'file',
-  //   accept: 'image/*',
-  // },
+  {
+    formData: 'logo',
+    type: 'file',
+    accept: 'image/*',
+  },
+  {
+    formData: 'symbol',
+    type: 'file',
+    accept: 'image/*',
+  },
 ];

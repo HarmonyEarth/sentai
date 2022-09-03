@@ -2,7 +2,7 @@ import React from 'react';
 
 interface Props {
   teamFormData: string;
-  defaultValue: string | number;
+  placeholder: string;
   type: string;
   accept: string;
   readonly: boolean;
@@ -12,7 +12,7 @@ interface Props {
 
 const TeamFormInput: React.FC<Props> = ({
   teamFormData,
-  defaultValue,
+  placeholder,
   type,
   accept,
   readonly,
@@ -22,8 +22,9 @@ const TeamFormInput: React.FC<Props> = ({
   return (
     <>
       <label htmlFor={teamFormData}>{teamFormData}</label>
+      <br />
       <input
-        defaultValue={defaultValue}
+        placeholder={placeholder}
         type={type}
         accept={accept}
         readOnly={readonly}
@@ -32,6 +33,7 @@ const TeamFormInput: React.FC<Props> = ({
         onChange={handleInput}
         required={!readonly}
       />
+      <br />
     </>
   );
 };

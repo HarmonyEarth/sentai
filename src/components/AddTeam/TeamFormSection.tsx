@@ -1,42 +1,59 @@
 import { Grid } from '@mui/material';
 import { addDoc, collection, doc, setDoc } from 'firebase/firestore';
 import { ref, uploadBytesResumable, getDownloadURL } from 'firebase/storage';
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { db, storage } from '../../firebase';
-import { memberInputData, teamInputData } from '../../models/team';
+import useFileUpload from '../../hooks/useFileUpload';
+import { Member, memberInputData, teamInputData } from '../../models/team';
 import TeamFormInput from './TeamFormInput';
 
-type FileState = File | Blob | MediaSource;
+export type FileState = File | Blob | MediaSource | String;
 
 const noImageIcon =
   'https://upload.wikimedia.org/wikipedia/commons/thumb/a/ac/No_image_available.svg/480px-No_image_available.svg.png';
 
 const TeamFormSection = () => {
   const [data, setData] = useState({});
+  const [teamData, setTeamData] = useState({});
+  const [teamMembers, setTeamMembers] = useState<any[]>([
+    { name: 'jane' },
+    { name: 'soup' },
+  ]);
+  const [members, setMembers] = useState<any>({});
   const [logo, setLogo] = useState<FileState | undefined>();
   const [symbol, setSymbol] = useState<FileState | undefined>();
-  const [heroImage1, setHeroImage1] = useState<FileState | undefined>();
-  const [heroImage2, setHeroImage2] = useState<FileState | undefined>();
-  const [heroHelmet, setHeroHelmet] = useState<FileState | undefined>();
-
-  const handleInput = (e: React.ChangeEvent<HTMLInputElement>): void => {
+  useFileUpload({ file: symbol as File, setFile: setTeamData, id: 'symbol' });
+  console.log(typeof symbol, 'Symbol');
+  const handleTeamInput = (e: React.ChangeEvent<HTMLInputElement>): void => {
     const id = e.target.id;
     const value = e.target.value;
 
-    setData({ ...data, [id]: value });
+    if (id === 'symbol') {
+      if (!e.target.files || e.target.files.length === 0) {
+        return;
+      }
+      setSymbol(e.target.files[0]);
+    } else if (id === 'logo') {
+      if (!e.target.files || e.target.files.length === 0) {
+        return;
+      }
+      setLogo(e.target.files[0]);
+    }
+    setTeamData({ ...teamData, [id]: value });
   };
-  console.log(data);
 
-  const handleAdd = async (e: React.ChangeEvent<HTMLFormElement>) => {
+  console.log(teamData);
+
+  const handleAdd = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     try {
       await addDoc(collection(db, 'teams'), {
-        ...data,
+        ...teamData,
+        teamMembers,
       });
     } catch (err) {
       console.log(err);
     }
-    console.log('Done', data);
   };
 
   return (
@@ -46,7 +63,11 @@ const TeamFormSection = () => {
           <Grid item xs={6} md={3}>
             <div>
               <img
-                src={logo ? URL.createObjectURL(logo) : noImageIcon}
+                src={
+                  logo
+                    ? URL.createObjectURL(logo as Blob | MediaSource)
+                    : noImageIcon
+                }
                 alt="Team Logo"
                 height={'auto'}
                 width={'100%'}
@@ -57,7 +78,11 @@ const TeamFormSection = () => {
           <Grid item xs={6} md={3}>
             <div>
               <img
-                src={symbol ? URL.createObjectURL(symbol) : noImageIcon}
+                src={
+                  symbol
+                    ? URL.createObjectURL(symbol as Blob | MediaSource)
+                    : noImageIcon
+                }
                 alt="Team Symbol"
                 height={'auto'}
                 width={'100%'}
@@ -71,17 +96,17 @@ const TeamFormSection = () => {
             {teamInputData.map((teamFormData) => (
               <TeamFormInput
                 key={teamFormData.formData}
-                defaultValue={teamFormData.defaultValue ?? ''}
+                placeholder={String(teamFormData.defaultValue) ?? ''}
                 teamFormData={teamFormData.formData}
                 type={teamFormData.type}
                 id={teamFormData.formData}
-                accept={teamFormData.formData ?? ''}
+                accept={teamFormData.accept ?? ''}
                 readonly={false}
-                handleInput={handleInput}
+                handleInput={handleTeamInput}
               />
             ))}
-
-            <button type="submit">Submit</button>
+            <br />
+            <button type="submit">Submit to Database</button>
           </form>
         </Grid>
       </Grid>
