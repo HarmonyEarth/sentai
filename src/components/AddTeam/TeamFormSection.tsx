@@ -1,8 +1,8 @@
 import { Grid } from '@mui/material';
 import { addDoc, collection, doc, setDoc } from 'firebase/firestore';
-import { ref, uploadBytesResumable, getDownloadURL } from 'firebase/storage';
-import React, { useState, useEffect } from 'react';
-import { db, storage } from '../../firebase';
+import React, { useState, useEffect, useMemo } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { db } from '../../firebase';
 import useFileUpload from '../../hooks/useFileUpload';
 import { Member, memberInputData, teamInputData } from '../../models/team';
 import TeamFormInput from './TeamFormInput';
@@ -12,7 +12,7 @@ export type FileState = File | Blob | MediaSource | String;
 const noImageIcon =
   'https://upload.wikimedia.org/wikipedia/commons/thumb/a/ac/No_image_available.svg/480px-No_image_available.svg.png';
 
-const TeamFormSection = () => {
+const TeamFormSection: React.FC = () => {
   const [data, setData] = useState({});
   const [teamData, setTeamData] = useState({});
   const [teamMembers, setTeamMembers] = useState<any[]>([
@@ -22,8 +22,40 @@ const TeamFormSection = () => {
   const [members, setMembers] = useState<any>({});
   const [logo, setLogo] = useState<FileState | undefined>();
   const [symbol, setSymbol] = useState<FileState | undefined>();
-  useFileUpload({ file: symbol as File, setFile: setTeamData, id: 'symbol' });
-  console.log(typeof symbol, 'Symbol');
+  const [teamId, setTeamId] = useState('');
+  const [year, setYear] = useState('');
+  const navigate = useNavigate();
+
+  // const teamFileUploadValues = [
+  //   { file: symbol as File, id: 'symbol' },
+  //   { file: logo as File, id: 'logo' },
+  // ];
+
+  // const logoValues = useMemo(
+  //   () => { file: logo as File, setFile: setTeamData, id: 'logo', submit },
+  //   [logo]
+  // );
+  // const symbolValues = useMemo(
+  //   () => [{ file: symbol as File, setFile: setTeamData, id: 'symbol'}],
+  //   [symbol]
+  // );
+  const logoPercent = useFileUpload({
+    file: logo as File,
+    setFile: setTeamData,
+    id: 'logo',
+    teamId,
+    structure: 'team',
+    year,
+  });
+  const symbolPercent = useFileUpload({
+    file: symbol as File,
+    setFile: setTeamData,
+    id: 'symbol',
+    teamId,
+    structure: 'team',
+    year,
+  });
+
   const handleTeamInput = (e: React.ChangeEvent<HTMLInputElement>): void => {
     const id = e.target.id;
     const value = e.target.value;
@@ -38,21 +70,32 @@ const TeamFormSection = () => {
         return;
       }
       setLogo(e.target.files[0]);
+    } else if (id === 'teamId') {
+      setTeamId(value);
+    } else if (id === 'year') {
+      setYear(value);
     }
     setTeamData({ ...teamData, [id]: value });
   };
 
   console.log(teamData);
 
+  console.log('logo percent is', logoPercent);
+  console.log('symbol percent is', symbolPercent);
+
+  let uploadMessage = '';
+
   const handleAdd = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+
     try {
       await addDoc(collection(db, 'teams'), {
         ...teamData,
         teamMembers,
       });
+      navigate(-1);
     } catch (err) {
-      console.log(err);
+      console.log('error', err);
     }
   };
 
@@ -73,6 +116,12 @@ const TeamFormSection = () => {
                 width={'100%'}
               />
               <h3>Logo</h3>
+              <p>
+                {(logoPercent !== null &&
+                  logoPercent < 100 &&
+                  'File Uploading') ||
+                  (logoPercent === 100 && 'File Uploaded')}
+              </p>
             </div>
           </Grid>
           <Grid item xs={6} md={3}>
@@ -88,6 +137,12 @@ const TeamFormSection = () => {
                 width={'100%'}
               />
               <h3>Symbol</h3>
+              <p>
+                {(symbolPercent !== null &&
+                  symbolPercent < 100 &&
+                  'File Uploading') ||
+                  (symbolPercent === 100 && 'File Uploaded')}
+              </p>
             </div>
           </Grid>
         </Grid>
@@ -106,7 +161,17 @@ const TeamFormSection = () => {
               />
             ))}
             <br />
-            <button type="submit">Submit to Database</button>
+            <button
+              // disabled={percent !== null && percent < 100}
+              disabled={
+                (logoPercent !== null && logoPercent < 100) ||
+                (symbolPercent !== null && symbolPercent < 100)
+              }
+              type="submit"
+            >
+              Submit to Database
+            </button>
+            <h3>{uploadMessage}</h3>
           </form>
         </Grid>
       </Grid>

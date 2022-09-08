@@ -1,24 +1,68 @@
-import React, { SetStateAction, useEffect, useState } from 'react';
+import React, { useEffect, useState, useRef, useLayoutEffect } from 'react';
 import { ref, uploadBytesResumable, getDownloadURL } from 'firebase/storage';
 import { storage } from '../firebase';
-import { FileState } from '../components/AddTeam/TeamFormSection';
 
 interface Props {
   file: File;
-  setFile: React.Dispatch<React.SetStateAction<{}>>;
   id: string;
+  setFile: React.Dispatch<React.SetStateAction<{}>>;
+  teamId: string;
+  structure: string;
+  heroId?: string;
+  year?: number | string;
 }
 
-const useFileUpload = ({ file, setFile, id }: Props) => {
-  //Upload Percentage
-  const [perc, setPerc] = useState<number | null>(null);
+const useCallbackRef = (callback: any) => {
+  const callbackRef = useRef(callback);
+  useLayoutEffect(() => {
+    callbackRef.current = callback;
+  }, [callback]);
+  return callbackRef;
+};
 
+const useFileUpload = ({
+  file,
+  id,
+  setFile,
+  teamId,
+  structure,
+  heroId,
+  year,
+}: Props) => {
+  //Upload Percentage
+  const [percent, setPercent] = useState<number | null>(null);
+
+  const addFileToData = useCallbackRef(setFile);
   useEffect(() => {
     const uploadFile = () => {
-      const name = new Date().getTime() + file.name;
+      const fileExtension = (file: File) => {
+        let extension = file.name.split('.').pop();
 
-      console.log(name);
-      const storageRef = ref(storage, file.name);
+        return extension;
+      };
+      const name = id;
+      const type = file.type;
+      console.log('type', type);
+
+      let fileURL = '';
+      if (structure === 'team') {
+        fileURL =
+          'images/' + teamId + '/' + name + year + '.' + fileExtension(file);
+      } else if (structure === 'member') {
+        fileURL =
+          'images/' +
+          teamId +
+          '/teamMembers/' +
+          heroId +
+          '/' +
+          name +
+          '.' +
+          fileExtension(file);
+      } else {
+        fileURL = 'images/' + teamId + '/' + name + '.' + fileExtension(file);
+      }
+
+      const storageRef = ref(storage, fileURL);
       const uploadTask = uploadBytesResumable(storageRef, file);
 
       uploadTask.on(
@@ -27,7 +71,8 @@ const useFileUpload = ({ file, setFile, id }: Props) => {
           const progress =
             (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
           console.log('Upload is ' + progress + '% done');
-          setPerc(progress);
+          setPercent((prev) => progress);
+
           switch (snapshot.state) {
             case 'paused':
               console.log('Upload is paused');
@@ -44,13 +89,18 @@ const useFileUpload = ({ file, setFile, id }: Props) => {
         },
         () => {
           getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
-            setFile((prev) => ({ ...prev, [id]: downloadURL }));
+            addFileToData.current?.((prev: any) => ({
+              ...prev,
+              [id]: downloadURL,
+            }));
           });
         }
       );
     };
     file && uploadFile();
-  }, [file, setFile, id]);
+  }, [file, id, teamId, heroId, structure, year, addFileToData]);
+
+  return percent;
 };
 
 export default useFileUpload;
