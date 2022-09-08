@@ -2,7 +2,7 @@ export interface Team {
   shortTeamName: string;
   fullTeamNameEN: string;
   fullTeamNameJP: string;
-  year: number;
+  year: number | string;
   logo: string;
   symbol: string;
   teamId: string;
