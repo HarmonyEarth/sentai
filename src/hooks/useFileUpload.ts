@@ -37,7 +37,7 @@ const useFileUpload = ({
     const uploadFile = () => {
       const fileExtension = (file: File) => {
         let extension = file.name.split('.').pop();
-
+        extension += '.';
         return extension;
       };
       const name = id;
@@ -46,8 +46,7 @@ const useFileUpload = ({
 
       let fileURL = '';
       if (structure === 'team') {
-        fileURL =
-          'images/' + teamId + '/' + name + year + '.' + fileExtension(file);
+        fileURL = 'images/' + teamId + '/' + name + year + fileExtension(file);
       } else if (structure === 'member') {
         fileURL =
           'images/' +
@@ -56,10 +55,7 @@ const useFileUpload = ({
           heroId +
           '/' +
           name +
-          '.' +
           fileExtension(file);
-      } else {
-        fileURL = 'images/' + teamId + '/' + name + '.' + fileExtension(file);
       }
 
       const storageRef = ref(storage, fileURL);

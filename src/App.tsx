@@ -18,7 +18,7 @@ function App() {
         <Route path="/" element={<Series />} />
         <Route path="/teams" element={<Teams />} />
         <Route path="/team/:teamId" element={<TeamDetails />} />
-        <Route path="/hero/:heroId" element={<HeroDetails />} />
+        <Route path="/:teamId/:heroId" element={<HeroDetails />} />
         <Route path="sign-up" element={<SignUp />} />
         <Route path="log-in" element={<LogIn />} />
         <Route path="cms" element={<CMS />} />
