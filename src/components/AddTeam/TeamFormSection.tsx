@@ -5,6 +5,7 @@ import { useNavigate } from 'react-router-dom';
 import { db } from '../../firebase';
 import useFileUpload from '../../hooks/useFileUpload';
 import { Member, memberInputData, teamInputData } from '../../models/team';
+import MemberFormInput from './MemberFormInput';
 import TeamFormInput from './TeamFormInput';
 
 export type FileState = File | Blob | MediaSource | String;
@@ -15,11 +16,7 @@ const noImageIcon =
 const TeamFormSection: React.FC = () => {
   const [data, setData] = useState({});
   const [teamData, setTeamData] = useState({});
-  const [teamMembers, setTeamMembers] = useState<any[]>([
-    { name: 'jane' },
-    { name: 'soup' },
-  ]);
-  const [members, setMembers] = useState<any>({});
+  const [teamMembers, setTeamMembers] = useState<Member[]>([]);
   const [logo, setLogo] = useState<FileState | undefined>();
   const [symbol, setSymbol] = useState<FileState | undefined>();
   const [teamId, setTeamId] = useState('');
@@ -145,6 +142,13 @@ const TeamFormSection: React.FC = () => {
               </p>
             </div>
           </Grid>
+          <Grid item xs={12}>
+            {teamMembers.length > 0 ? (
+              'Yay, team members exist!'
+            ) : (
+              <h3>No Team Members</h3>
+            )}
+          </Grid>
         </Grid>
         <Grid item md={6}>
           <form onSubmit={handleAdd}>
@@ -160,6 +164,8 @@ const TeamFormSection: React.FC = () => {
                 handleInput={handleTeamInput}
               />
             ))}
+            <br />
+            <MemberFormInput />
             <br />
             <button
               // disabled={percent !== null && percent < 100}

@@ -26,7 +26,7 @@ const HeroBanner = () => {
             sm={4}
             key={item}
             component={Link}
-            to={`/hero/${blackTurbo.heroId}`}
+            to={`/${turbo.teamId}/${blackTurbo.heroId}`}
           >
             <HeroCard heroImage2Url={blackTurbo.heroImage2Url} />
           </Grid>
@@ -41,7 +41,7 @@ const HeroBanner = () => {
             sm={2}
             key={list[item]}
             component={Link}
-            to={`/hero/${blueTurbo.heroId}`}
+            to={`/${turbo.teamId}/${blueTurbo.heroId}`}
           >
             <HeroCard heroImage2Url={blueTurbo.heroImage2Url} />
           </Grid>
