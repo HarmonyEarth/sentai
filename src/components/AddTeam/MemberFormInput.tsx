@@ -48,27 +48,6 @@ const MemberFormInput: React.FC<Props> = ({
     heroId,
   });
 
-  // const [input, setInput] = useState({
-  //   heroId: '',
-  //   heroNameEN1: '',
-  //   heroNameEN2: '',
-  //   heroNameJP1: '',
-  //   heroNameJP2: '',
-  //   heroImage1: '',
-  //   heroImage2: '',
-  //   heroHelmet: '',
-  //   color: '',
-  // });
-
-  // const handleChange = (
-  //   e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
-  // ) => {
-  //   setInput({
-  //     ...input,
-  //     [e.target.name]: e.target.value,
-  //   });
-  // };
-
   const handleMemberInput = (e: React.ChangeEvent<HTMLInputElement>): void => {
     const id = e.target.id;
     const value = e.target.value;
@@ -95,31 +74,6 @@ const MemberFormInput: React.FC<Props> = ({
   };
 
   const handleAdd = () => {};
-  // const handleClick = () => {
-  //   if (!input.name || !input.age) return;
-
-  //   setPeople([
-  //     ...people,
-  //     {
-  //       name: input.name,
-  //       age: parseInt(input.age),
-  //       img: input.img,
-  //       note: input.note,
-  //     },
-  //   ]);
-
-  //   setInput({
-  //     heroId: '',
-  //     heroNameEN1: '',
-  //     heroNameEN2: '',
-  //     heroNameJP1: '',
-  //     heroNameJP2: '',
-  //     heroImage1: '',
-  //     heroImage2: '',
-  //     heroHelmet: '',
-  //     color: '',
-  //   });
-  // };
 
   return (
     <div>
