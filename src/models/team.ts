@@ -47,21 +47,21 @@ export const memberInputData = [
     defaultValue: 'ガオレッド',
     type: 'text',
   },
-  // {
-  //   formData: 'heroImage1',
-  //   type: 'file',
-  //   accept: 'image/*',
-  // },
-  // {
-  //   formData: 'heroImage2',
-  //   type: 'file',
-  //   accept: 'image/*',
-  // },
-  // {
-  //   formData: 'heroHelmet',
-  //   type: 'file',
-  //   accept: 'image/*',
-  // },
+  {
+    formData: 'heroImage1',
+    type: 'file',
+    accept: 'image/*',
+  },
+  {
+    formData: 'heroImage2',
+    type: 'file',
+    accept: 'image/*',
+  },
+  {
+    formData: 'heroHelmet',
+    type: 'file',
+    accept: 'image/*',
+  },
   {
     formData: 'color',
     defaultValue: 'white',
