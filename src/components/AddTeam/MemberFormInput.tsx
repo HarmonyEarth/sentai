@@ -136,7 +136,15 @@ const MemberFormInput: React.FC<Props> = ({
           handleInput={handleMemberInput}
         />
       ))}
-      <button type="button" onClick={handleAdd}>
+      <button
+        type="button"
+        onClick={handleAdd}
+        disabled={
+          (heroImage1Percent !== null && heroImage1Percent < 100) ||
+          (heroImage2Percent !== null && heroImage2Percent < 100) ||
+          (heroHelmetPercent !== null && heroHelmetPercent < 100)
+        }
+      >
         Add Member
       </button>
     </div>
