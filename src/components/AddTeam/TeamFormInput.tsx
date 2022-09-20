@@ -8,6 +8,7 @@ interface Props {
   readonly: boolean;
   id: string;
   handleInput(e: React.ChangeEvent<HTMLInputElement>): void;
+  value?: any;
 }
 
 const TeamFormInput: React.FC<Props> = ({
@@ -18,6 +19,7 @@ const TeamFormInput: React.FC<Props> = ({
   readonly,
   id,
   handleInput,
+  value,
 }) => {
   return (
     <>
@@ -32,6 +34,7 @@ const TeamFormInput: React.FC<Props> = ({
         name={teamFormData}
         onChange={handleInput}
         required={!readonly}
+        value={value}
       />
       <br />
     </>

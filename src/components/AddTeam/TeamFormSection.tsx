@@ -14,8 +14,8 @@ const noImageIcon =
   'https://upload.wikimedia.org/wikipedia/commons/thumb/a/ac/No_image_available.svg/480px-No_image_available.svg.png';
 
 const TeamFormSection: React.FC = () => {
-  const [data, setData] = useState({});
   const [teamData, setTeamData] = useState({});
+  const [members, setMembers] = useState({});
   const [teamMembers, setTeamMembers] = useState<Member[]>([]);
   const [logo, setLogo] = useState<FileState | undefined>();
   const [symbol, setSymbol] = useState<FileState | undefined>();
@@ -151,6 +151,7 @@ const TeamFormSection: React.FC = () => {
           </Grid>
         </Grid>
         <Grid item md={6}>
+          <h4>Team Form</h4>
           <form onSubmit={handleAdd}>
             {teamInputData.map((teamFormData) => (
               <TeamFormInput
@@ -165,10 +166,20 @@ const TeamFormSection: React.FC = () => {
               />
             ))}
             <br />
-            <MemberFormInput />
+            {teamId && teamId.length > 3 ? (
+              <MemberFormInput
+                teamId={teamId}
+                teamMembers={teamMembers}
+                setTeamMembers={setTeamMembers}
+              />
+            ) : (
+              <b>
+                Please enter a teamId (with 4 characters or more) to add members
+              </b>
+            )}
+
             <br />
             <button
-              // disabled={percent !== null && percent < 100}
               disabled={
                 (logoPercent !== null && logoPercent < 100) ||
                 (symbolPercent !== null && symbolPercent < 100)
