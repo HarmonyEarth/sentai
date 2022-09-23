@@ -1,10 +1,12 @@
+import { FileState } from '../components/AddTeam/TeamFormSection';
+
 export interface Team {
   shortTeamName: string;
   fullTeamNameEN: string;
   fullTeamNameJP: string;
   year: number | string;
-  logo: string;
-  symbol: string;
+  logo: FileState;
+  symbol: FileState;
   teamId: string;
   teamMembers: Member[];
 }
@@ -15,9 +17,9 @@ export interface Member {
   heroNameEN2: string;
   heroNameJP1: string;
   heroNameJP2: string;
-  heroImage1: string;
-  heroImage2: string;
-  heroHelmet: string;
+  heroImage1: FileState;
+  heroImage2: FileState;
+  heroHelmet: FileState;
   color: string;
 }
 
@@ -48,6 +50,11 @@ export const memberInputData = [
     type: 'text',
   },
   {
+    formData: 'color',
+    defaultValue: 'white',
+    type: 'text',
+  },
+  {
     formData: 'heroImage1',
     type: 'file',
     accept: 'image/*',
@@ -61,11 +68,6 @@ export const memberInputData = [
     formData: 'heroHelmet',
     type: 'file',
     accept: 'image/*',
-  },
-  {
-    formData: 'color',
-    defaultValue: 'white',
-    type: 'text',
   },
 ];
 

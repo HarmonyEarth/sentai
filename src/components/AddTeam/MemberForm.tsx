@@ -1,58 +1,34 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Member, memberInputData } from '../../models/team';
 import { FileState } from './TeamFormSection';
-import useFileUpload from '../../hooks/useFileUpload';
-import TeamFormInput from './TeamFormInput';
+
+import FormInput from '../CMS/FormInput';
 
 interface Props {
-  teamId: string;
   setTeamMembers: React.Dispatch<React.SetStateAction<Member[]>>;
+  setHeroImage1: React.Dispatch<React.SetStateAction<FileState>>;
+  setHeroImage2: React.Dispatch<React.SetStateAction<FileState>>;
+  setHeroHelmet: React.Dispatch<React.SetStateAction<FileState>>;
+  setMember: React.Dispatch<React.SetStateAction<Member>>;
+  setHeroId: React.Dispatch<React.SetStateAction<string>>;
+  member: Member;
+  heroImage1Percent: number | null;
+  heroImage2Percent: number | null;
+  heroHelmetPercent: number | null;
 }
 
-const MemberForm: React.FC<Props> = ({ teamId, setTeamMembers }) => {
-  const [heroImage1, setHeroImage1] = useState<FileState | undefined>();
-  const [heroImage2, setHeroImage2] = useState<FileState | undefined>();
-  const [heroHelmet, setHeroHelmet] = useState<FileState | undefined>();
-  const [heroId, setHeroId] = useState('');
-  const [member, setMember] = useState<Member>({
-    heroId: '',
-    heroNameEN1: '',
-    heroNameEN2: '',
-    heroNameJP1: '',
-    heroNameJP2: '',
-    heroImage1: '',
-    heroImage2: '',
-    heroHelmet: '',
-    color: '',
-  });
-
-  const heroImage1Percent = useFileUpload({
-    file: heroImage1 as File,
-    setFile: setMember,
-    id: 'heroImage1',
-    teamId,
-    structure: 'member',
-    heroId,
-  });
-
-  const heroImage2Percent = useFileUpload({
-    file: heroImage2 as File,
-    setFile: setMember,
-    id: 'heroImage2',
-    teamId,
-    structure: 'member',
-    heroId,
-  });
-
-  const heroHelmetPercent = useFileUpload({
-    file: heroHelmet as File,
-    setFile: setMember,
-    id: 'heroHelmet',
-    teamId,
-    structure: 'member',
-    heroId,
-  });
-
+const MemberForm: React.FC<Props> = ({
+  setTeamMembers,
+  setHeroImage1,
+  setHeroImage2,
+  setHeroHelmet,
+  setMember,
+  setHeroId,
+  member,
+  heroImage1Percent,
+  heroImage2Percent,
+  heroHelmetPercent,
+}) => {
   const memberFormId = document.getElementById(
     'addMemberForm'
   ) as HTMLFormElement;
@@ -91,7 +67,7 @@ const MemberForm: React.FC<Props> = ({ teamId, setTeamMembers }) => {
   return (
     <form id="addMemberForm" onSubmit={handleAdd}>
       {memberInputData.map((memberFormData) => (
-        <TeamFormInput
+        <FormInput
           key={memberFormData.formData}
           placeholder={String(memberFormData.defaultValue) ?? ''}
           teamFormData={memberFormData.formData}
