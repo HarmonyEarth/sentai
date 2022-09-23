@@ -1,13 +1,13 @@
 import React, { useEffect, useState, useRef, useLayoutEffect } from 'react';
 import { ref, uploadBytesResumable, getDownloadURL } from 'firebase/storage';
 import { storage } from '../firebase';
-import { Member } from '../models/team';
+import { Member, Team } from '../models/team';
 
 interface Props {
   file: File;
   id: string;
   setFile:
-    | React.Dispatch<React.SetStateAction<{}>>
+    | React.Dispatch<React.SetStateAction<Team>>
     | React.Dispatch<React.SetStateAction<Member>>;
   teamId: string;
   structure: string;

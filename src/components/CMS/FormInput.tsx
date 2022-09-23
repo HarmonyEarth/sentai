@@ -1,5 +1,4 @@
 import React from 'react';
-import { FileState } from './TeamFormSection';
 
 interface Props {
   teamFormData: string;
@@ -12,7 +11,7 @@ interface Props {
   value?: string;
 }
 
-const TeamFormInput: React.FC<Props> = ({
+const FormInput: React.FC<Props> = ({
   teamFormData,
   placeholder,
   type,
@@ -42,4 +41,4 @@ const TeamFormInput: React.FC<Props> = ({
   );
 };
 
-export default TeamFormInput;
+export default FormInput;
