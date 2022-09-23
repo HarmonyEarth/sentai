@@ -1,11 +1,14 @@
 import React, { useEffect, useState, useRef, useLayoutEffect } from 'react';
 import { ref, uploadBytesResumable, getDownloadURL } from 'firebase/storage';
 import { storage } from '../firebase';
+import { Member } from '../models/team';
 
 interface Props {
   file: File;
   id: string;
-  setFile: React.Dispatch<React.SetStateAction<{}>>;
+  setFile:
+    | React.Dispatch<React.SetStateAction<{}>>
+    | React.Dispatch<React.SetStateAction<Member>>;
   teamId: string;
   structure: string;
   heroId?: string;
@@ -37,7 +40,7 @@ const useFileUpload = ({
     const uploadFile = () => {
       const fileExtension = (file: File) => {
         let extension = file.name.split('.').pop();
-        extension += '.';
+        extension = '.' + extension;
         return extension;
       };
       const name = id;

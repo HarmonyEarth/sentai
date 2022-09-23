@@ -80,8 +80,6 @@ const TeamFormSection: React.FC = () => {
   console.log('logo percent is', logoPercent);
   console.log('symbol percent is', symbolPercent);
 
-  let uploadMessage = '';
-
   const handleAdd = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
@@ -188,7 +186,6 @@ const TeamFormSection: React.FC = () => {
             >
               Submit to Database
             </button>
-            <h3>{uploadMessage}</h3>
           </form>
         </Grid>
       </Grid>

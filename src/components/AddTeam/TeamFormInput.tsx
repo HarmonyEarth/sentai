@@ -1,4 +1,5 @@
 import React from 'react';
+import { FileState } from './TeamFormSection';
 
 interface Props {
   teamFormData: string;
@@ -8,7 +9,7 @@ interface Props {
   readonly: boolean;
   id: string;
   handleInput(e: React.ChangeEvent<HTMLInputElement>): void;
-  value?: any;
+  value?: string;
 }
 
 const TeamFormInput: React.FC<Props> = ({
