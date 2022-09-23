@@ -2,14 +2,12 @@ import { Grid } from '@mui/material';
 import React, { useState } from 'react';
 import useFileUpload from '../../hooks/useFileUpload';
 import { Member, Team } from '../../models/team';
+import FormTeamImage from '../CMS/FormTeamImage';
 import MemberForm from './MemberForm';
 
 import TeamForm from './TeamForm';
 
 export type FileState = File | Blob | MediaSource | String | undefined;
-
-const noImageIcon =
-  'https://upload.wikimedia.org/wikipedia/commons/thumb/a/ac/No_image_available.svg/480px-No_image_available.svg.png';
 
 const TeamFormSection: React.FC = () => {
   const [teamMembers, setTeamMembers] = useState<Member[]>([]);
@@ -93,46 +91,18 @@ const TeamFormSection: React.FC = () => {
       <Grid container item>
         <Grid container item justifyContent="space-around" xs={12} md={6}>
           <Grid item xs={6} md={3}>
-            <div>
-              <img
-                src={
-                  logo
-                    ? URL.createObjectURL(logo as Blob | MediaSource)
-                    : noImageIcon
-                }
-                alt="Team Logo"
-                height={'auto'}
-                width={'100%'}
-              />
-              <h3>Logo</h3>
-              <p>
-                {(logoPercent !== null &&
-                  logoPercent < 100 &&
-                  'File Uploading') ||
-                  (logoPercent === 100 && 'File Uploaded')}
-              </p>
-            </div>
+            <FormTeamImage
+              image={logo}
+              imagePercent={logoPercent}
+              imageName={'Logo'}
+            />
           </Grid>
           <Grid item xs={6} md={3}>
-            <div>
-              <img
-                src={
-                  symbol
-                    ? URL.createObjectURL(symbol as Blob | MediaSource)
-                    : noImageIcon
-                }
-                alt="Team Symbol"
-                height={'auto'}
-                width={'100%'}
-              />
-              <h3>Symbol</h3>
-              <p>
-                {(symbolPercent !== null &&
-                  symbolPercent < 100 &&
-                  'File Uploading') ||
-                  (symbolPercent === 100 && 'File Uploaded')}
-              </p>
-            </div>
+            <FormTeamImage
+              image={symbol}
+              imagePercent={symbolPercent}
+              imageName={'Symbol'}
+            />
           </Grid>
         </Grid>
         <Grid container item justifyContent="space-around" xs={12} md={6}>
