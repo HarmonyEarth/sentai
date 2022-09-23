@@ -5,6 +5,7 @@ import { useNavigate } from 'react-router-dom';
 import { db } from '../../firebase';
 import useFileUpload from '../../hooks/useFileUpload';
 import { Member, memberInputData, teamInputData } from '../../models/team';
+import MemberForm from './MemberForm';
 import MemberFormInput from './MemberFormInput';
 import TeamFormInput from './TeamFormInput';
 
@@ -140,53 +141,53 @@ const TeamFormSection: React.FC = () => {
               </p>
             </div>
           </Grid>
-          <Grid item xs={12}>
-            {teamMembers.length > 0 ? (
-              'Yay, team members exist!'
-            ) : (
-              <h3>No Team Members</h3>
-            )}
-          </Grid>
         </Grid>
-        <Grid item md={6}>
-          <h4>Team Form</h4>
-          <form onSubmit={handleAdd}>
-            {teamInputData.map((teamFormData) => (
-              <TeamFormInput
-                key={teamFormData.formData}
-                placeholder={String(teamFormData.defaultValue) ?? ''}
-                teamFormData={teamFormData.formData}
-                type={teamFormData.type}
-                id={teamFormData.formData}
-                accept={teamFormData.accept ?? ''}
-                readonly={false}
-                handleInput={handleTeamInput}
-              />
-            ))}
-            <br />
+        <Grid container item justifyContent="space-around" xs={12} md={6}>
+          <Grid item xs={6} md={3}>
+            <h4>Team Form</h4>
+            <form onSubmit={handleAdd}>
+              {teamInputData.map((teamFormData) => (
+                <TeamFormInput
+                  key={teamFormData.formData}
+                  placeholder={String(teamFormData.defaultValue) ?? ''}
+                  teamFormData={teamFormData.formData}
+                  type={teamFormData.type}
+                  id={teamFormData.formData}
+                  accept={teamFormData.accept ?? ''}
+                  readonly={false}
+                  handleInput={handleTeamInput}
+                />
+              ))}
+              <br />
+
+              <button
+                disabled={
+                  (logoPercent !== null && logoPercent < 100) ||
+                  (symbolPercent !== null && symbolPercent < 100)
+                }
+                type="submit"
+              >
+                Submit to Database
+              </button>
+            </form>
+          </Grid>
+          <Grid item xs={6} md={3}>
+            <h4>Member Form</h4>
             {teamId && teamId.length > 3 ? (
-              <MemberFormInput
-                teamId={teamId}
-                teamMembers={teamMembers}
-                setTeamMembers={setTeamMembers}
-              />
+              <MemberForm teamId={teamId} setTeamMembers={setTeamMembers} />
             ) : (
               <b>
                 Please enter a teamId (with 4 characters or more) to add members
               </b>
             )}
-
-            <br />
-            <button
-              disabled={
-                (logoPercent !== null && logoPercent < 100) ||
-                (symbolPercent !== null && symbolPercent < 100)
-              }
-              type="submit"
-            >
-              Submit to Database
-            </button>
-          </form>
+          </Grid>
+        </Grid>
+        <Grid container item xs={12} md={12}>
+          {teamMembers.length > 0 ? (
+            'Yay, team members exist!'
+          ) : (
+            <h3>No Team Members</h3>
+          )}
         </Grid>
       </Grid>
     </Grid>
