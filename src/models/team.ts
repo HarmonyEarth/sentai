@@ -9,10 +9,13 @@ export interface Team {
   symbol: FileState;
   teamId: string;
   teamMembers: Member[];
+  id?: string;
 }
 
 export interface Member {
   heroId: string;
+  color: string;
+  position: number | string;
   heroNameEN1: string;
   heroNameEN2: string;
   heroNameJP1: string;
@@ -20,13 +23,22 @@ export interface Member {
   heroImage1: FileState;
   heroImage2: FileState;
   heroHelmet: FileState;
-  color: string;
 }
 
 export const memberInputData = [
   {
     formData: 'heroId',
-    defaultValue: 'harmony01',
+    defaultValue: 'harmony1',
+    type: 'text',
+  },
+  {
+    formData: 'position',
+    defaultValue: 1,
+    type: 'number',
+  },
+  {
+    formData: 'color',
+    defaultValue: 'white',
     type: 'text',
   },
   {
@@ -49,11 +61,7 @@ export const memberInputData = [
     defaultValue: 'ガオレッド',
     type: 'text',
   },
-  {
-    formData: 'color',
-    defaultValue: 'white',
-    type: 'text',
-  },
+
   {
     formData: 'heroImage1',
     type: 'file',

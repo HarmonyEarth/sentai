@@ -1,9 +1,9 @@
-import React from "react";
+import React from 'react';
 import {
   BigText,
   Container,
   SmallText,
-} from "../../styles/Series/Title.styles";
+} from '../../styles/Series/Title.styles';
 
 const Title = () => {
   return (

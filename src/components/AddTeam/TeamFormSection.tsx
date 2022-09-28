@@ -1,7 +1,9 @@
 import { Grid } from '@mui/material';
 import React, { useState } from 'react';
+import turbo from '../../assets/data';
 import useFileUpload from '../../hooks/useFileUpload';
 import { Member, Team } from '../../models/team';
+import CurrentMembers from '../CMS/CurrentMembers';
 import FormTeamImage from '../CMS/FormTeamImage';
 import MemberForm from './MemberForm';
 
@@ -10,7 +12,9 @@ import TeamForm from './TeamForm';
 export type FileState = File | Blob | MediaSource | String | undefined;
 
 const TeamFormSection: React.FC = () => {
-  const [teamMembers, setTeamMembers] = useState<Member[]>([]);
+  const [teamMembers, setTeamMembers] = useState<Member[]>([
+    ...turbo.teamMembers,
+  ]);
   const [logo, setLogo] = useState<FileState>();
   const [symbol, setSymbol] = useState<FileState>();
   const [teamId, setTeamId] = useState('');
@@ -32,11 +36,12 @@ const TeamFormSection: React.FC = () => {
   const [heroId, setHeroId] = useState('');
   const [member, setMember] = useState<Member>({
     heroId,
+    color: '',
+    position: '',
     heroNameEN1: '',
     heroNameEN2: '',
     heroNameJP1: '',
     heroNameJP2: '',
-    color: '',
     heroImage1,
     heroImage2,
     heroHelmet,
@@ -144,7 +149,11 @@ const TeamFormSection: React.FC = () => {
         </Grid>
         <Grid container item xs={12} md={12}>
           {teamMembers.length > 0 ? (
-            'Yay, team members exist!'
+            teamMembers.map((teamMember) => (
+              <Grid item xs={12}>
+                <CurrentMembers teamMember={teamMember} />
+              </Grid>
+            ))
           ) : (
             <h3>No Team Members</h3>
           )}
