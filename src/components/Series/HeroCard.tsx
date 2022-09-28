@@ -1,19 +1,19 @@
-import { useMediaQuery, useTheme } from "@mui/material";
-import React from "react";
-import { SenshiCard } from "../../styles/Series/HeroCard.styles";
-import { randomColor, randomColor2 } from "../../utils/randomColor";
+import { useMediaQuery, useTheme } from '@mui/material';
+import React from 'react';
+import { SenshiCard } from '../../styles/Series/HeroCard.styles';
+import { randomColor, randomColor2 } from '../../utils/randomColor';
 interface Props {
-  heroImage2Url: string;
+  heroImage2: string;
 }
 
-const HeroCard = ({ heroImage2Url }: Props) => {
+const HeroCard = ({ heroImage2 }: Props) => {
   const theme = useTheme();
-  const mobile = useMediaQuery(theme.breakpoints.down("sm"));
+  const mobile = useMediaQuery(theme.breakpoints.down('sm'));
   return (
     <SenshiCard
       randomColor={randomColor()}
       randomColor2={randomColor2()}
-      heroImage2Url={heroImage2Url}
+      heroImage2={heroImage2}
       isMobile={mobile}
     />
   );

@@ -61,7 +61,7 @@ const TeamForm: React.FC<Props> = ({
         ...teamData,
         teamMembers,
       });
-      navigate(-1);
+      navigate('/cms');
     } catch (err) {
       console.log('error', err);
     }

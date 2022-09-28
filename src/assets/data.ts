@@ -12,29 +12,33 @@ const turbo = {
   teamMembers: [
     {
       heroId: 'turbo2',
+      color: 'blue',
+      position: 2,
       heroNameEN1: 'Daichi Yamagata',
       heroNameEN2: 'Black Turbo',
       heroNameJP1: '山形 大地',
       heroNameJP2: 'ブラックターボ',
-      heroImage1Url:
+      heroImage1:
         'https://static.wikia.nocookie.net/powerrangers/images/3/3e/TurborangerDaichiYamagata.jpg',
-      heroImage2Url:
+      heroImage2:
         'https://static.wikia.nocookie.net/powerrangers/images/f/f6/Turbo-black.png',
-      heroHelmetUrl: BlackHelmet,
-      heroHueRotation: '219deg',
+      heroHelmet: BlackHelmet,
+      // heroHueRotation: '219deg',
     },
     {
       heroId: 'turbo3',
+      color: 'black',
+      position: 1,
       heroNameEN1: 'Youhei Hama',
       heroNameEN2: 'Blue Turbo',
       heroNameJP1: '浜 洋平',
       heroNameJP2: 'ブルーターボ',
-      heroImage1Url:
+      heroImage1:
         'https://static.wikia.nocookie.net/powerrangers/images/6/6a/TurborangerYouheiHama.jpg',
-      heroImage2Url:
+      heroImage2:
         'https://static.wikia.nocookie.net/powerrangers/images/f/f8/Turbo-blue.png',
-      heroHelmetUrl: BlueHelmet,
-      heroHueRotation: '180deg',
+      heroHelmet: BlueHelmet,
+      // heroHueRotation: '180deg',
     },
   ],
 };

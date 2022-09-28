@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
 interface Props {
   randomColor: string;
@@ -29,7 +29,7 @@ export const SeriesLeftSide = styled.div<MobileProps>`
   align-items: center;
   justify-content: center;
   position: relative;
-  flex-wrap: ${(props) => (props.isMobile ? "wrap" : "nowrap")};
+  flex-wrap: ${(props) => (props.isMobile ? 'wrap' : 'nowrap')};
 `;
 
 export const SeriesYearText = styled.h1`
