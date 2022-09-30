@@ -1,5 +1,5 @@
 import React from 'react';
-import { FileState } from '../AddTeam/TeamFormSection';
+import { FileState } from '../../models/fileState';
 
 interface Props {
   image: FileState;
