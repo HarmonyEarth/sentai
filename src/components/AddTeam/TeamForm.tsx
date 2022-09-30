@@ -2,9 +2,9 @@ import { addDoc, collection } from 'firebase/firestore';
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import { db } from '../../firebase';
+import { FileState } from '../../models/fileState';
 import { Member, Team, teamInputData } from '../../models/team';
 import FormInput from '../CMS/FormInput';
-import { FileState } from './TeamFormSection';
 
 interface Props {
   symbolPercent: number | null;

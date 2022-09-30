@@ -1,4 +1,4 @@
-import { FileState } from '../components/AddTeam/TeamFormSection';
+import { FileState } from './fileState';
 
 export interface Team {
   shortTeamName: string;

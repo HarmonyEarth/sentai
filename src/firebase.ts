@@ -2,8 +2,15 @@ import { initializeApp } from 'firebase/app';
 
 import { getAuth } from 'firebase/auth';
 
-import { collection, getFirestore, onSnapshot } from 'firebase/firestore';
+import {
+  collection,
+  getFirestore,
+  onSnapshot,
+  orderBy,
+  query,
+} from 'firebase/firestore';
 import { getStorage } from 'firebase/storage';
+import React from 'react';
 import { Team } from './models/team';
 
 export const firebaseConfig = {
@@ -40,6 +47,8 @@ export const db = getFirestore(app);
 // const teams = getAllTeams().then(console.log);
 const colRef = collection(db, 'teams');
 
+const q = query(colRef, orderBy('year', 'asc'));
+
 // getDocs(colRef)
 //   .then((snapshot) => {
 //     console.log(snapshot);
@@ -49,11 +58,15 @@ const colRef = collection(db, 'teams');
 //     console.log(err.message);
 //   });
 
-export const teams: Team[] = [];
-
-onSnapshot(colRef, (snapshot) => {
-  snapshot.docs.forEach((doc) => {
-    teams.push({ ...(doc.data() as Team), id: doc.id });
+export const grabTeams = () => {
+  let teams: Team[] = [];
+  onSnapshot(q, (snapshot) => {
+    teams = [];
+    snapshot.docs.forEach((doc) => {
+      teams.push({ ...(doc.data() as Team), id: doc.id });
+    });
+    console.log('Teams', teams);
   });
-  console.log('Teams', teams);
-});
+
+  return teams;
+};

@@ -15,7 +15,7 @@ interface Props {
   year?: number | string;
 }
 
-const useCallbackRef = (callback: any) => {
+export const useCallbackRef = (callback: any) => {
   const callbackRef = useRef(callback);
   useLayoutEffect(() => {
     callbackRef.current = callback;

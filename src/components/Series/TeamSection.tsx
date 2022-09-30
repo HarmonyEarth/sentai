@@ -1,33 +1,32 @@
 import { Grid } from '@mui/material';
 import React from 'react';
 import { Link } from 'react-router-dom';
-import turbo from '../../assets/data';
+import { Team } from '../../models/team';
 import TeamCard from './TeamCard';
 
-const list: number[] = [];
-for (let i = 0; i < 11; i++) {
-  list.push(i);
+interface Props {
+  teams: Team[];
 }
 
-const TeamSection = () => {
+const TeamSection: React.FC<Props> = ({ teams }) => {
   return (
     <Grid container>
-      {list.map((item) => (
+      {teams.map((team) => (
         <Grid
           item
           xs={12}
           sm={6}
           md={4}
           component={Link}
-          to={`/team/${turbo.teamId}`}
+          to={`/team/${team.teamId}`}
           sx={{ textDecoration: 'none' }}
-          key={item}
+          key={team.teamId}
         >
           <TeamCard
-            logo={turbo.logo}
-            symbol={turbo.symbol}
-            year={turbo.year}
-            shortTeamName={turbo.shortTeamName}
+            logo={String(team.logo)}
+            symbol={String(team.symbol)}
+            year={Number(team.year)}
+            shortTeamName={team.shortTeamName}
           />
         </Grid>
       ))}

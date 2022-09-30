@@ -2,14 +2,13 @@ import { Grid } from '@mui/material';
 import React, { useState } from 'react';
 import turbo from '../../assets/data';
 import useFileUpload from '../../hooks/useFileUpload';
+import { FileState } from '../../models/fileState';
 import { Member, Team } from '../../models/team';
 import CurrentMembers from '../CMS/CurrentMembers';
 import FormTeamImage from '../CMS/FormTeamImage';
 import MemberForm from './MemberForm';
 
 import TeamForm from './TeamForm';
-
-export type FileState = File | Blob | MediaSource | String | undefined;
 
 const TeamFormSection: React.FC = () => {
   const [teamMembers, setTeamMembers] = useState<Member[]>([
@@ -149,8 +148,8 @@ const TeamFormSection: React.FC = () => {
         </Grid>
         <Grid container item xs={12} md={12}>
           {teamMembers.length > 0 ? (
-            teamMembers.map((teamMember) => (
-              <Grid item xs={12}>
+            teamMembers.map((teamMember, index) => (
+              <Grid item xs={12} key={index}>
                 <CurrentMembers teamMember={teamMember} />
               </Grid>
             ))

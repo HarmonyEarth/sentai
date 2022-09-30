@@ -1,6 +1,6 @@
 import React from 'react';
+import { FileState } from '../../models/fileState';
 import { Member, memberInputData } from '../../models/team';
-import { FileState } from './TeamFormSection';
 
 import FormInput from '../CMS/FormInput';
 
