@@ -36,7 +36,7 @@ const HeroBanner: React.FC<Props> = ({ teams }) => {
   teams.forEach((team) => {
     allTeamMembers.push(...team.teamMembers);
   });
-  // shuffle(allTeamMembers);
+  shuffle(allTeamMembers);
   // console.log('shuffe', allTeamMembers);
   return (
     <Grid container>
@@ -56,7 +56,7 @@ const HeroBanner: React.FC<Props> = ({ teams }) => {
         ))}
       </Grid>
       <Grid container item xs={12} md={8}>
-        {allTeamMembers.slice(mobile ? -4 : 4, 10).map((teamMember) => (
+        {allTeamMembers.slice(mobile ? -7 : 4, 10).map((teamMember) => (
           <Grid
             container
             item
