@@ -12,24 +12,30 @@ import AddTeam from './pages/AddTeam';
 import Teams from './pages/Teams';
 import { Team } from './models/team';
 
-import { grabTeams } from './firebase';
+import { streamTeams } from './firebase';
 
 function App() {
   const [teams, setTeams] = useState<Team[]>([]);
 
   useEffect(() => {
-    const grabbedTeams = grabTeams();
-    setTeams((prev) => grabbedTeams);
-    console.log('Effect ran');
-  }, []);
+    const unsubscribe = streamTeams(
+      (snapshot) => {
+        const updatedTeams = snapshot.docs.map(
+          (docSnapshot) => docSnapshot.data() as Team
+        );
+        setTeams(updatedTeams);
+      },
+      (error) => console.log(error)
+    );
+    return unsubscribe;
+  }, [setTeams]);
+
+  console.log(teams);
 
   return (
     <div className="App">
       <Routes>
-        <Route
-          path="/"
-          element={<Series teams={teams.length > 0 ? teams : []} />}
-        />
+        <Route path="/" element={<Series teams={teams} />} />
         <Route path="/teams" element={<Teams />} />
         <Route path="/team/:teamId" element={<TeamDetails />} />
         <Route path="/:teamId/:heroId" element={<HeroDetails />} />
