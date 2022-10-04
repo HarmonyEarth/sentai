@@ -13,8 +13,6 @@ import {
   QuerySnapshot,
 } from 'firebase/firestore';
 import { getStorage } from 'firebase/storage';
-import React from 'react';
-import { Team } from './models/team';
 
 export const firebaseConfig = {
   apiKey: process.env.REACT_APP_FIREBASE_API_KEY,

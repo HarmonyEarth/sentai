@@ -30,8 +30,6 @@ function App() {
     return unsubscribe;
   }, [setTeams]);
 
-  console.log(teams);
-
   return (
     <div className="App">
       <Routes>
