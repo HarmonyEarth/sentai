@@ -16,7 +16,7 @@ export const SenshiCard = styled.div<Props>`
   background-repeat: no-repeat;
   background-position: center top;
   background-size: contain;
-  background-size: 200%;
+  background-size: auto 140%;
   height: ${(props) => (props.isMobile ? '200px' : '450px')};
   width: 100%;
 `;

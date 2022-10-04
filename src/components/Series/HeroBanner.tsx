@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Grid, useMediaQuery, useTheme } from '@mui/material';
 import { Link } from 'react-router-dom';
 import HeroCard from './HeroCard';
@@ -6,6 +6,10 @@ import { Member, Team } from '../../models/team';
 
 interface Props {
   teams: Team[];
+}
+
+interface AllTeamMembersType extends Member {
+  teamId: string;
 }
 
 function shuffle(array: Member[]) {
@@ -31,13 +35,18 @@ function shuffle(array: Member[]) {
 const HeroBanner: React.FC<Props> = ({ teams }) => {
   const theme = useTheme();
   const mobile = useMediaQuery(theme.breakpoints.down('sm'));
-  let allTeamMembers: Member[] = [];
+
+  const allTeamMembers: AllTeamMembersType[] = [];
 
   teams.forEach((team) => {
-    allTeamMembers.push(...team.teamMembers);
+    team.teamMembers.forEach((member) => {
+      const linkedMember = { ...member, teamId: team.teamId };
+      allTeamMembers.push(linkedMember);
+    });
   });
+
   shuffle(allTeamMembers);
-  // console.log('shuffe', allTeamMembers);
+
   return (
     <Grid container>
       <Grid container item xs={12} md={4}>
@@ -49,7 +58,7 @@ const HeroBanner: React.FC<Props> = ({ teams }) => {
             sm={4}
             key={teamMember.heroId}
             component={Link}
-            to={`/${teamMember.heroId}`}
+            to={`/${teamMember.teamId}/${teamMember.heroId}`}
           >
             <HeroCard heroImage2={String(teamMember.heroImage2)} />
           </Grid>
@@ -64,7 +73,7 @@ const HeroBanner: React.FC<Props> = ({ teams }) => {
             sm={2}
             key={teamMember.heroId}
             component={Link}
-            to={`/${teamMember.heroId}`}
+            to={`/${teamMember.teamId}/${teamMember.heroId}`}
           >
             <HeroCard heroImage2={String(teamMember.heroImage2)} />
           </Grid>
