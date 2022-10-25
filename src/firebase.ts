@@ -35,9 +35,13 @@ export const auth = getAuth(app);
 // Initialize Cloud Firestore and get a reference to the service
 export const db = getFirestore(app);
 
-const colRef = collection(db, 'teams');
+const teamsColRef = collection(db, 'teams');
 
-const q = query(colRef, orderBy('year', 'asc'));
+const teamsQuery = query(teamsColRef, orderBy('year', 'asc'));
+
+const membersColRef = collection(db, 'members');
+
+const membersQuery = query(membersColRef, orderBy('teamId', 'asc'));
 
 type SnapshotType = (snapshot: QuerySnapshot<DocumentData>) => void;
 type SnapshotErrorType = (error: FirestoreError) => void;
@@ -46,5 +50,12 @@ export const streamTeams = (
   snapshot: SnapshotType,
   error: SnapshotErrorType
 ) => {
-  return onSnapshot(q, snapshot, error);
+  return onSnapshot(teamsQuery, snapshot, error);
+};
+
+export const streamMembers = (
+  snapshot: SnapshotType,
+  error: SnapshotErrorType
+) => {
+  return onSnapshot(membersQuery, snapshot, error);
 };

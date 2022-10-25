@@ -1,8 +1,12 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { logIn } from '../api/auth';
+import { useAppDispatch } from '../../hooks/reduxTypedHooks';
+import { logUserIn } from '../../rtk/slice/userSlice';
 
-const Login = () => {
+const LogIn = () => {
+  const dispatch = useAppDispatch();
+  let navigate = useNavigate();
+
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
@@ -14,15 +18,14 @@ const Login = () => {
     setPassword(e.currentTarget.value);
   };
 
-  const navigate = useNavigate();
-  const handleClick = (e: React.SyntheticEvent) => {
-    logIn(email, password);
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    navigate('/');
+
+    navigate('/select');
   };
   return (
-    <div>
-      <form>
+    <>
+      <form onSubmit={handleSubmit}>
         <h1>Log In</h1>
         <label>Email</label>
         <input
@@ -37,10 +40,9 @@ const Login = () => {
           value={password}
           onChange={handlePasswordChange}
         />
-        <button onClick={handleClick}>Submit</button>
       </form>
-    </div>
+    </>
   );
 };
 
-export default Login;
+export default LogIn;
