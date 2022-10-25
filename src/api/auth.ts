@@ -1,11 +1,19 @@
 import { auth } from '../firebase';
 import {
   createUserWithEmailAndPassword,
+  NextOrObserver,
+  onAuthStateChanged,
   signInWithEmailAndPassword,
   signOut,
+  User,
 } from 'firebase/auth';
 
-export const signUp = (email: string, password: string) => {
+interface UserProps {
+  email: string;
+  password: string;
+}
+
+export const signUp = ({ email, password }: UserProps) => {
   createUserWithEmailAndPassword(auth, email, password)
     .then((result) => {
       console.log('Sign Up Successful', result);
@@ -15,7 +23,7 @@ export const signUp = (email: string, password: string) => {
     });
 };
 
-export const logIn = (email: string, password: string) => {
+export const logIn = ({ email, password }: UserProps) => {
   signInWithEmailAndPassword(auth, email, password)
     .then((result) => {
       console.log('Log In Successful', result);
@@ -28,9 +36,13 @@ export const logIn = (email: string, password: string) => {
 export const logOut = () => {
   signOut(auth)
     .then((result) => {
-      console.log('Sign Out Successful');
+      console.log('Log Out Successful', result);
     })
     .catch((error) => {
       console.log(error);
     });
+};
+
+export const trackAuthStatus = (userStatusFunction: NextOrObserver<User>) => {
+  return onAuthStateChanged(auth, userStatusFunction);
 };
