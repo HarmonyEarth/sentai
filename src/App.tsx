@@ -29,15 +29,18 @@ function App() {
       if (user) {
         dispatch(logUserIn());
         console.log('User is available');
-        console.log(user);
       } else {
         dispatch(logUserOut());
         console.log('User is not available');
       }
     });
   }, [dispatch]);
+  console.log('useEffect ran');
 
-  console.log(authStatus);
+  console.log('AuthStatus', authStatus);
+
+  if (teams.length === 0) return <h1>Loading</h1>;
+
   return (
     <div className="App">
       <Navbar />
