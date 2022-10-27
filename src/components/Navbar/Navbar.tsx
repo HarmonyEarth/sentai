@@ -1,13 +1,15 @@
 import React from 'react';
-import { logOut } from '../../api/auth';
+import { Link } from 'react-router-dom';
+import { useAppSelector } from '../../hooks/reduxTypedHooks';
 import { Container } from '../../styles/Navbar/Navbar.styles';
-import NavItem from './NavItem';
+import LogInForm from './LogInForm';
 
 const Navbar = () => {
+  const authStatus = useAppSelector((state) => state.user.value);
+
   return (
     <Container>
-      <NavItem />
-      <button onClick={logOut}>Log Out</button>
+      {authStatus ? <Link to={'/cms'}>CMS</Link> : <LogInForm />}
     </Container>
   );
 };
