@@ -39,7 +39,7 @@ function App() {
 
   console.log('AuthStatus', authStatus);
 
-  if (teams.length === 0 || !authStatus) return <h1>Loading</h1>;
+  if (teams.length === 0) return <h1>Loading</h1>;
 
   return (
     <div className="App">
