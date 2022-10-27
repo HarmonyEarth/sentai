@@ -4,7 +4,7 @@ export interface Team {
   shortTeamName: string;
   fullTeamNameEN: string;
   fullTeamNameJP: string;
-  year: number | string;
+  year: string;
   logo: FileState;
   symbol: FileState;
   teamId: string;
