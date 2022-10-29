@@ -1,11 +1,11 @@
-import React from "react";
-import { useParams } from "react-router-dom";
+import React from 'react';
+import { useParams } from 'react-router-dom';
 
 const TeamDetails = () => {
   const { teamId } = useParams();
   return (
     <>
-      <h1>stuff</h1>
+      <h1>{teamId}</h1>
     </>
   );
 };
