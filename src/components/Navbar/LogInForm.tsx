@@ -45,6 +45,7 @@ const LogInForm = () => {
       >
         <Container>
           <div>
+            <h2>Log In Form</h2>
             <Grid container>
               <form id="logInFormElementId" onSubmit={handleSubmit}>
                 <Grid item xs={12}>
@@ -66,6 +67,7 @@ const LogInForm = () => {
                     required
                   />
                 </Grid>
+                <br />
                 <button type="submit">Log In</button>
               </form>
             </Grid>
