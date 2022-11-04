@@ -8,8 +8,6 @@ const RequireAuth = ({ children }: { children: JSX.Element }) => {
 
   let location = useLocation();
 
-  console.log('location', location.pathname);
-
   if (!authStatus) {
     return <Navigate to="/" state={{ from: location }} replace />;
   }
