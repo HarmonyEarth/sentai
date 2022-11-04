@@ -12,15 +12,15 @@ import { Member, Team } from './models/team';
 
 import RequireAuth from './HOC/RequireAuth';
 import useStream from './hooks/useStream';
-import { useAppDispatch, useAppSelector } from './hooks/reduxTypedHooks';
+import { useAppDispatch } from './hooks/reduxTypedHooks';
 import { trackAuthStatus } from './api/auth';
 import { logUserIn, logUserOut } from './rtk/slice/userSlice';
+import AddMember from './pages/AddMember';
 
 function App() {
   const [teams, setTeams] = useState<Team[]>([]);
   const [members, setMembers] = useState<Member[]>([]);
   const dispatch = useAppDispatch();
-  const authStatus = useAppSelector((state) => state.user.value);
 
   useStream({ dataStream: 'teams', setFileArray: setTeams });
 
@@ -35,9 +35,6 @@ function App() {
       }
     });
   }, [dispatch]);
-  console.log('useEffect ran');
-
-  console.log('AuthStatus', authStatus);
 
   if (teams.length === 0) return <h1>Loading</h1>;
 
@@ -53,21 +50,38 @@ function App() {
           path="/cms"
           element={
             <RequireAuth>
-              <CMS />
+              <CMS teams={teams} members={members} />
             </RequireAuth>
           }
         />
         <Route
-          path="/cms/add"
+          path="/cms/add-team"
           element={
             <RequireAuth>
               <AddTeam />
             </RequireAuth>
           }
         />
+        <Route
+          path="/cms/add-member"
+          element={
+            <RequireAuth>
+              <AddMember />
+            </RequireAuth>
+          }
+        />
         {/* <Route path="cms/edit/:teamId" element={<RequireAuth>
               <CMS />
             </RequireAuth>} /> */}
+        <Route
+          path="*"
+          element={
+            <>
+              <h1>Error 404</h1>
+              <p>Page Not Found</p>
+            </>
+          }
+        />
       </Routes>
     </div>
   );

@@ -8,7 +8,7 @@ export interface Team {
   logo: FileState;
   symbol: FileState;
   teamId: string;
-  teamMembers: Member[];
+  teamMembers?: Member[];
   id?: string;
 }
 
@@ -23,6 +23,8 @@ export interface Member {
   heroImage1: FileState;
   heroImage2: FileState;
   heroHelmet: FileState;
+  teamId?: string;
+  id?: string;
 }
 
 export const memberInputData = [

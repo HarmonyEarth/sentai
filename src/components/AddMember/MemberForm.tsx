@@ -5,7 +5,6 @@ import { Member, memberInputData } from '../../models/team';
 import FormInput from '../CMS/FormInput';
 
 interface Props {
-  setTeamMembers: React.Dispatch<React.SetStateAction<Member[]>>;
   setHeroImage1: React.Dispatch<React.SetStateAction<FileState>>;
   setHeroImage2: React.Dispatch<React.SetStateAction<FileState>>;
   setHeroHelmet: React.Dispatch<React.SetStateAction<FileState>>;
@@ -18,7 +17,6 @@ interface Props {
 }
 
 const MemberForm: React.FC<Props> = ({
-  setTeamMembers,
   setHeroImage1,
   setHeroImage2,
   setHeroHelmet,
@@ -60,7 +58,6 @@ const MemberForm: React.FC<Props> = ({
 
   const handleAdd = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    setTeamMembers((prev) => [...prev, { ...member }]);
     memberFormId?.reset();
   };
 

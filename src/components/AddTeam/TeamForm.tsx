@@ -3,7 +3,7 @@ import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import { db } from '../../firebase';
 import { FileState } from '../../models/fileState';
-import { Member, Team, teamInputData } from '../../models/team';
+import { Team, teamInputData } from '../../models/team';
 import FormInput from '../CMS/FormInput';
 
 interface Props {
@@ -14,7 +14,6 @@ interface Props {
   setYear: React.Dispatch<React.SetStateAction<string>>;
   setTeamId: React.Dispatch<React.SetStateAction<string>>;
   setTeamData: React.Dispatch<React.SetStateAction<Team>>;
-  teamMembers: Member[];
   teamData: Team;
 }
 
@@ -26,7 +25,6 @@ const TeamForm: React.FC<Props> = ({
   setYear,
   setTeamId,
   setTeamData,
-  teamMembers,
   teamData,
 }) => {
   const navigate = useNavigate();
@@ -59,7 +57,6 @@ const TeamForm: React.FC<Props> = ({
     try {
       await addDoc(collection(db, 'teams'), {
         ...teamData,
-        teamMembers,
       });
       navigate('/cms');
     } catch (err) {

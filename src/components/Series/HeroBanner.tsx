@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { Grid, useMediaQuery, useTheme } from '@mui/material';
 import { Link } from 'react-router-dom';
 import HeroCard from './HeroCard';
@@ -39,7 +39,7 @@ const HeroBanner: React.FC<Props> = ({ teams }) => {
   const allTeamMembers: AllTeamMembersType[] = [];
 
   teams.forEach((team) => {
-    team.teamMembers.forEach((member) => {
+    team.teamMembers?.forEach((member) => {
       const linkedMember = { ...member, teamId: team.teamId };
       allTeamMembers.push(linkedMember);
     });
