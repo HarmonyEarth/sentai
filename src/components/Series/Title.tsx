@@ -5,11 +5,15 @@ import {
   SmallText,
 } from '../../styles/Series/Title.styles';
 
-const Title = () => {
+interface Props {
+  mobile: boolean;
+}
+
+const Title: React.FC<Props> = ({ mobile }) => {
   return (
-    <Container>
-      <SmallText>Super Sentai</SmallText>
-      <BigText>Series</BigText>
+    <Container isMobile={mobile}>
+      <SmallText isMobile={mobile}>SUPER SENTAI</SmallText>
+      <BigText isMobile={mobile}>SERIES</BigText>
     </Container>
   );
 };

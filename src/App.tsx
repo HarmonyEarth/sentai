@@ -18,11 +18,12 @@ import { logUserIn, logUserOut } from './rtk/slice/userSlice';
 import AddMember from './pages/AddMember';
 
 function App() {
-  const [teams, setTeams] = useState<Team[]>([]);
-  const [members, setMembers] = useState<Member[]>([]);
+  const [teams, setTeams] = useState<Team[] | null>(null);
+  const [members, setMembers] = useState<Member[] | null>(null);
   const dispatch = useAppDispatch();
 
   useStream({ dataStream: 'teams', setFileArray: setTeams });
+  useStream({ dataStream: 'members', setFileArray: setMembers });
 
   useEffect(() => {
     trackAuthStatus((user) => {
@@ -36,7 +37,12 @@ function App() {
     });
   }, [dispatch]);
 
-  if (teams.length === 0) return <h1>Loading</h1>;
+  if (!teams || !members)
+    return (
+      <>
+        <h1>Loading</h1>
+      </>
+    );
 
   return (
     <div className="App">

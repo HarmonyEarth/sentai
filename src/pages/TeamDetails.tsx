@@ -6,6 +6,7 @@ const TeamDetails = () => {
   return (
     <>
       <h1>{teamId}</h1>
+      <p>words</p>
     </>
   );
 };
