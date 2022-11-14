@@ -3,8 +3,8 @@ import { Member, Team } from '../models/team';
 import { streamMembers, streamTeams } from '../firebase';
 interface Props {
   setFileArray:
-    | React.Dispatch<React.SetStateAction<Team[]>>
-    | React.Dispatch<React.SetStateAction<Member[]>>;
+    | React.Dispatch<React.SetStateAction<Team[] | null>>
+    | React.Dispatch<React.SetStateAction<Member[] | null>>;
   dataStream: string;
 }
 

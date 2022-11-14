@@ -3,6 +3,7 @@ import { initializeApp } from 'firebase/app';
 import { getAuth } from 'firebase/auth';
 
 import {
+  addDoc,
   collection,
   DocumentData,
   FirestoreError,
@@ -11,6 +12,7 @@ import {
   orderBy,
   query,
   QuerySnapshot,
+  WithFieldValue,
 } from 'firebase/firestore';
 import { getStorage } from 'firebase/storage';
 
@@ -58,4 +60,14 @@ export const streamMembers = (
   error: SnapshotErrorType
 ) => {
   return onSnapshot(membersQuery, snapshot, error);
+};
+
+type NewDocumentType = WithFieldValue<DocumentData>;
+
+export const createNewTeam = async ({ data }: NewDocumentType) => {
+  return await addDoc(collection(db, 'teams'), { data });
+};
+
+export const createNewMember = async ({ data }: NewDocumentType) => {
+  return await addDoc(collection(db, 'members'), { data });
 };

@@ -28,7 +28,7 @@ const MemberForm: React.FC<Props> = ({
   heroHelmetPercent,
 }) => {
   const memberFormId = document.getElementById(
-    'addMemberForm'
+    'editMemberForm'
   ) as HTMLFormElement;
 
   const handleMemberInput = (e: React.ChangeEvent<HTMLInputElement>): void => {
@@ -62,7 +62,7 @@ const MemberForm: React.FC<Props> = ({
   };
 
   return (
-    <form id="addMemberForm" onSubmit={handleAdd}>
+    <form id="editMemberForm" onSubmit={handleAdd}>
       {memberInputData.map((memberFormData) => (
         <FormInput
           key={memberFormData.formData}

@@ -72,12 +72,6 @@ const TeamFormSection: React.FC = () => {
               teamData={teamData}
             />
           </Grid>
-          <Grid item xs={6} md={3}>
-            <h4>Member Form</h4>
-          </Grid>
-        </Grid>
-        <Grid container item xs={12} md={12}>
-          <h4>team members</h4>
         </Grid>
       </Grid>
     </Grid>
