@@ -81,7 +81,7 @@ const HeroBanner: React.FC<Props> = ({ teams }) => {
         </Grid>
       )}
       <Grid container item xs={12} md={8}>
-        {allTeamMembers.slice(mobile ? -7 : 4, 10).map((teamMember) => (
+        {allTeamMembers.slice(mobile ? -5 : 4, 10).map((teamMember) => (
           <Grid
             container
             item

@@ -1,6 +1,7 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { logOut } from '../api/auth';
+import { logOut } from '../auth';
+import NewButton from '../components/CMS/NewButton';
 import { Member, Team } from '../models/team';
 
 interface Props {
@@ -12,23 +13,16 @@ const noImageIcon =
   'https://upload.wikimedia.org/wikipedia/commons/thumb/a/ac/No_image_available.svg/480px-No_image_available.svg.png';
 
 const CMS: React.FC<Props> = ({ teams, members }) => {
+  const [clicked, setClicked] = useState(false);
   return (
     <>
       <br />
       <div className="log-out">
         <button onClick={logOut}>Log Out</button>
       </div>
-      <div className="add">
-        <Link to={'/cms/add-team'}>
-          <button>Add a new team</button>
-        </Link>
-        {teams.length > 0 ? (
-          <Link to={'/cms/add-member'}>
-            <button>Add a new member</button>
-          </Link>
-        ) : (
-          'Team must exist before adding a member'
-        )}
+      <div className="new-section">
+        <NewButton purpose="team" clicked={clicked} setClicked={setClicked} />
+        <NewButton purpose="member" clicked={clicked} setClicked={setClicked} />
       </div>
       <div className="existing-teams">
         {teams.length > 0 && (
@@ -36,7 +30,8 @@ const CMS: React.FC<Props> = ({ teams, members }) => {
             <h3>Click to edit or delete a team</h3>
             <div>
               {teams.map((team) => (
-                <div>
+                //FIX THIS
+                <div key={team.teamId}>
                   <img
                     src={String(team.symbol) || noImageIcon}
                     alt="Team Symbol"

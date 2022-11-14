@@ -1,7 +1,7 @@
 import { Grid, Modal } from '@mui/material';
 import React, { useState } from 'react';
 
-import { logIn } from '../../api/auth';
+import { logIn } from '../../auth';
 import { Container } from '../../styles/Navbar/LogInForm.styles';
 
 const LogInForm = () => {

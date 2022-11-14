@@ -6,16 +6,16 @@ import HeroDetails from './pages/HeroDetails';
 import Series from './pages/Series';
 import TeamDetails from './pages/TeamDetails';
 import CMS from './pages/CMS';
-import AddTeam from './pages/AddTeam';
 import Teams from './pages/Teams';
 import { Member, Team } from './models/team';
 
 import RequireAuth from './HOC/RequireAuth';
 import useStream from './hooks/useStream';
 import { useAppDispatch } from './hooks/reduxTypedHooks';
-import { trackAuthStatus } from './api/auth';
+import { trackAuthStatus } from './auth';
 import { logUserIn, logUserOut } from './rtk/slice/userSlice';
-import AddMember from './pages/AddMember';
+import EditTeam from './pages/EditTeam';
+import EditMember from './pages/EditMember';
 
 function App() {
   const [teams, setTeams] = useState<Team[] | null>(null);
@@ -61,18 +61,18 @@ function App() {
           }
         />
         <Route
-          path="/cms/add-team"
+          path="/cms/team/:id"
           element={
             <RequireAuth>
-              <AddTeam />
+              <EditTeam />
             </RequireAuth>
           }
         />
         <Route
-          path="/cms/add-member"
+          path="/cms/member/:id"
           element={
             <RequireAuth>
-              <AddMember />
+              <EditMember />
             </RequireAuth>
           }
         />

@@ -4,7 +4,7 @@ import React, { useState } from 'react';
 import useFileUpload from '../../hooks/useFileUpload';
 import { FileState } from '../../models/fileState';
 import { Member } from '../../models/team';
-import MemberForm from '../AddMember/MemberForm';
+import MemberForm from './MemberForm';
 
 const MemberFormSection: React.FC = () => {
   const [heroImage1, setHeroImage1] = useState<FileState>();

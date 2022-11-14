@@ -40,8 +40,7 @@ const useFileUpload = ({
   useEffect(() => {
     const uploadFile = () => {
       const fileExtension = (file: File) => {
-        let extension = file.name.split('.').pop();
-        extension = '.' + extension;
+        let extension = '.' + file.name.split('.').pop();
         return extension;
       };
       const name = id;
