@@ -7,24 +7,32 @@ import FormInput from '../CMS/FormInput';
 interface Props {
   setHeroImage1: React.Dispatch<React.SetStateAction<FileState>>;
   setHeroImage2: React.Dispatch<React.SetStateAction<FileState>>;
+  setHeroImage3: React.Dispatch<React.SetStateAction<FileState>>;
+  setHeroImage4: React.Dispatch<React.SetStateAction<FileState>>;
   setHeroHelmet: React.Dispatch<React.SetStateAction<FileState>>;
   setMember: React.Dispatch<React.SetStateAction<Member>>;
   setHeroId: React.Dispatch<React.SetStateAction<string>>;
   member: Member;
   heroImage1Percent: number | null;
   heroImage2Percent: number | null;
+  heroImage3Percent: number | null;
+  heroImage4Percent: number | null;
   heroHelmetPercent: number | null;
 }
 
 const MemberForm: React.FC<Props> = ({
   setHeroImage1,
   setHeroImage2,
+  setHeroImage3,
+  setHeroImage4,
   setHeroHelmet,
   setMember,
   setHeroId,
   member,
   heroImage1Percent,
   heroImage2Percent,
+  heroImage3Percent,
+  heroImage4Percent,
   heroHelmetPercent,
 }) => {
   const memberFormId = document.getElementById(
@@ -45,6 +53,16 @@ const MemberForm: React.FC<Props> = ({
         return;
       }
       setHeroImage2(e.target.files[0]);
+    } else if (id === 'heroImage3') {
+      if (!e.target.files || e.target.files.length === 0) {
+        return;
+      }
+      setHeroImage3(e.target.files[0]);
+    } else if (id === 'heroImage4') {
+      if (!e.target.files || e.target.files.length === 0) {
+        return;
+      }
+      setHeroImage4(e.target.files[0]);
     } else if (id === 'heroHelmet') {
       if (!e.target.files || e.target.files.length === 0) {
         return;
@@ -80,6 +98,8 @@ const MemberForm: React.FC<Props> = ({
         disabled={
           (heroImage1Percent !== null && heroImage1Percent < 100) ||
           (heroImage2Percent !== null && heroImage2Percent < 100) ||
+          (heroImage3Percent !== null && heroImage3Percent < 100) ||
+          (heroImage4Percent !== null && heroImage4Percent < 100) ||
           (heroHelmetPercent !== null && heroHelmetPercent < 100)
         }
       >

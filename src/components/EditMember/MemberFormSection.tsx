@@ -6,9 +6,15 @@ import { FileState } from '../../models/fileState';
 import { Member } from '../../models/team';
 import MemberForm from './MemberForm';
 
-const MemberFormSection: React.FC = () => {
+interface Props {
+  docId: string;
+}
+
+const MemberFormSection: React.FC<Props> = ({ docId }) => {
   const [heroImage1, setHeroImage1] = useState<FileState>();
   const [heroImage2, setHeroImage2] = useState<FileState>();
+  const [heroImage3, setHeroImage3] = useState<FileState>();
+  const [heroImage4, setHeroImage4] = useState<FileState>();
   const [heroHelmet, setHeroHelmet] = useState<FileState>();
   const [heroId, setHeroId] = useState('');
   const [teamId, setTeamId] = useState('');
@@ -22,6 +28,8 @@ const MemberFormSection: React.FC = () => {
     heroNameJP2: '',
     heroImage1,
     heroImage2,
+    heroImage3,
+    heroImage4,
     heroHelmet,
     teamId: '',
   });
@@ -29,28 +37,41 @@ const MemberFormSection: React.FC = () => {
   const heroImage1Percent = useFileUpload({
     file: heroImage1 as File,
     setFile: setMember,
-    id: 'heroImage1',
-    teamId,
+    fileId: 'heroImage1',
     structure: 'member',
-    heroId,
+    docId,
   });
 
   const heroImage2Percent = useFileUpload({
     file: heroImage2 as File,
     setFile: setMember,
-    id: 'heroImage2',
-    teamId,
+    fileId: 'heroImage2',
     structure: 'member',
-    heroId,
+    docId,
+  });
+
+  const heroImage3Percent = useFileUpload({
+    file: heroImage3 as File,
+    setFile: setMember,
+    fileId: 'heroImage3',
+    structure: 'member',
+    docId,
+  });
+
+  const heroImage4Percent = useFileUpload({
+    file: heroImage4 as File,
+    setFile: setMember,
+    fileId: 'heroImage4',
+    structure: 'member',
+    docId,
   });
 
   const heroHelmetPercent = useFileUpload({
     file: heroHelmet as File,
     setFile: setMember,
-    id: 'heroHelmet',
-    teamId,
+    fileId: 'heroHelmet',
     structure: 'member',
-    heroId,
+    docId,
   });
 
   return (
@@ -69,12 +90,16 @@ const MemberFormSection: React.FC = () => {
             <MemberForm
               setHeroImage1={setHeroImage1}
               setHeroImage2={setHeroImage2}
+              setHeroImage3={setHeroImage3}
+              setHeroImage4={setHeroImage4}
               setHeroHelmet={setHeroHelmet}
               setMember={setMember}
               setHeroId={setHeroId}
               member={member}
               heroImage1Percent={heroImage1Percent}
               heroImage2Percent={heroImage2Percent}
+              heroImage3Percent={heroImage3Percent}
+              heroImage4Percent={heroImage4Percent}
               heroHelmetPercent={heroHelmetPercent}
             />
           </Grid>

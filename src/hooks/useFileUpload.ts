@@ -6,13 +6,12 @@ import { FileState } from '../models/fileState';
 
 interface Props {
   file: File;
-  id: string;
+  fileId: string;
+  docId: string;
   setFile:
     | React.Dispatch<React.SetStateAction<Team>>
     | React.Dispatch<React.SetStateAction<Member>>;
-  teamId: string;
   structure: string;
-  heroId?: string;
   year?: number | string;
 }
 
@@ -26,11 +25,10 @@ const useCallbackRef = (callback: any) => {
 
 const useFileUpload = ({
   file,
-  id,
+  docId,
+  fileId,
   setFile,
-  teamId,
   structure,
-  heroId,
   year,
 }: Props) => {
   //Upload Percentage
@@ -43,22 +41,15 @@ const useFileUpload = ({
         let extension = '.' + file.name.split('.').pop();
         return extension;
       };
-      const name = id;
+      const name = fileId;
       const type = file.type;
       console.log('type', type);
 
       let fileURL = '';
       if (structure === 'team') {
-        fileURL = 'images/' + teamId + '/' + name + year + fileExtension(file);
+        fileURL = 'images/' + docId + '/' + name + fileExtension(file);
       } else if (structure === 'member') {
-        fileURL =
-          'images/' +
-          teamId +
-          '/teamMembers/' +
-          heroId +
-          '/' +
-          name +
-          fileExtension(file);
+        fileURL = 'images/' + docId + '/' + name + fileExtension(file);
       }
 
       const storageRef = ref(storage, fileURL);
@@ -90,14 +81,14 @@ const useFileUpload = ({
           getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
             addFileToData.current?.((prev: FileState) => ({
               ...prev,
-              [id]: downloadURL,
+              [fileId]: downloadURL,
             }));
           });
         }
       );
     };
     file && uploadFile();
-  }, [file, id, teamId, heroId, structure, year, addFileToData]);
+  }, [file, docId, fileId, structure, year, addFileToData]);
 
   return percent;
 };

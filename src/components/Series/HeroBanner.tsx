@@ -36,7 +36,6 @@ function shuffle(array: Member[]) {
 const HeroBanner: React.FC<Props> = ({ teams }) => {
   const theme = useTheme();
   const mobile = useMediaQuery(theme.breakpoints.down('md'));
-  // const tabletView = useMediaQuery(theme.breakpoints.down('md'));
 
   const allTeamMembers: AllTeamMembersType[] = [];
 

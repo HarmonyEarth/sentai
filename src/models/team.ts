@@ -22,6 +22,8 @@ export interface Member {
   heroNameJP2: string;
   heroImage1: FileState;
   heroImage2: FileState;
+  heroImage3?: FileState;
+  heroImage4?: FileState;
   heroHelmet: FileState;
   teamId?: string;
   id?: string;
@@ -63,7 +65,6 @@ export const memberInputData = [
     defaultValue: 'ガオレッド',
     type: 'text',
   },
-
   {
     formData: 'heroImage1',
     type: 'file',
@@ -71,6 +72,16 @@ export const memberInputData = [
   },
   {
     formData: 'heroImage2',
+    type: 'file',
+    accept: 'image/*',
+  },
+  {
+    formData: 'heroImage3',
+    type: 'file',
+    accept: 'image/*',
+  },
+  {
+    formData: 'heroImage4',
     type: 'file',
     accept: 'image/*',
   },

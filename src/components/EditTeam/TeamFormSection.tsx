@@ -7,7 +7,11 @@ import FormTeamImage from '../CMS/FormTeamImage';
 
 import TeamForm from './TeamForm';
 
-const TeamFormSection: React.FC = () => {
+interface Props {
+  docId: string;
+}
+
+const TeamFormSection: React.FC<Props> = ({ docId }) => {
   const [logo, setLogo] = useState<FileState>();
   const [symbol, setSymbol] = useState<FileState>();
   const [teamId, setTeamId] = useState('');
@@ -25,18 +29,16 @@ const TeamFormSection: React.FC = () => {
   const logoPercent = useFileUpload({
     file: logo as File,
     setFile: setTeamData,
-    id: 'logo',
-    teamId,
+    fileId: 'logo',
     structure: 'team',
-    year,
+    docId,
   });
   const symbolPercent = useFileUpload({
     file: symbol as File,
     setFile: setTeamData,
-    id: 'symbol',
-    teamId,
+    fileId: 'symbol',
     structure: 'team',
-    year,
+    docId,
   });
 
   return (

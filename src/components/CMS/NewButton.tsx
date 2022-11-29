@@ -25,7 +25,19 @@ const NewButton: React.FC<Props> = ({ purpose, clicked, setClicked }) => {
       try {
         setClicked((prev) => true);
         const { id } = await addDoc(collection(db, 'members'), {
+          heroId: '',
+          color: '',
+          position: '',
           heroNameEN1: newMemberName,
+          heroNameEN2: '',
+          heroNameJP1: '',
+          heroNameJP2: '',
+          heroImage1: '',
+          heroImage2: '',
+          heroImage3: '',
+          heroImage4: '',
+          heroHelmet: '',
+          teamId: '',
         });
         navigate(`/cms/member/${id}`);
       } catch (err) {
@@ -38,7 +50,13 @@ const NewButton: React.FC<Props> = ({ purpose, clicked, setClicked }) => {
       try {
         setClicked((prev) => true);
         const { id } = await addDoc(collection(db, 'teams'), {
-          heroNameEN1: newTeamName,
+          shortTeamName: newTeamName,
+          fullTeamNameEN: '',
+          fullTeamNameJP: '',
+          year: '',
+          logo: '',
+          symbol: '',
+          teamId: '',
         });
         navigate(`/cms/team/${id}`);
       } catch (err) {

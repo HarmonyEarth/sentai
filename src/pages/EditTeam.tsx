@@ -5,9 +5,13 @@ import TeamFormSection from '../components/EditTeam/TeamFormSection';
 const EditTeam = () => {
   const { id } = useParams();
 
+  if (!id) {
+    return <h1>Document does not exist</h1>;
+  }
+
   return (
     <>
-      <TeamFormSection />
+      <TeamFormSection docId={id} />
     </>
   );
 };

@@ -5,9 +5,13 @@ import MemberFormSection from '../components/EditMember/MemberFormSection';
 const EditMember = () => {
   const { id } = useParams();
 
+  if (!id) {
+    return <h1>Dpcument does not exist</h1>;
+  }
+
   return (
     <>
-      <MemberFormSection />
+      <MemberFormSection docId={id} />
     </>
   );
 };
