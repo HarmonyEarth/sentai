@@ -47,9 +47,9 @@ const useFileUpload = ({
 
       let fileURL = '';
       if (structure === 'team') {
-        fileURL = 'images/' + docId + '/' + name + fileExtension(file);
+        fileURL = 'images/teams/' + docId + '/' + name + fileExtension(file);
       } else if (structure === 'member') {
-        fileURL = 'images/' + docId + '/' + name + fileExtension(file);
+        fileURL = 'images/members/' + docId + '/' + name + fileExtension(file);
       }
 
       const storageRef = ref(storage, fileURL);

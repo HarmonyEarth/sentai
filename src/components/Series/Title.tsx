@@ -1,8 +1,9 @@
 import React from 'react';
 import {
   BigText,
-  Container,
+  TextContainer,
   SmallText,
+  Container,
 } from '../../styles/Series/Title.styles';
 
 interface Props {
@@ -12,8 +13,10 @@ interface Props {
 const Title: React.FC<Props> = ({ mobile }) => {
   return (
     <Container isMobile={mobile}>
-      <SmallText isMobile={mobile}>SUPER SENTAI</SmallText>
-      <BigText isMobile={mobile}>SERIES</BigText>
+      <TextContainer isMobile={mobile}>
+        <SmallText isMobile={mobile}>SUPER SENTAI</SmallText>
+        <BigText isMobile={mobile}>SERIES</BigText>
+      </TextContainer>
     </Container>
   );
 };

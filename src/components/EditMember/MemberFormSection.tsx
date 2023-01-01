@@ -3,40 +3,33 @@ import React, { useState } from 'react';
 
 import useFileUpload from '../../hooks/useFileUpload';
 import { FileState } from '../../models/fileState';
-import { Member } from '../../models/team';
+import { Member, Team } from '../../models/team';
+import FormTeamImage from '../CMS/FormTeamImage';
 import MemberForm from './MemberForm';
 
 interface Props {
   docId: string;
+  currentMember: Member;
+  completeTeams: Team[];
 }
 
-const MemberFormSection: React.FC<Props> = ({ docId }) => {
+const MemberFormSection: React.FC<Props> = ({
+  docId,
+  currentMember,
+  completeTeams,
+}) => {
   const [heroImage1, setHeroImage1] = useState<FileState>();
   const [heroImage2, setHeroImage2] = useState<FileState>();
   const [heroImage3, setHeroImage3] = useState<FileState>();
   const [heroImage4, setHeroImage4] = useState<FileState>();
   const [heroHelmet, setHeroHelmet] = useState<FileState>();
-  const [heroId, setHeroId] = useState('');
-  const [teamId, setTeamId] = useState('');
-  const [member, setMember] = useState<Member>({
-    heroId,
-    color: '',
-    position: '',
-    heroNameEN1: '',
-    heroNameEN2: '',
-    heroNameJP1: '',
-    heroNameJP2: '',
-    heroImage1,
-    heroImage2,
-    heroImage3,
-    heroImage4,
-    heroHelmet,
-    teamId: '',
+  const [memberData, setMemberData] = useState<Member>({
+    ...currentMember,
   });
 
   const heroImage1Percent = useFileUpload({
     file: heroImage1 as File,
-    setFile: setMember,
+    setFile: setMemberData,
     fileId: 'heroImage1',
     structure: 'member',
     docId,
@@ -44,7 +37,7 @@ const MemberFormSection: React.FC<Props> = ({ docId }) => {
 
   const heroImage2Percent = useFileUpload({
     file: heroImage2 as File,
-    setFile: setMember,
+    setFile: setMemberData,
     fileId: 'heroImage2',
     structure: 'member',
     docId,
@@ -52,7 +45,7 @@ const MemberFormSection: React.FC<Props> = ({ docId }) => {
 
   const heroImage3Percent = useFileUpload({
     file: heroImage3 as File,
-    setFile: setMember,
+    setFile: setMemberData,
     fileId: 'heroImage3',
     structure: 'member',
     docId,
@@ -60,7 +53,7 @@ const MemberFormSection: React.FC<Props> = ({ docId }) => {
 
   const heroImage4Percent = useFileUpload({
     file: heroImage4 as File,
-    setFile: setMember,
+    setFile: setMemberData,
     fileId: 'heroImage4',
     structure: 'member',
     docId,
@@ -68,7 +61,7 @@ const MemberFormSection: React.FC<Props> = ({ docId }) => {
 
   const heroHelmetPercent = useFileUpload({
     file: heroHelmet as File,
-    setFile: setMember,
+    setFile: setMemberData,
     fileId: 'heroHelmet',
     structure: 'member',
     docId,
@@ -78,14 +71,53 @@ const MemberFormSection: React.FC<Props> = ({ docId }) => {
     <Grid container>
       <Grid container item>
         <Grid container item justifyContent="space-around" xs={12} md={6}>
-          <Grid item xs={6} md={3}></Grid>
-          <Grid item xs={6} md={3}></Grid>
+          <Grid container item>
+            <Grid item xs={6} md={4}>
+              <FormTeamImage
+                firestoreImage={String(memberData.heroImage1)}
+                image={heroImage1}
+                imagePercent={heroImage1Percent}
+                imageName={'Hero Image 1'}
+              />
+            </Grid>
+            <Grid item xs={6} md={4}>
+              <FormTeamImage
+                firestoreImage={String(memberData.heroImage2)}
+                image={heroImage2}
+                imagePercent={heroImage2Percent}
+                imageName={'Hero Image 2'}
+              />
+            </Grid>
+            <Grid item xs={6} md={4}>
+              <FormTeamImage
+                firestoreImage={String(memberData.heroHelmet)}
+                image={heroHelmet}
+                imagePercent={heroHelmetPercent}
+                imageName={'Hero Helmet'}
+              />
+            </Grid>
+          </Grid>
+          <Grid container item>
+            <Grid item xs={6} md={6}>
+              <FormTeamImage
+                firestoreImage={String(memberData.heroImage3)}
+                image={heroImage3}
+                imagePercent={heroImage3Percent}
+                imageName={'Hero Image 3'}
+              />
+            </Grid>
+            <Grid item xs={6} md={6}>
+              <FormTeamImage
+                firestoreImage={String(memberData.heroImage4)}
+                image={heroImage4}
+                imagePercent={heroImage4Percent}
+                imageName={'Hero Image 4'}
+              />
+            </Grid>
+          </Grid>
         </Grid>
         <Grid container item justifyContent="space-around" xs={12} md={6}>
-          <Grid item xs={6} md={3}>
-            <h4>Team Form</h4>
-          </Grid>
-          <Grid item xs={6} md={3}>
+          <Grid item>
             <h4>Member Form</h4>
             <MemberForm
               setHeroImage1={setHeroImage1}
@@ -93,19 +125,17 @@ const MemberFormSection: React.FC<Props> = ({ docId }) => {
               setHeroImage3={setHeroImage3}
               setHeroImage4={setHeroImage4}
               setHeroHelmet={setHeroHelmet}
-              setMember={setMember}
-              setHeroId={setHeroId}
-              member={member}
+              setMemberData={setMemberData}
+              memberData={memberData}
               heroImage1Percent={heroImage1Percent}
               heroImage2Percent={heroImage2Percent}
               heroImage3Percent={heroImage3Percent}
               heroImage4Percent={heroImage4Percent}
               heroHelmetPercent={heroHelmetPercent}
+              docId={docId}
+              completeTeams={completeTeams}
             />
           </Grid>
-        </Grid>
-        <Grid container item xs={12} md={12}>
-          <h3>No Team Members</h3>
         </Grid>
       </Grid>
     </Grid>

@@ -7,10 +7,7 @@ import Title from './Title';
 
 interface Props {
   teams: Team[];
-}
-
-interface AllTeamMembersType extends Member {
-  teamId: string;
+  members: Member[];
 }
 
 function shuffle(array: Member[]) {
@@ -33,36 +30,27 @@ function shuffle(array: Member[]) {
   return array;
 }
 
-const HeroBanner: React.FC<Props> = ({ teams }) => {
+const HeroBanner: React.FC<Props> = ({ teams, members }) => {
   const theme = useTheme();
   const mobile = useMediaQuery(theme.breakpoints.down('md'));
 
-  const allTeamMembers: AllTeamMembersType[] = [];
-
-  teams.forEach((team) => {
-    team.teamMembers?.forEach((member) => {
-      const linkedMember = { ...member, teamId: team.teamId };
-      allTeamMembers.push(linkedMember);
-    });
-  });
-
-  shuffle(allTeamMembers);
+  const shuffledMembers = shuffle(members);
 
   return (
     <Grid container>
       <Grid container item xs={12} md={4}>
-        {allTeamMembers.slice(0, mobile ? 3 : 2).map((teamMember) => (
+        {shuffledMembers.slice(0, mobile ? 3 : 2).map((shuffledMember) => (
           <Grid
             container
             item
             xs={4}
             sm={4}
-            key={teamMember.heroId}
+            key={shuffledMember.heroId}
             component={Link}
-            to={`/${teamMember.teamId}/${teamMember.heroId}`}
+            to={`/${shuffledMember.teamId}/${shuffledMember.heroId}`}
           >
             <HeroCard
-              heroImage2={String(teamMember.heroImage2)}
+              heroImage2={String(shuffledMember.heroImage2)}
               mobile={mobile}
             />
           </Grid>
@@ -80,18 +68,18 @@ const HeroBanner: React.FC<Props> = ({ teams }) => {
         </Grid>
       )}
       <Grid container item xs={12} md={8}>
-        {allTeamMembers.slice(mobile ? -5 : 4, 10).map((teamMember) => (
+        {shuffledMembers.slice(mobile ? -5 : 4, 10).map((shuffledMember) => (
           <Grid
             container
             item
             xs={3}
             md={2}
-            key={teamMember.heroId}
+            key={shuffledMember.heroId}
             component={Link}
-            to={`/${teamMember.teamId}/${teamMember.heroId}`}
+            to={`/${shuffledMember.teamId}/${shuffledMember.heroId}`}
           >
             <HeroCard
-              heroImage2={String(teamMember.heroImage2)}
+              heroImage2={String(shuffledMember.heroImage2)}
               mobile={mobile}
             />
           </Grid>

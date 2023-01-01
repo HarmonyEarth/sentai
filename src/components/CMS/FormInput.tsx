@@ -2,13 +2,13 @@ import React from 'react';
 
 interface Props {
   teamFormData: string;
-  placeholder: string;
+  placeholder?: string;
   type: string;
-  accept: string;
+  accept?: string;
   readonly: boolean;
   id: string;
   handleInput(e: React.ChangeEvent<HTMLInputElement>): void;
-  value?: string;
+  defaultValue?: string;
 }
 
 const FormInput: React.FC<Props> = ({
@@ -19,7 +19,7 @@ const FormInput: React.FC<Props> = ({
   readonly,
   id,
   handleInput,
-  value,
+  defaultValue,
 }) => {
   return (
     <>
@@ -33,8 +33,8 @@ const FormInput: React.FC<Props> = ({
         id={teamFormData}
         name={teamFormData}
         onChange={handleInput}
-        required={!readonly}
-        value={value}
+        defaultValue={defaultValue}
+        required={accept ? false : true}
       />
       <br />
     </>

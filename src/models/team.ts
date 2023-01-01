@@ -8,8 +8,7 @@ export interface Team {
   logo: FileState;
   symbol: FileState;
   teamId: string;
-  teamMembers?: Member[];
-  id?: string;
+  id: string;
 }
 
 export interface Member {
@@ -22,49 +21,52 @@ export interface Member {
   heroNameJP2: string;
   heroImage1: FileState;
   heroImage2: FileState;
-  heroImage3?: FileState;
-  heroImage4?: FileState;
+  heroImage3: FileState;
+  heroImage4: FileState;
   heroHelmet: FileState;
-  teamId?: string;
-  id?: string;
+  teamId: string;
+  id: string;
 }
 
 export const memberInputData = [
   {
     formData: 'heroId',
-    defaultValue: 'harmony1',
+    placeholder: 'harmony1',
     type: 'text',
   },
   {
     formData: 'position',
-    defaultValue: 1,
+    placeholder: 1,
     type: 'number',
   },
   {
     formData: 'color',
-    defaultValue: 'white',
+    placeholder: 'white',
     type: 'text',
   },
   {
     formData: 'heroNameEN1',
-    defaultValue: 'Akaki Sugata',
+    placeholder: 'Akaki Sugata',
     type: 'text',
   },
   {
     formData: 'heroNameEN2',
-    defaultValue: 'Harmony White',
+    placeholder: 'Harmony White',
     type: 'text',
   },
   {
     formData: 'heroNameJP1',
-    defaultValue: '獅子 走',
+    placeholder: '獅子 走',
     type: 'text',
   },
   {
     formData: 'heroNameJP2',
-    defaultValue: 'ガオレッド',
+    placeholder: 'ガオレッド',
     type: 'text',
   },
+];
+
+export const memberInputFileData = [
   {
     formData: 'heroImage1',
     type: 'file',
@@ -95,29 +97,32 @@ export const memberInputData = [
 export const teamInputData = [
   {
     formData: 'shortTeamName',
-    defaultValue: 'Harmonyranger',
+    placeholder: 'Harmonyranger',
     type: 'text',
   },
   {
     formData: 'fullTeamNameEN',
-    defaultValue: 'Melody Sentai Harmonyranger',
+    placeholder: 'Melody Sentai Harmonyranger',
     type: 'text',
   },
   {
     formData: 'fullTeamNameJP',
-    defaultValue: 'メロディー戦隊ハーモニーレンジャー',
+    placeholder: 'メロディー戦隊ハーモニーレンジャー',
     type: 'text',
   },
   {
     formData: 'year',
-    defaultValue: 2021,
+    placeholder: 2021,
     type: 'number',
   },
   {
     formData: 'teamId',
-    defaultValue: 'melody21',
+    placeholder: 'melody21',
     type: 'text',
   },
+];
+
+export const teamInputFileData = [
   {
     formData: 'logo',
     type: 'file',

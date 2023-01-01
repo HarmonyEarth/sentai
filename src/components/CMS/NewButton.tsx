@@ -1,5 +1,6 @@
 import { addDoc, collection } from 'firebase/firestore';
 import React from 'react';
+import { toast } from 'react-hot-toast';
 import { useNavigate } from 'react-router-dom';
 import { db } from '../../firebase';
 
@@ -17,13 +18,14 @@ const NewButton: React.FC<Props> = ({ purpose, clicked, setClicked }) => {
   const dayOfMonth = today.getDate();
   const thisYear = today.getFullYear();
 
-  const newTeamName = `New Team - ${dayOfMonth}/${++month}/${thisYear}`;
-  const newMemberName = `New Member - ${dayOfMonth}/${++month}/${thisYear}`;
+  const newTeamName = `New Team - ${dayOfMonth}/${month + 1}/${thisYear}`;
+  const newMemberName = `New Member - ${dayOfMonth}/${month + 1}/${thisYear}`;
 
   const handleClick = async () => {
     if (purpose === 'member') {
       try {
         setClicked((prev) => true);
+        toast.loading('Loading New Member...');
         const { id } = await addDoc(collection(db, 'members'), {
           heroId: '',
           color: '',
@@ -38,10 +40,15 @@ const NewButton: React.FC<Props> = ({ purpose, clicked, setClicked }) => {
           heroImage4: '',
           heroHelmet: '',
           teamId: '',
+          id: '',
         });
+        toast.dismiss();
+        toast.success('Successfully created New Member!');
         navigate(`/cms/member/${id}`);
       } catch (err) {
         console.log('error', err);
+        toast.dismiss();
+        toast.error('Failed to create New Member!');
       } finally {
         setClicked((prev) => false);
       }
@@ -49,6 +56,7 @@ const NewButton: React.FC<Props> = ({ purpose, clicked, setClicked }) => {
     if (purpose === 'team') {
       try {
         setClicked((prev) => true);
+        toast.loading('Loading New Team...');
         const { id } = await addDoc(collection(db, 'teams'), {
           shortTeamName: newTeamName,
           fullTeamNameEN: '',
@@ -57,10 +65,15 @@ const NewButton: React.FC<Props> = ({ purpose, clicked, setClicked }) => {
           logo: '',
           symbol: '',
           teamId: '',
+          id: '',
         });
+        toast.dismiss();
+        toast.success('Successfully created New Team!');
         navigate(`/cms/team/${id}`);
       } catch (err) {
         console.log('error', err);
+        toast.dismiss();
+        toast.error('Failed to create New Team!');
       } finally {
         setClicked((prev) => false);
       }
@@ -68,7 +81,7 @@ const NewButton: React.FC<Props> = ({ purpose, clicked, setClicked }) => {
   };
 
   return (
-    <button onClick={handleClick} type="button" disabled={clicked}>
+    <button onClick={handleClick} disabled={clicked} type="button">
       Add a new {purpose}
     </button>
   );
