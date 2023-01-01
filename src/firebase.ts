@@ -61,13 +61,3 @@ export const streamMembers = (
 ) => {
   return onSnapshot(membersQuery, snapshot, error);
 };
-
-type NewDocumentType = WithFieldValue<DocumentData>;
-
-export const createNewTeam = async ({ data }: NewDocumentType) => {
-  return await addDoc(collection(db, 'teams'), { data });
-};
-
-export const createNewMember = async ({ data }: NewDocumentType) => {
-  return await addDoc(collection(db, 'members'), { data });
-};

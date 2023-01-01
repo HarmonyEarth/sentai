@@ -1,9 +1,9 @@
-import { addDoc, collection } from 'firebase/firestore';
+import { doc, updateDoc } from 'firebase/firestore';
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import { db } from '../../firebase';
 import { FileState } from '../../models/fileState';
-import { Team, teamInputData } from '../../models/team';
+import { Team, teamInputData, teamInputFileData } from '../../models/team';
 import FormInput from '../CMS/FormInput';
 
 interface Props {
@@ -11,10 +11,9 @@ interface Props {
   logoPercent: number | null;
   setLogo: React.Dispatch<React.SetStateAction<FileState | undefined>>;
   setSymbol: React.Dispatch<React.SetStateAction<FileState | undefined>>;
-  setYear: React.Dispatch<React.SetStateAction<string>>;
-  setTeamId: React.Dispatch<React.SetStateAction<string>>;
   setTeamData: React.Dispatch<React.SetStateAction<Team>>;
   teamData: Team;
+  docId: string;
 }
 
 const TeamForm: React.FC<Props> = ({
@@ -22,10 +21,9 @@ const TeamForm: React.FC<Props> = ({
   logoPercent,
   setLogo,
   setSymbol,
-  setYear,
-  setTeamId,
   setTeamData,
   teamData,
+  docId,
 }) => {
   const navigate = useNavigate();
 
@@ -43,19 +41,15 @@ const TeamForm: React.FC<Props> = ({
         return;
       }
       setLogo(e.target.files[0]);
-    } else if (id === 'teamId') {
-      setTeamId(value);
-    } else if (id === 'year') {
-      setYear(value);
     }
     setTeamData({ ...teamData, [id]: value });
   };
 
-  const handleAdd = async (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-
+    const teamDoc = doc(db, 'teams', docId);
     try {
-      await addDoc(collection(db, 'teams'), {
+      await updateDoc(teamDoc, {
         ...teamData,
       });
       navigate('/cms');
@@ -63,22 +57,38 @@ const TeamForm: React.FC<Props> = ({
       console.log('error', err);
     }
   };
+
   return (
-    <form onSubmit={handleAdd}>
-      {teamInputData.map((teamFormData) => (
+    <form onSubmit={handleSubmit}>
+      {teamInputData.map((teamFormData) => {
+        let teamInput = teamFormData.formData as keyof typeof teamData;
+        return (
+          <FormInput
+            key={teamFormData.formData}
+            placeholder={String(teamFormData.placeholder) ?? ''}
+            teamFormData={teamFormData.formData}
+            type={teamFormData.type}
+            id={teamFormData.formData}
+            readonly={false}
+            handleInput={handleTeamInput}
+            defaultValue={String(teamData[teamInput])}
+          />
+        );
+      })}
+
+      {teamInputFileData.map((teamInputFile) => (
         <FormInput
-          key={teamFormData.formData}
-          placeholder={String(teamFormData.defaultValue) ?? ''}
-          teamFormData={teamFormData.formData}
-          type={teamFormData.type}
-          id={teamFormData.formData}
-          accept={teamFormData.accept ?? ''}
+          key={teamInputFile.formData}
+          teamFormData={teamInputFile.formData}
+          type={teamInputFile.type}
+          id={teamInputFile.formData}
           readonly={false}
           handleInput={handleTeamInput}
+          accept={teamInputFile.accept ?? ''}
         />
       ))}
-      <br />
 
+      <br />
       <button
         disabled={
           (logoPercent !== null && logoPercent < 100) ||

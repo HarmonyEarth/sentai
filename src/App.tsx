@@ -8,6 +8,7 @@ import TeamDetails from './pages/TeamDetails';
 import CMS from './pages/CMS';
 import Teams from './pages/Teams';
 import { Member, Team } from './models/team';
+import { Toaster } from 'react-hot-toast';
 
 import RequireAuth from './HOC/RequireAuth';
 import useStream from './hooks/useStream';
@@ -44,11 +45,23 @@ function App() {
       </>
     );
 
+  const completeTeams = teams.filter((team) =>
+    Object.values(team).every((value) => value)
+  );
+
+  const completeMembers = members.filter((member) =>
+    Object.values(member).every((value) => value)
+  );
+
   return (
     <div className="App">
       <Navbar />
+      <Toaster />
       <Routes>
-        <Route path="/" element={<Series teams={teams} />} />
+        <Route
+          path="/"
+          element={<Series teams={completeTeams} members={completeMembers} />}
+        />
         <Route path="/teams" element={<Teams />} />
         <Route path="/team/:teamId" element={<TeamDetails />} />
         <Route path="/:teamId/:heroId" element={<HeroDetails />} />
@@ -64,7 +77,7 @@ function App() {
           path="/cms/team/:id"
           element={
             <RequireAuth>
-              <EditTeam />
+              <EditTeam teams={teams} />
             </RequireAuth>
           }
         />
@@ -72,13 +85,10 @@ function App() {
           path="/cms/member/:id"
           element={
             <RequireAuth>
-              <EditMember />
+              <EditMember members={members} completeTeams={completeTeams} />
             </RequireAuth>
           }
         />
-        {/* <Route path="cms/edit/:teamId" element={<RequireAuth>
-              <CMS />
-            </RequireAuth>} /> */}
         <Route
           path="*"
           element={

@@ -2,16 +2,17 @@ import React from 'react';
 
 import HeroBanner from '../components/Series/HeroBanner';
 import TeamSection from '../components/Series/TeamSection';
-import { Team } from '../models/team';
+import { Member, Team } from '../models/team';
 
 interface Props {
   teams: Team[];
+  members: Member[];
 }
 
-const Series: React.FC<Props> = ({ teams }) => {
+const Series: React.FC<Props> = ({ teams, members }) => {
   return (
     <>
-      <HeroBanner teams={teams} />
+      <HeroBanner teams={teams} members={members} />
       <TeamSection teams={teams} />
     </>
   );

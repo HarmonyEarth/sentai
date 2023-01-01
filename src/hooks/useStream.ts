@@ -23,9 +23,10 @@ const useStream = ({ dataStream, setFileArray }: Props) => {
     if (dataStream === 'teams') {
       const unsubscribe = streamTeams(
         (snapshot) => {
-          const updatedTeams = snapshot.docs.map(
-            (docSnapshot) => docSnapshot.data() as Team
-          );
+          const updatedTeams: Team[] = [];
+          snapshot.docs.forEach((doc) => {
+            updatedTeams.push({ ...doc.data(), id: doc.id } as Team);
+          });
           addDataToFileArray.current?.((prev: Team[]) => updatedTeams);
         },
         (error) => console.log(error)
@@ -34,9 +35,10 @@ const useStream = ({ dataStream, setFileArray }: Props) => {
     } else if (dataStream === 'members') {
       const unsubscribe = streamMembers(
         (snapshot) => {
-          const updatedMembers = snapshot.docs.map(
-            (docSnapshot) => docSnapshot.data() as Member
-          );
+          const updatedMembers: Member[] = [];
+          snapshot.docs.forEach((doc) => {
+            updatedMembers.push({ ...doc.data(), id: doc.id } as Member);
+          });
           addDataToFileArray.current?.((prev: Member[]) => updatedMembers);
         },
         (error) => console.log(error)

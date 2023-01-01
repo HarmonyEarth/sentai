@@ -7,37 +7,34 @@ import FormTeamImage from '../CMS/FormTeamImage';
 
 import TeamForm from './TeamForm';
 
-const TeamFormSection: React.FC = () => {
+interface Props {
+  docId: string;
+  currentTeam: Team;
+}
+
+const TeamFormSection: React.FC<Props> = ({ docId, currentTeam }) => {
   const [logo, setLogo] = useState<FileState>();
   const [symbol, setSymbol] = useState<FileState>();
-  const [teamId, setTeamId] = useState('');
-  const [year, setYear] = useState('');
   const [teamData, setTeamData] = useState<Team>({
-    shortTeamName: '',
-    fullTeamNameEN: '',
-    fullTeamNameJP: '',
-    year,
-    logo,
-    symbol,
-    teamId,
+    ...currentTeam,
   });
 
   const logoPercent = useFileUpload({
     file: logo as File,
     setFile: setTeamData,
-    id: 'logo',
-    teamId,
+    fileId: 'logo',
     structure: 'team',
-    year,
+    docId,
   });
   const symbolPercent = useFileUpload({
     file: symbol as File,
     setFile: setTeamData,
-    id: 'symbol',
-    teamId,
+    fileId: 'symbol',
     structure: 'team',
-    year,
+    docId,
   });
+
+  console.log(teamData);
 
   return (
     <Grid container>
@@ -45,31 +42,32 @@ const TeamFormSection: React.FC = () => {
         <Grid container item justifyContent="space-around" xs={12} md={6}>
           <Grid item xs={6} md={3}>
             <FormTeamImage
+              firestoreImage={String(teamData.logo)}
               image={logo}
               imagePercent={logoPercent}
-              imageName={'Logo'}
+              imageName={'logo'}
             />
           </Grid>
           <Grid item xs={6} md={3}>
             <FormTeamImage
+              firestoreImage={String(teamData.symbol)}
               image={symbol}
               imagePercent={symbolPercent}
-              imageName={'Symbol'}
+              imageName={'symbol'}
             />
           </Grid>
         </Grid>
         <Grid container item justifyContent="space-around" xs={12} md={6}>
-          <Grid item xs={6} md={3}>
+          <Grid item>
             <h4>Team Form</h4>
             <TeamForm
               symbolPercent={symbolPercent}
               logoPercent={logoPercent}
               setLogo={setLogo}
               setSymbol={setSymbol}
-              setYear={setYear}
-              setTeamId={setTeamId}
               setTeamData={setTeamData}
               teamData={teamData}
+              docId={docId}
             />
           </Grid>
         </Grid>
