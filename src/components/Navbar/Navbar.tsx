@@ -2,9 +2,9 @@ import React from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { useAppSelector } from '../../hooks/reduxTypedHooks';
 import {
-  Container,
   LeftNavbar,
   NavbarFlexContainer,
+  NavbarHeader,
   RightNavbar,
 } from '../../styles/Navbar/Navbar.styles';
 import LogInForm from './LogInForm';
@@ -15,7 +15,7 @@ const Navbar = () => {
   const navigate = useNavigate();
 
   return (
-    <Container>
+    <NavbarHeader>
       <NavbarFlexContainer>
         <LeftNavbar>
           <Link to={'/'}>
@@ -33,16 +33,10 @@ const Navbar = () => {
           ) : (
             <LogInForm />
           )}
-          <a
-            href="https://github.com/HarmonyEarth/sentai"
-            target="_blank"
-            rel="noreferrer"
-          >
-            <button>GitHub</button>
-          </a>
+          <button>Play</button>
         </RightNavbar>
       </NavbarFlexContainer>
-    </Container>
+    </NavbarHeader>
   );
 };
 

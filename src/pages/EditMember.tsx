@@ -5,14 +5,14 @@ import { Member, Team } from '../models/team';
 
 interface Props {
   members: Member[];
-  completeTeams: Team[];
+  teams: Team[];
 }
 
-const EditMember: React.FC<Props> = ({ members, completeTeams }) => {
+const EditMember: React.FC<Props> = ({ members, teams }) => {
   const { id } = useParams();
 
   if (!id) {
-    return <h1>Dpcument does not exist</h1>;
+    return <h1>Document does not exist</h1>;
   }
 
   const currentMember = members.find((element) => element.id === id);
@@ -26,7 +26,7 @@ const EditMember: React.FC<Props> = ({ members, completeTeams }) => {
       <MemberFormSection
         docId={id}
         currentMember={currentMember}
-        completeTeams={completeTeams}
+        teams={teams}
       />
     </>
   );

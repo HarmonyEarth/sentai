@@ -64,7 +64,12 @@ function App() {
         />
         <Route path="/teams" element={<Teams />} />
         <Route path="/team/:teamId" element={<TeamDetails />} />
-        <Route path="/:teamId/:heroId" element={<HeroDetails />} />
+        <Route
+          path="/:teamId/:heroId"
+          element={
+            <HeroDetails members={completeMembers} teams={completeTeams} />
+          }
+        />
         <Route
           path="/cms"
           element={
@@ -85,7 +90,7 @@ function App() {
           path="/cms/member/:id"
           element={
             <RequireAuth>
-              <EditMember members={members} completeTeams={completeTeams} />
+              <EditMember members={members} teams={completeTeams} />
             </RequireAuth>
           }
         />

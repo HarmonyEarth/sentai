@@ -39,6 +39,7 @@ const NewButton: React.FC<Props> = ({ purpose, clicked, setClicked }) => {
           heroImage3: '',
           heroImage4: '',
           heroHelmet: '',
+          heroSymbol: '',
           teamId: '',
           id: '',
         });
