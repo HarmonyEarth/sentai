@@ -24,6 +24,7 @@ export interface Member {
   heroImage3: FileState;
   heroImage4: FileState;
   heroHelmet: FileState;
+  heroSymbol: FileState;
   teamId: string;
   id: string;
 }
@@ -89,6 +90,11 @@ export const memberInputFileData = [
   },
   {
     formData: 'heroHelmet',
+    type: 'file',
+    accept: 'image/*',
+  },
+  {
+    formData: 'heroSymbol',
     type: 'file',
     accept: 'image/*',
   },

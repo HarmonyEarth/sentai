@@ -2,7 +2,7 @@ import { Grid, Modal } from '@mui/material';
 import React, { useState } from 'react';
 
 import { logIn } from '../../auth';
-import { Container } from '../../styles/Navbar/LogInForm.styles';
+import { LogInContainer } from '../../styles/Navbar/LogInForm.styles';
 
 const LogInForm = () => {
   const [open, setOpen] = useState(false);
@@ -43,7 +43,7 @@ const LogInForm = () => {
         aria-labelledby="modal-modal-title"
         aria-describedby="modal-modal-description"
       >
-        <Container>
+        <LogInContainer>
           <div>
             <h2>Log In Form</h2>
             <Grid container>
@@ -72,7 +72,7 @@ const LogInForm = () => {
               </form>
             </Grid>
           </div>
-        </Container>
+        </LogInContainer>
       </Modal>
     </>
   );

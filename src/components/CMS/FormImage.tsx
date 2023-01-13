@@ -9,7 +9,7 @@ interface Props {
 }
 const noImageIcon =
   'https://upload.wikimedia.org/wikipedia/commons/thumb/a/ac/No_image_available.svg/480px-No_image_available.svg.png';
-const FormTeamImage: React.FC<Props> = ({
+const FormImage: React.FC<Props> = ({
   firestoreImage,
   image,
   imagePercent,
@@ -46,4 +46,4 @@ const FormTeamImage: React.FC<Props> = ({
   );
 };
 
-export default FormTeamImage;
+export default FormImage;

@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-export const Container = styled.header``;
+export const NavbarHeader = styled.header``;
 
 export const NavbarFlexContainer = styled.div`
   justify-content: space-between;

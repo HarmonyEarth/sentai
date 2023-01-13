@@ -19,6 +19,7 @@ interface Props {
   setHeroImage3: React.Dispatch<React.SetStateAction<FileState>>;
   setHeroImage4: React.Dispatch<React.SetStateAction<FileState>>;
   setHeroHelmet: React.Dispatch<React.SetStateAction<FileState>>;
+  setHeroSymbol: React.Dispatch<React.SetStateAction<FileState>>;
   setMemberData: React.Dispatch<React.SetStateAction<Member>>;
   memberData: Member;
   heroImage1Percent: number | null;
@@ -26,8 +27,9 @@ interface Props {
   heroImage3Percent: number | null;
   heroImage4Percent: number | null;
   heroHelmetPercent: number | null;
+  heroSymbolPercent: number | null;
   docId: string;
-  completeTeams: Team[];
+  teams: Team[];
 }
 
 const MemberForm: React.FC<Props> = ({
@@ -36,6 +38,7 @@ const MemberForm: React.FC<Props> = ({
   setHeroImage3,
   setHeroImage4,
   setHeroHelmet,
+  setHeroSymbol,
   setMemberData,
   memberData,
   heroImage1Percent,
@@ -43,8 +46,9 @@ const MemberForm: React.FC<Props> = ({
   heroImage3Percent,
   heroImage4Percent,
   heroHelmetPercent,
+  heroSymbolPercent,
   docId,
-  completeTeams,
+  teams,
 }) => {
   const navigate = useNavigate();
 
@@ -79,6 +83,11 @@ const MemberForm: React.FC<Props> = ({
         return;
       }
       setHeroHelmet(e.target.files[0]);
+    } else if (id === 'heroSymbol') {
+      if (!e.target.files || e.target.files.length === 0) {
+        return;
+      }
+      setHeroSymbol(e.target.files[0]);
     }
     setMemberData({ ...memberData, [id]: value });
   };
@@ -138,13 +147,13 @@ const MemberForm: React.FC<Props> = ({
           required
         >
           <option value="">--Please choose an option--</option>
-          {completeTeams.map((completeTeam) => (
+          {teams.map((team) => (
             <option
-              value={completeTeam.teamId}
-              key={completeTeam.id}
-              selected={completeTeam.teamId === memberData.teamId}
+              value={team.teamId}
+              key={team.id}
+              selected={team.teamId === memberData.teamId}
             >
-              {completeTeam.shortTeamName}
+              {team.shortTeamName}
             </option>
           ))}
         </select>
@@ -169,7 +178,8 @@ const MemberForm: React.FC<Props> = ({
           (heroImage2Percent !== null && heroImage2Percent < 100) ||
           (heroImage3Percent !== null && heroImage3Percent < 100) ||
           (heroImage4Percent !== null && heroImage4Percent < 100) ||
-          (heroHelmetPercent !== null && heroHelmetPercent < 100)
+          (heroHelmetPercent !== null && heroHelmetPercent < 100) ||
+          (heroSymbolPercent !== null && heroSymbolPercent < 100)
         }
       >
         Submit to Database

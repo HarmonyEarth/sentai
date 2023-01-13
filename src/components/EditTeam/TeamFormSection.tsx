@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import useFileUpload from '../../hooks/useFileUpload';
 import { FileState } from '../../models/fileState';
 import { Team } from '../../models/team';
-import FormTeamImage from '../CMS/FormTeamImage';
+import FormImage from '../CMS/FormImage';
 
 import TeamForm from './TeamForm';
 
@@ -41,7 +41,7 @@ const TeamFormSection: React.FC<Props> = ({ docId, currentTeam }) => {
       <Grid container item>
         <Grid container item justifyContent="space-around" xs={12} md={6}>
           <Grid item xs={6} md={3}>
-            <FormTeamImage
+            <FormImage
               firestoreImage={String(teamData.logo)}
               image={logo}
               imagePercent={logoPercent}
@@ -49,7 +49,7 @@ const TeamFormSection: React.FC<Props> = ({ docId, currentTeam }) => {
             />
           </Grid>
           <Grid item xs={6} md={3}>
-            <FormTeamImage
+            <FormImage
               firestoreImage={String(teamData.symbol)}
               image={symbol}
               imagePercent={symbolPercent}
