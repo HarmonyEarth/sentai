@@ -52,6 +52,18 @@ const useFileUpload = ({
         fileURL = 'images/members/' + docId + '/' + name + fileExtension(file);
       }
 
+      switch (structure) {
+        case 'team':
+          fileURL = 'images/teams/' + docId + '/' + name + fileExtension(file);
+          break;
+        case 'member':
+          fileURL =
+            'images/members/' + docId + '/' + name + fileExtension(file);
+          break;
+        default:
+          break;
+      }
+
       const storageRef = ref(storage, fileURL);
       const uploadTask = uploadBytesResumable(storageRef, file);
 

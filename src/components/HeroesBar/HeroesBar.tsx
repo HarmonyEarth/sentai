@@ -10,7 +10,17 @@ import {
   HeroesBarTitleText,
 } from '../../styles/HeroesBar/HeroesBar.styles';
 
-const HeroesBar = () => {
+interface Props {
+  heroSymbol: string;
+  heroNameEN1: string;
+  heroNameEN2: string;
+}
+
+const HeroesBar: React.FC<Props> = ({
+  heroSymbol,
+  heroNameEN1,
+  heroNameEN2,
+}) => {
   return (
     <HeroesBarContainer>
       <HeroesBarTitleContainer>
@@ -22,8 +32,10 @@ const HeroesBar = () => {
 
       <HeroesBarBlock>
         <HeroesBarLeft>
-          <HeroesBarSymbol src="https://firebasestorage.googleapis.com/v0/b/sentai-a6af6.appspot.com/o/images%2Fmembers%2FpgaMMDdBuXauGBwhwYDr%2FheroSymbol.png?alt=media&token=381cfea4-5204-4190-871a-eb5a7a12080f" />
-          <h3>Little Mac</h3>
+          <HeroesBarSymbol src={heroSymbol} />
+          <h3>
+            {heroNameEN1} / {heroNameEN2}
+          </h3>
         </HeroesBarLeft>
         <HeroesBarRight>
           <p>Display Heroes by Team</p>

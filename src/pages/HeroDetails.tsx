@@ -6,7 +6,10 @@ import SenshiGallery from '../components/HeroDetails/SenshiGallery';
 import HeroesBar from '../components/HeroesBar/HeroesBar';
 
 import { Member, Team } from '../models/team';
-import { SenshiContainer } from '../styles/HeroDetails/SenshiPage.styles';
+import {
+  SenshiContainer,
+  SenshiBackgroundImage,
+} from '../styles/HeroDetails/SenshiPage.styles';
 
 interface Props {
   members: Member[];
@@ -34,7 +37,14 @@ const HeroDetails: React.FC<Props> = ({ members, teams }) => {
   }
   return (
     <SenshiContainer>
-      <HeroesBar />
+      <HeroesBar
+        heroSymbol={String(currentMember.heroSymbol)}
+        heroNameEN1={currentMember.heroNameEN1}
+        heroNameEN2={currentMember.heroNameEN2}
+      />
+
+      <SenshiBackgroundImage heroImage1={String(currentMember.heroImage1)} />
+
       <SenshiGallery />
       <SenshiFactSection />
       <SenshiCarouselSection />
