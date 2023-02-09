@@ -1,15 +1,12 @@
+import { useMediaQuery, useTheme } from '@mui/material';
 import React from 'react';
 import { useParams } from 'react-router-dom';
-import SenshiCarouselSection from '../components/HeroDetails/SenshiCarouselSection';
-import SenshiFactSection from '../components/HeroDetails/SenshiFactSection';
-import SenshiGallery from '../components/HeroDetails/SenshiGallery';
+import HeroBackground from '../components/HeroDetails/HeroBackground';
 import HeroesBar from '../components/HeroesBar/HeroesBar';
 
 import { Member, Team } from '../models/team';
-import {
-  SenshiContainer,
-  SenshiBackgroundImage,
-} from '../styles/HeroDetails/SenshiPage.styles';
+import { HeroDetailsContainer } from '../styles/HeroDetails/HeroDetails.styles';
+import { heroColor } from '../utils/heroColor';
 
 interface Props {
   members: Member[];
@@ -17,10 +14,13 @@ interface Props {
 }
 
 const HeroDetails: React.FC<Props> = ({ members, teams }) => {
+  const theme = useTheme();
+  const mobile = useMediaQuery(theme.breakpoints.down('md'));
+
   const { heroId } = useParams();
 
   if (!heroId) {
-    return <h1>Document does not exist</h1>;
+    return <h1>Hero does not exist</h1>;
   }
 
   const currentMember = members.find((element) => element.heroId === heroId);
@@ -32,23 +32,23 @@ const HeroDetails: React.FC<Props> = ({ members, teams }) => {
     (element) => element.teamId === currentMember.teamId
   );
 
-  if (!currentMember) {
-    return <h1>Document does not exist</h1>;
+  if (!currentTeam) {
+    return <h1>Team does not exist</h1>;
   }
   return (
-    <SenshiContainer>
+    <HeroDetailsContainer>
+      <HeroBackground
+        heroImage1={String(currentMember.heroImage1)}
+        color={heroColor(currentMember.color)}
+        mobile={mobile}
+      />
       <HeroesBar
         heroSymbol={String(currentMember.heroSymbol)}
         heroNameEN1={currentMember.heroNameEN1}
         heroNameEN2={currentMember.heroNameEN2}
+        mobile={mobile}
       />
-
-      <SenshiBackgroundImage heroImage1={String(currentMember.heroImage1)} />
-
-      <SenshiGallery />
-      <SenshiFactSection />
-      <SenshiCarouselSection />
-    </SenshiContainer>
+    </HeroDetailsContainer>
   );
 };
 

@@ -1,47 +1,29 @@
 import React from 'react';
 import {
-  HeroesBarBlock,
-  HeroesBarContainer,
-  HeroesBarLeft,
-  HeroesBarRight,
-  HeroesBarSymbol,
-  HeroesBarTitleContainer,
-  HeroesBarTitleSpan,
-  HeroesBarTitleText,
+  SenshiBarContainer,
+  SenshiBarSpan,
+  SenshiBarText,
 } from '../../styles/HeroesBar/HeroesBar.styles';
 
 interface Props {
   heroSymbol: string;
   heroNameEN1: string;
   heroNameEN2: string;
+  mobile: boolean;
 }
 
 const HeroesBar: React.FC<Props> = ({
   heroSymbol,
   heroNameEN1,
   heroNameEN2,
+  mobile,
 }) => {
   return (
-    <HeroesBarContainer>
-      <HeroesBarTitleContainer>
-        <HeroesBarTitleText>
-          SUPER SENTAI SERIES
-          <HeroesBarTitleSpan>Heroes</HeroesBarTitleSpan>
-        </HeroesBarTitleText>
-      </HeroesBarTitleContainer>
-
-      <HeroesBarBlock>
-        <HeroesBarLeft>
-          <HeroesBarSymbol src={heroSymbol} />
-          <h3>
-            {heroNameEN1} / {heroNameEN2}
-          </h3>
-        </HeroesBarLeft>
-        <HeroesBarRight>
-          <p>Display Heroes by Team</p>
-        </HeroesBarRight>
-      </HeroesBarBlock>
-    </HeroesBarContainer>
+    <SenshiBarContainer>
+      <SenshiBarText>
+        Super Sentai Series<SenshiBarSpan mobile={mobile}>Heroes</SenshiBarSpan>
+      </SenshiBarText>
+    </SenshiBarContainer>
   );
 };
 

@@ -4,7 +4,7 @@ interface Props {
   randomColor: string;
   randomColor2: string;
   heroImage2: string;
-  isMobile: boolean;
+  mobile: boolean;
 }
 export const SenshiCard = styled.div<Props>`
   background: url(${(props) => props.heroImage2}),
@@ -17,6 +17,6 @@ export const SenshiCard = styled.div<Props>`
   background-position: center top;
   background-size: contain;
   background-size: auto 140%;
-  height: ${(props) => (props.isMobile ? '200px' : '450px')};
+  height: ${(props) => (props.mobile ? '200px' : '450px')};
   width: 100%;
 `;

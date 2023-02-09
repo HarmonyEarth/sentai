@@ -6,6 +6,7 @@ import { db } from '../../firebase';
 import { FileState } from '../../models/fileState';
 import {
   Member,
+  memberInputColorData,
   memberInputData,
   memberInputFileData,
   Team,
@@ -137,6 +138,22 @@ const MemberForm: React.FC<Props> = ({
           />
         );
       })}
+      <div>
+        <label htmlFor="color">Choose a color:</label>
+        <br />
+        <select name="color" id="color" onChange={handleMemberSelect} required>
+          <option value="">--Please choose an option--</option>
+          {memberInputColorData.map((color) => (
+            <option
+              value={color}
+              key={color}
+              selected={color === memberData.color}
+            >
+              {color}
+            </option>
+          ))}
+        </select>
+      </div>
       <div>
         <label htmlFor="teamId">Choose a team:</label>
         <br />

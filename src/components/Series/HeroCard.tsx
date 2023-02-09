@@ -12,7 +12,7 @@ const HeroCard = ({ heroImage2, mobile }: Props) => {
       randomColor={randomColor()}
       randomColor2={randomColor2()}
       heroImage2={heroImage2}
-      isMobile={mobile}
+      mobile={mobile}
     />
   );
 };
