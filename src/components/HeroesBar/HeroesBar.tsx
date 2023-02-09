@@ -1,35 +1,46 @@
 import React from 'react';
 import {
-  HeroesBarBlock,
-  HeroesBarContainer,
-  HeroesBarLeft,
-  HeroesBarRight,
-  HeroesBarSymbol,
-  HeroesBarTitleContainer,
-  HeroesBarTitleSpan,
-  HeroesBarTitleText,
+  SenshiBar,
+  SenshiBarTitleContainer,
+  SenshiBarSpan,
+  SenshiBarText,
+  SenshiBarLeft,
+  SenshiBarLeftSymbol,
 } from '../../styles/HeroesBar/HeroesBar.styles';
 
-const HeroesBar = () => {
-  return (
-    <HeroesBarContainer>
-      <HeroesBarTitleContainer>
-        <HeroesBarTitleText>
-          SUPER SENTAI SERIES
-          <HeroesBarTitleSpan>Heroes</HeroesBarTitleSpan>
-        </HeroesBarTitleText>
-      </HeroesBarTitleContainer>
+interface Props {
+  heroSymbol: string;
+  heroNameEN1: string;
+  heroNameEN2: string;
+  mobile: boolean;
+}
 
-      <HeroesBarBlock>
-        <HeroesBarLeft>
-          <HeroesBarSymbol src="https://firebasestorage.googleapis.com/v0/b/sentai-a6af6.appspot.com/o/images%2Fmembers%2FpgaMMDdBuXauGBwhwYDr%2FheroSymbol.png?alt=media&token=381cfea4-5204-4190-871a-eb5a7a12080f" />
-          <h3>Little Mac</h3>
-        </HeroesBarLeft>
-        <HeroesBarRight>
+const HeroesBar: React.FC<Props> = ({
+  heroSymbol,
+  heroNameEN1,
+  heroNameEN2,
+  mobile,
+}) => {
+  return (
+    <>
+      <SenshiBarTitleContainer>
+        <SenshiBarText>
+          Super Sentai Series
+          <SenshiBarSpan mobile={mobile}>Heroes</SenshiBarSpan>
+        </SenshiBarText>
+      </SenshiBarTitleContainer>
+      <SenshiBar mobile={mobile}>
+        <SenshiBarLeft>
+          <SenshiBarLeftSymbol src={heroSymbol} />
+          <h3>
+            {heroNameEN1} / {heroNameEN2}
+          </h3>
+        </SenshiBarLeft>
+        <div>
           <p>Display Heroes by Team</p>
-        </HeroesBarRight>
-      </HeroesBarBlock>
-    </HeroesBarContainer>
+        </div>
+      </SenshiBar>
+    </>
   );
 };
 

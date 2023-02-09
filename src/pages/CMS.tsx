@@ -43,7 +43,7 @@ const CMS: React.FC<Props> = ({ teams, members }) => {
                 alt={`${team.shortTeamName} Symbol`}
                 height={'150px'}
               />
-              <h4>{team.shortTeamName}</h4>
+              <h4>{`${team.year} ${team.shortTeamName}`}</h4>
               <Link to={`/team/${team.teamId}`}>
                 <button>View</button>
               </Link>
@@ -66,7 +66,6 @@ const CMS: React.FC<Props> = ({ teams, members }) => {
             <h3>Click to edit or delete a member</h3>
           </Grid>
           {members.map((member) => (
-            //FIX THIS
             <Grid item key={member.id} xs={12} sm={4} md={3} marginTop={2}>
               <img
                 src={String(member.heroImage1) || noImageIcon}

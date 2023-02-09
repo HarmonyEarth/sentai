@@ -12,10 +12,10 @@ interface Props {
 
 const Title: React.FC<Props> = ({ mobile }) => {
   return (
-    <Container isMobile={mobile}>
-      <TextContainer isMobile={mobile}>
-        <SmallText isMobile={mobile}>SUPER SENTAI</SmallText>
-        <BigText isMobile={mobile}>SERIES</BigText>
+    <Container mobile={mobile}>
+      <TextContainer mobile={mobile}>
+        <SmallText mobile={mobile}>SUPER SENTAI</SmallText>
+        <BigText mobile={mobile}>SERIES</BigText>
       </TextContainer>
     </Container>
   );

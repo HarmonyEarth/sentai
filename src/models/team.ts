@@ -41,11 +41,6 @@ export const memberInputData = [
     type: 'number',
   },
   {
-    formData: 'color',
-    placeholder: 'white',
-    type: 'text',
-  },
-  {
     formData: 'heroNameEN1',
     placeholder: 'Akaki Sugata',
     type: 'text',
@@ -98,6 +93,21 @@ export const memberInputFileData = [
     type: 'file',
     accept: 'image/*',
   },
+];
+
+export const memberInputColorData = [
+  'Red',
+  'Blue',
+  'Yellow',
+  'Green',
+  'Black',
+  'Pink',
+  'Silver',
+  'Gold',
+  'Orange',
+  'Light Blue',
+  'Purple',
+  'White',
 ];
 
 export const teamInputData = [

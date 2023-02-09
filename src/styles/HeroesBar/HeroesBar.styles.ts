@@ -1,40 +1,45 @@
 import styled from 'styled-components';
 
-export const HeroesBarContainer = styled.div`
-  width: 100vw;
-`;
+interface Props {
+  mobile: boolean;
+}
 
-export const HeroesBarTitleContainer = styled.div`
+export const SenshiBarTitleContainer = styled.div`
   display: flex;
 `;
 
-export const HeroesBarTitleText = styled.h2`
+export const SenshiBarText = styled.h2`
   margin: 0 auto;
   padding: 0;
+  text-transform: uppercase;
 `;
 
-export const HeroesBarTitleSpan = styled.span`
+export const SenshiBarSpan = styled.span<Props>`
+  display: ${(props) => (props.mobile ? 'block' : 'inline-block')};
+  color: ${(props) => (props.mobile ? '#FFFFFF' : '#000000')};
+  margin-top: -0.5rem;
   font-size: 4rem;
 `;
 
-export const HeroesBarBlock = styled.div`
+export const SenshiBar = styled.div<Props>`
   max-width: 100%;
   height: 50px;
   background-color: black;
-  margin-top: -1rem;
+  margin-top: ${(props) => (props.mobile ? '-0.9rem' : '-1rem')};
   padding: 0.5rem 1rem;
 
   display: flex;
   flex-direction: row;
   justify-content: space-between;
 
-  h3,
-  p {
-    color: white;
+  p,
+  h3 {
+    color: #fff;
   }
 `;
 
-export const HeroesBarLeft = styled.div`
+export const SenshiBarLeft = styled.div`
+  min-width: 0; /*fixes this bar from pushing the right side out for some reason*/
   display: flex;
   flex-direction: row;
   justify-content: flex-start;
@@ -42,9 +47,7 @@ export const HeroesBarLeft = styled.div`
   gap: 1rem;
 `;
 
-export const HeroesBarSymbol = styled.img`
+export const SenshiBarLeftSymbol = styled.img`
   height: 100%;
   width: auto;
 `;
-
-export const HeroesBarRight = styled.div``;
