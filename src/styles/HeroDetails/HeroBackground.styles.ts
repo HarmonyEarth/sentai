@@ -20,7 +20,7 @@ export const SenshiBackgroundImage = styled.div<Props>`
   height: 100%;
   background-image: linear-gradient(transparent, ${(props) => props.color} 100%),
     url(${(props) => props.heroImage1});
-  filter: sepia() hue-rotate(190deg) saturate(500%);
+  /* filter: sepia() hue-rotate(190deg) saturate(500%); */
   background-repeat: no-repeat;
   background-size: cover;
   position: relative;

@@ -1,8 +1,11 @@
 import React from 'react';
 import {
-  SenshiBarContainer,
+  SenshiBar,
+  SenshiBarTitleContainer,
   SenshiBarSpan,
   SenshiBarText,
+  SenshiBarLeft,
+  SenshiBarLeftSymbol,
 } from '../../styles/HeroesBar/HeroesBar.styles';
 
 interface Props {
@@ -19,11 +22,25 @@ const HeroesBar: React.FC<Props> = ({
   mobile,
 }) => {
   return (
-    <SenshiBarContainer>
-      <SenshiBarText>
-        Super Sentai Series<SenshiBarSpan mobile={mobile}>Heroes</SenshiBarSpan>
-      </SenshiBarText>
-    </SenshiBarContainer>
+    <>
+      <SenshiBarTitleContainer>
+        <SenshiBarText>
+          Super Sentai Series
+          <SenshiBarSpan mobile={mobile}>Heroes</SenshiBarSpan>
+        </SenshiBarText>
+      </SenshiBarTitleContainer>
+      <SenshiBar mobile={mobile}>
+        <SenshiBarLeft>
+          <SenshiBarLeftSymbol src={heroSymbol} />
+          <h3>
+            {heroNameEN1} / {heroNameEN2}
+          </h3>
+        </SenshiBarLeft>
+        <div>
+          <p>Display Heroes by Team</p>
+        </div>
+      </SenshiBar>
+    </>
   );
 };
 

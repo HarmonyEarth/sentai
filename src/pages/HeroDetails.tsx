@@ -2,6 +2,7 @@ import { useMediaQuery, useTheme } from '@mui/material';
 import React from 'react';
 import { useParams } from 'react-router-dom';
 import HeroBackground from '../components/HeroDetails/HeroBackground';
+import { HeroContent } from '../components/HeroDetails/HeroContent';
 import HeroesBar from '../components/HeroesBar/HeroesBar';
 
 import { Member, Team } from '../models/team';
@@ -47,6 +48,14 @@ const HeroDetails: React.FC<Props> = ({ members, teams }) => {
         heroNameEN1={currentMember.heroNameEN1}
         heroNameEN2={currentMember.heroNameEN2}
         mobile={mobile}
+      />
+      <HeroContent
+        heroImage3={String(currentMember.heroImage3)}
+        heroImage4={String(currentMember.heroImage4)}
+        heroNameEN1={currentMember.heroNameEN1}
+        heroNameEN2={currentMember.heroNameEN2}
+        heroNameJP1={currentMember.heroNameJP1}
+        heroNameJP2={currentMember.heroNameJP2}
       />
     </HeroDetailsContainer>
   );

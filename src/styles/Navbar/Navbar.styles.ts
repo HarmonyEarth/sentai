@@ -5,7 +5,7 @@ export const NavbarHeader = styled.header``;
 export const NavbarFlexContainer = styled.div`
   justify-content: space-between;
   display: flex;
-  position: absolute;
+  /* position: absolute; */
   width: 100%;
   top: 0;
 `;
