@@ -33,7 +33,10 @@ export const HeroContent: React.FC<Props> = ({
     <SenshiContainer onClick={handleTransformation}>
       <SenshiNameEN>{transformation ? heroNameEN2 : heroNameEN1}</SenshiNameEN>
       <SenshiNameJP>{transformation ? heroNameJP2 : heroNameJP1}</SenshiNameJP>
-      <SenshiImage src={transformation ? heroImage4 : heroImage3} />
+      <SenshiImage
+        src={transformation ? heroImage4 : heroImage3}
+        alt={transformation ? heroNameEN2 : heroNameEN1}
+      />
     </SenshiContainer>
   );
 };

@@ -4,6 +4,7 @@ export const SenshiContainer = styled.div`
   display: flex;
   flex-direction: column;
   text-transform: uppercase;
+  cursor: pointer;
 `;
 
 export const SenshiNameEN = styled.h1`
