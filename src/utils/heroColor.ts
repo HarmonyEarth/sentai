@@ -14,7 +14,7 @@ export const heroColor = (color: string) => {
       newHeroColor = '#24CC37';
       break;
     case 'Black':
-      newHeroColor = '#000000';
+      newHeroColor = '#2E1033';
       break;
     case 'Pink':
       newHeroColor = '#FE58E1';

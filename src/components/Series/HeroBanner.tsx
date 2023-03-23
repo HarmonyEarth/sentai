@@ -68,7 +68,7 @@ const HeroBanner: React.FC<Props> = ({ teams, members }) => {
         </Grid>
       )}
       <Grid container item xs={12} md={8}>
-        {shuffledMembers.slice(mobile ? -5 : 4, 10).map((shuffledMember) => (
+        {shuffledMembers.slice(mobile ? -4 : 4, 10).map((shuffledMember) => (
           <Grid
             container
             item
