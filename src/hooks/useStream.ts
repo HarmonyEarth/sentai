@@ -1,11 +1,9 @@
 import React, { useEffect, useLayoutEffect, useRef } from 'react';
-import { Member, Team } from '../models/team';
-import { streamMembers, streamTeams } from '../firebase';
-interface Props {
-  setFileArray:
-    | React.Dispatch<React.SetStateAction<Team[] | null>>
-    | React.Dispatch<React.SetStateAction<Member[] | null>>;
-  dataStream: string;
+import { StreamDataType } from '../firebase';
+
+interface Props<T> {
+  setFileArray: React.Dispatch<React.SetStateAction<T[] | null>>;
+  streamData: StreamDataType;
 }
 
 const useCallbackRef = (callback: any) => {
@@ -16,36 +14,25 @@ const useCallbackRef = (callback: any) => {
   return callbackRef;
 };
 
-const useStream = ({ dataStream, setFileArray }: Props) => {
+const useStream = <T extends unknown>({
+  setFileArray,
+  streamData,
+}: Props<T>) => {
   const addDataToFileArray = useCallbackRef(setFileArray);
 
   useEffect(() => {
-    if (dataStream === 'teams') {
-      const unsubscribe = streamTeams(
-        (snapshot) => {
-          const updatedTeams: Team[] = [];
-          snapshot.docs.forEach((doc) => {
-            updatedTeams.push({ ...doc.data(), id: doc.id } as Team);
-          });
-          addDataToFileArray.current?.((prev: Team[]) => updatedTeams);
-        },
-        (error) => console.log(error)
-      );
-      return unsubscribe;
-    } else if (dataStream === 'members') {
-      const unsubscribe = streamMembers(
-        (snapshot) => {
-          const updatedMembers: Member[] = [];
-          snapshot.docs.forEach((doc) => {
-            updatedMembers.push({ ...doc.data(), id: doc.id } as Member);
-          });
-          addDataToFileArray.current?.((prev: Member[]) => updatedMembers);
-        },
-        (error) => console.log(error)
-      );
-      return unsubscribe;
-    }
-  }, [addDataToFileArray, dataStream]);
+    const unsubscribe = streamData(
+      (snapshot) => {
+        const updatedData: T[] = [];
+        snapshot.docs.forEach((doc) => {
+          updatedData.push({ ...doc.data(), id: doc.id } as T);
+        });
+        addDataToFileArray.current?.((prev: T[]) => updatedData);
+      },
+      (error) => console.log(error)
+    );
+    return unsubscribe;
+  }, [addDataToFileArray, streamData]);
 };
 
 export default useStream;

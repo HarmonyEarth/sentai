@@ -29,4 +29,5 @@ export const SenshiImage = styled.img`
   align-self: flex-end;
   scale: 1.1;
   z-index: -1;
+  max-height: 1200px;
 `;
