@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Grid, useMediaQuery, useTheme } from '@mui/material';
 import { Link } from 'react-router-dom';
 import HeroCard from './HeroCard';
@@ -10,7 +10,7 @@ interface Props {
   members: Member[];
 }
 
-function shuffle(array: Member[]) {
+const shuffle = <T,>(array: T[]) => {
   let currentIndex = array.length,
     randomIndex;
 
@@ -28,13 +28,32 @@ function shuffle(array: Member[]) {
   }
 
   return array;
-}
+};
 
 const HeroBanner: React.FC<Props> = ({ teams, members }) => {
   const theme = useTheme();
   const mobile = useMediaQuery(theme.breakpoints.down('md'));
 
-  const shuffledMembers = shuffle(members);
+  const deepClone = <T,>(arrayData: T[]): T[] => {
+    let deepCloneArray = arrayData.map((arrayDataItem) =>
+      Array.isArray(arrayDataItem) ? deepClone(arrayDataItem) : arrayDataItem
+    );
+    return deepCloneArray as T[];
+  };
+
+  const shuffledMembers = deepClone(members);
+
+  // useEffect(() => {
+  //   let activeInterval: NodeJS.Timer | undefined;
+  //   if (!activeInterval) {
+  //     activeInterval = setInterval(() => shuffle(shuffledMembers), 1000);
+  //     activeInterval();
+  //   }
+
+  //   return () => {
+  //     clearInterval(activeInterval as NodeJS.Timer);
+  //   };
+  // }, [shuffledMembers]);
 
   return (
     <Grid container>

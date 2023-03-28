@@ -3,7 +3,6 @@ import { initializeApp } from 'firebase/app';
 import { getAuth } from 'firebase/auth';
 
 import {
-  addDoc,
   collection,
   DocumentData,
   FirestoreError,
@@ -12,7 +11,7 @@ import {
   orderBy,
   query,
   QuerySnapshot,
-  WithFieldValue,
+  Unsubscribe,
 } from 'firebase/firestore';
 import { getStorage } from 'firebase/storage';
 
@@ -43,10 +42,19 @@ const teamsQuery = query(teamsColRef, orderBy('year', 'asc'));
 
 const membersColRef = collection(db, 'members');
 
-const membersQuery = query(membersColRef, orderBy('teamId', 'asc'));
+const membersQuery = query(
+  membersColRef,
+  orderBy('teamId', 'asc'),
+  orderBy('position', 'asc')
+);
 
 type SnapshotType = (snapshot: QuerySnapshot<DocumentData>) => void;
 type SnapshotErrorType = (error: FirestoreError) => void;
+
+export type StreamDataType = (
+  snapshot: SnapshotType,
+  error: SnapshotErrorType
+) => Unsubscribe;
 
 export const streamTeams = (
   snapshot: SnapshotType,

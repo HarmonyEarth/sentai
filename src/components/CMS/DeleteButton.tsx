@@ -1,8 +1,8 @@
 import { deleteDoc, doc } from 'firebase/firestore';
-import { deleteObject, listAll, ref, StorageReference } from 'firebase/storage';
+import { deleteObject, listAll, ref } from 'firebase/storage';
 import React from 'react';
 import { toast } from 'react-hot-toast';
-import { db, firebaseConfig, storage } from '../../firebase';
+import { db, storage } from '../../firebase';
 
 interface Props {
   clicked: boolean;
@@ -10,22 +10,6 @@ interface Props {
   docId: string;
   purpose: string;
 }
-
-// deleteFolder(path) {
-//     const ref = firebase.storage().ref(path);
-//     ref.listAll()
-//       .then(dir => {
-//         dir.items.forEach(fileRef => this.deleteFile(ref.fullPath, fileRef.name));
-//         dir.prefixes.forEach(folderRef => this.deleteFolder(folderRef.fullPath))
-//       })
-//       .catch(error => console.log(error));
-//   }
-
-//   deleteFile(pathToFile, fileName) {
-//     const ref = firebase.storage().ref(pathToFile);
-//     const childRef = ref.child(fileName);
-//     childRef.delete()
-//   }
 
 const deleteFile = async (filePath: string) => {
   const fileToRemoveRef = ref(storage, filePath);

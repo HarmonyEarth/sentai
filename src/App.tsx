@@ -17,14 +17,15 @@ import { trackAuthStatus } from './auth';
 import { logUserIn, logUserOut } from './rtk/slice/userSlice';
 import EditTeam from './pages/EditTeam';
 import EditMember from './pages/EditMember';
+import { streamMembers, streamTeams } from './firebase';
 
 function App() {
   const [teams, setTeams] = useState<Team[] | null>(null);
   const [members, setMembers] = useState<Member[] | null>(null);
   const dispatch = useAppDispatch();
 
-  useStream({ dataStream: 'teams', setFileArray: setTeams });
-  useStream({ dataStream: 'members', setFileArray: setMembers });
+  useStream({ setFileArray: setTeams, streamData: streamTeams });
+  useStream({ setFileArray: setMembers, streamData: streamMembers });
 
   useEffect(() => {
     trackAuthStatus((user) => {
