@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { Grid, useMediaQuery, useTheme } from '@mui/material';
 import { Link } from 'react-router-dom';
 import HeroCard from './HeroCard';
@@ -41,19 +41,7 @@ const HeroBanner: React.FC<Props> = ({ teams, members }) => {
     return deepCloneArray as T[];
   };
 
-  const shuffledMembers = deepClone(members);
-
-  // useEffect(() => {
-  //   let activeInterval: NodeJS.Timer | undefined;
-  //   if (!activeInterval) {
-  //     activeInterval = setInterval(() => shuffle(shuffledMembers), 1000);
-  //     activeInterval();
-  //   }
-
-  //   return () => {
-  //     clearInterval(activeInterval as NodeJS.Timer);
-  //   };
-  // }, [shuffledMembers]);
+  const shuffledMembers = shuffle(deepClone(members));
 
   return (
     <Grid container>
