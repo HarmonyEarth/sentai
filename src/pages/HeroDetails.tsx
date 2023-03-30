@@ -5,7 +5,7 @@ import AllHeroes from '../components/HeroDetails/AllHeroes';
 import HeroBackground from '../components/HeroDetails/HeroBackground';
 import { HeroContent } from '../components/HeroDetails/HeroContent';
 import HeroesBar from '../components/HeroesBar/HeroesBar';
-import ScrollToTop from '../components/ScrollToTop';
+import ScrollToTop from '../components/HeroDetails/ScrollToTop';
 
 import { Member, Team } from '../models/team';
 import { HeroDetailsContainer } from '../styles/HeroDetails/HeroDetails.styles';
@@ -29,7 +29,7 @@ const HeroDetails: React.FC<Props> = ({ members, teams }) => {
   const currentMember = members.find((element) => element.heroId === heroId);
 
   if (!currentMember) {
-    return <h1>Member does not exist</h1>;
+    return <h1>Member does not exist or is incomplete</h1>;
   }
   const currentTeam = teams.find(
     (element) => element.teamId === currentMember.teamId
@@ -60,6 +60,7 @@ const HeroDetails: React.FC<Props> = ({ members, teams }) => {
           heroNameEN2={currentMember.heroNameEN2}
           heroNameJP1={currentMember.heroNameJP1}
           heroNameJP2={currentMember.heroNameJP2}
+          mobile={mobile}
         />
       </HeroDetailsContainer>
       <AllHeroes members={members} mobile={mobile} />

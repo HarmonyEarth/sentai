@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 import HeroCard from './HeroCard';
 import { Member, Team } from '../../models/team';
 import Title from './Title';
+import { deepClone } from '../../utils/deepClone';
 
 interface Props {
   teams: Team[];
@@ -33,13 +34,6 @@ const shuffle = <T,>(array: T[]) => {
 const HeroBanner: React.FC<Props> = ({ teams, members }) => {
   const theme = useTheme();
   const mobile = useMediaQuery(theme.breakpoints.down('md'));
-
-  const deepClone = <T,>(arrayData: T[]): T[] => {
-    let deepCloneArray = arrayData.map((arrayDataItem) =>
-      Array.isArray(arrayDataItem) ? deepClone(arrayDataItem) : arrayDataItem
-    );
-    return deepCloneArray as T[];
-  };
 
   const shuffledMembers = shuffle(deepClone(members));
 

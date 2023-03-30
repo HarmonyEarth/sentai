@@ -73,9 +73,11 @@ const CMS: React.FC<Props> = ({ teams, members }) => {
                 height={'150px'}
               />
               <h4>{member.heroNameEN1}</h4>
-              <Link to={`/${member.teamId}/${member.heroId}`}>
-                <button>View</button>
-              </Link>
+              {member.teamId && (
+                <Link to={`/${member.teamId}/${member.heroId}`}>
+                  <button>View</button>
+                </Link>
+              )}
               <Link to={`/cms/member/${member.id}`}>
                 <button>Edit</button>
               </Link>
