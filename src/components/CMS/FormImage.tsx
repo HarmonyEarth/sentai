@@ -21,8 +21,8 @@ const FormImage: React.FC<Props> = ({
         <img
           src={firestoreImage}
           alt={`Team ${imageName}`}
-          height={'auto'}
-          width={'100%'}
+          height={'300px'}
+          width={'auto'}
         />
       ) : (
         <img
@@ -32,8 +32,8 @@ const FormImage: React.FC<Props> = ({
               : noImageIcon
           }
           alt={`Team ${imageName}`}
-          height={'auto'}
-          width={'100%'}
+          height={'200px'}
+          width={'auto'}
         />
       )}
 

@@ -13,6 +13,7 @@ interface Props {
   heroNameEN2: string;
   heroNameJP1: string;
   heroNameJP2: string;
+  mobile: boolean;
 }
 
 export const HeroContent: React.FC<Props> = ({
@@ -22,6 +23,7 @@ export const HeroContent: React.FC<Props> = ({
   heroNameEN2,
   heroNameJP1,
   heroNameJP2,
+  mobile,
 }) => {
   const [transformation, setTransformation] = useState(false);
 
@@ -36,6 +38,7 @@ export const HeroContent: React.FC<Props> = ({
       <SenshiImage
         src={transformation ? heroImage4 : heroImage3}
         alt={transformation ? heroNameEN2 : heroNameEN1}
+        mobile={mobile}
       />
     </SenshiContainer>
   );
