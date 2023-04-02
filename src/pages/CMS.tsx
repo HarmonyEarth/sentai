@@ -4,14 +4,12 @@ import { Link } from 'react-router-dom';
 import DeleteButton from '../components/CMS/DeleteButton';
 import NewButton from '../components/CMS/NewButton';
 import { Member, Team } from '../models/team';
+import { noImageIcon } from '../utils/constants';
 
 interface Props {
   teams: Team[];
   members: Member[];
 }
-
-const noImageIcon =
-  'https://upload.wikimedia.org/wikipedia/commons/thumb/a/ac/No_image_available.svg/480px-No_image_available.svg.png';
 
 const CMS: React.FC<Props> = ({ teams, members }) => {
   const [clicked, setClicked] = useState(false);

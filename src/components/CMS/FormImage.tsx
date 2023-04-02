@@ -1,5 +1,6 @@
 import React from 'react';
 import { FileState } from '../../models/fileState';
+import { noImageIcon } from '../../utils/constants';
 
 interface Props {
   firestoreImage: string;
@@ -7,8 +8,7 @@ interface Props {
   imagePercent: number | null;
   imageName: string;
 }
-const noImageIcon =
-  'https://upload.wikimedia.org/wikipedia/commons/thumb/a/ac/No_image_available.svg/480px-No_image_available.svg.png';
+
 const FormImage: React.FC<Props> = ({
   firestoreImage,
   image,

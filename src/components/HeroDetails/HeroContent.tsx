@@ -2,8 +2,6 @@ import React, { useState } from 'react';
 import {
   SenshiContainer,
   SenshiImage,
-  SenshiNameJP,
-  SenshiNameEN,
 } from '../../styles/HeroDetails/HeroContent.styles';
 
 interface Props {
@@ -31,10 +29,12 @@ export const HeroContent: React.FC<Props> = ({
     setTransformation((prev) => !prev);
   };
 
+  if (!heroImage3 || !heroImage4) {
+    return <h1>Loading...</h1>;
+  }
+
   return (
     <SenshiContainer onClick={handleTransformation}>
-      <SenshiNameEN>{transformation ? heroNameEN2 : heroNameEN1}</SenshiNameEN>
-      <SenshiNameJP>{transformation ? heroNameJP2 : heroNameJP1}</SenshiNameJP>
       <SenshiImage
         src={transformation ? heroImage4 : heroImage3}
         alt={transformation ? heroNameEN2 : heroNameEN1}

@@ -66,25 +66,10 @@ export const SenshiContainer = styled.div`
   }
 `;
 
-export const SenshiNameEN = styled.h1`
-  margin: 0;
-  margin-top: -0.2rem;
-  font-size: 6rem;
-  display: block;
-  z-index: -1;
-`;
-export const SenshiNameJP = styled.h2`
-  margin: 0;
-  margin-top: 0.8rem;
-  font-size: 5rem;
-  display: block;
-  z-index: -1;
-`;
-
 export const SenshiImage = styled.img<Props>`
   margin-top: -4.5rem;
   align-self: flex-end;
   scale: 1.1;
-  z-index: -1;
-  max-height: ${(props) => (props.mobile ? '600px' : '1200px')};
+  z-index: 1;
+  height: ${(props) => (props.mobile ? '600px' : '1200px')};
 `;
