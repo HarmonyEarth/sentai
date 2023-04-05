@@ -1,5 +1,4 @@
-import { useMediaQuery, useTheme } from "@mui/material";
-import React from "react";
+import React from 'react';
 import {
   SeriesCard,
   SeriesLeftSide,
@@ -7,19 +6,24 @@ import {
   SeriesSymbol,
   SeriesTeamText,
   SeriesYearText,
-} from "../../styles/Series/TeamCard.styles";
-import { randomColor } from "../../utils/randomColor";
+} from '../../styles/Series/TeamCard.styles';
+import { randomColor } from '../../utils/randomColor';
 
 interface Props {
   year: number;
   shortTeamName: string;
   logo: string;
   symbol: string;
+  mobile: boolean;
 }
 
-const TeamCard = ({ year, shortTeamName, logo, symbol }: Props) => {
-  const theme = useTheme();
-  const mobile = useMediaQuery(theme.breakpoints.down("sm"));
+const TeamCard: React.FC<Props> = ({
+  year,
+  shortTeamName,
+  logo,
+  symbol,
+  mobile,
+}) => {
   return (
     <SeriesCard randomColor={randomColor()}>
       <SeriesLeftSide isMobile={mobile}>

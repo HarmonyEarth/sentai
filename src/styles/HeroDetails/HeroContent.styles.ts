@@ -70,6 +70,6 @@ export const SenshiImage = styled.img<Props>`
   margin-top: -4.5rem;
   align-self: flex-end;
   scale: 1.1;
-  z-index: 1;
+  z-index: 0;
   height: ${(props) => (props.mobile ? '600px' : '1200px')};
 `;

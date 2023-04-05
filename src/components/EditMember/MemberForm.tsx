@@ -13,6 +13,7 @@ import {
 } from '../../models/team';
 
 import FormInput from '../CMS/FormInput';
+import FormSelect from '../CMS/FormSelect';
 
 interface Props {
   setHeroImage1: React.Dispatch<React.SetStateAction<FileState>>;
@@ -138,43 +139,27 @@ const MemberForm: React.FC<Props> = ({
           />
         );
       })}
-      <div>
-        <label htmlFor="color">Choose a color:</label>
-        <br />
-        <select name="color" id="color" onChange={handleMemberSelect} required>
-          <option value="">--Please choose an option--</option>
-          {memberInputColorData.map((color) => (
-            <option
-              value={color}
-              key={color}
-              selected={color === memberData.color}
-            >
-              {color}
-            </option>
-          ))}
-        </select>
-      </div>
-      <div>
-        <label htmlFor="teamId">Choose a team:</label>
-        <br />
-        <select
-          name="teamId"
-          id="teamId"
-          onChange={handleMemberSelect}
-          required
-        >
-          <option value="">--Please choose an option--</option>
-          {teams.map((team) => (
-            <option
-              value={team.teamId}
-              key={team.id}
-              selected={team.teamId === memberData.teamId}
-            >
-              {team.shortTeamName}
-            </option>
-          ))}
-        </select>
-      </div>
+
+      <FormSelect
+        arrayData={memberInputColorData}
+        handleMemberSelect={handleMemberSelect}
+        purpose="color"
+        optionPreview={(color) => color}
+        getKey={(color) => color}
+        getValue={(color) => color}
+        originalValue={memberData.color}
+      />
+
+      <FormSelect
+        arrayData={teams}
+        handleMemberSelect={handleMemberSelect}
+        purpose="teamId"
+        getKey={(team) => team.id}
+        optionPreview={(team) => team.shortTeamName}
+        getValue={(team) => team.teamId}
+        originalValue={memberData.teamId}
+      />
+
       {memberInputFileData.map((memberInputFile) => (
         <FormInput
           key={memberInputFile.formData}

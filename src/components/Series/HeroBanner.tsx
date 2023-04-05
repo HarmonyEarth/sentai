@@ -1,40 +1,19 @@
 import React from 'react';
-import { Grid, useMediaQuery, useTheme } from '@mui/material';
+import { Grid } from '@mui/material';
 import { Link } from 'react-router-dom';
 import HeroCard from './HeroCard';
 import { Member, Team } from '../../models/team';
 import Title from './Title';
 import { deepClone } from '../../utils/deepClone';
+import { shuffle } from '../../utils/shuffle';
 
 interface Props {
   teams: Team[];
   members: Member[];
+  mobile: boolean;
 }
 
-const shuffle = <T,>(array: T[]) => {
-  let currentIndex = array.length,
-    randomIndex;
-
-  // While there remain elements to shuffle.
-  while (currentIndex !== 0) {
-    // Pick a remaining element.
-    randomIndex = Math.floor(Math.random() * currentIndex);
-    currentIndex--;
-
-    // And swap it with the current element.
-    [array[currentIndex], array[randomIndex]] = [
-      array[randomIndex],
-      array[currentIndex],
-    ];
-  }
-
-  return array;
-};
-
-const HeroBanner: React.FC<Props> = ({ teams, members }) => {
-  const theme = useTheme();
-  const mobile = useMediaQuery(theme.breakpoints.down('md'));
-
+const HeroBanner: React.FC<Props> = ({ teams, members, mobile }) => {
   const shuffledMembers = shuffle(deepClone(members));
 
   return (
