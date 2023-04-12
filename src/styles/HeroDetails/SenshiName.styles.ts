@@ -21,12 +21,12 @@ export const SenshiNameContainer = styled.div`
 `;
 
 export const SenshiNameTextContainer = styled.div<Props>`
-  position: 
+  position: absolute;
   margin-top: ${(props) => props.marginTop || 0};
-  top:${(props) => (props.top ? 0 : 'unset')};
-  bottom:${(props) => (props.bottom ? 0 : 'unset')};
+  top: ${(props) => (props.top ? 0 : 'unset')};
+  bottom: ${(props) => (props.bottom ? 0 : 'unset')};
   left: ${(props) => (props.left ? 0 : 'unset')};
-  right:${(props) => (props.right ? 0 : 'unset')};
+  right: ${(props) => (props.right ? 0 : 'unset')};
 `;
 
 export const SenshiNameMainText = styled.h2`

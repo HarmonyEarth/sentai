@@ -27,6 +27,8 @@ export interface Member {
   heroSymbol: FileState;
   teamId: string;
   id: string;
+  locationEN: string;
+  locationJP: string;
 }
 
 export const memberInputData = [
