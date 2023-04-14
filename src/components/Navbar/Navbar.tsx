@@ -8,6 +8,7 @@ import {
   RightNavbar,
 } from '../../styles/Navbar/Navbar.styles';
 import LogInForm from './LogInForm';
+import { logOut } from '../../auth';
 
 const Navbar = () => {
   const authStatus = useAppSelector((state) => state.user.value);
@@ -27,9 +28,14 @@ const Navbar = () => {
         </LeftNavbar>
         <RightNavbar>
           {authStatus ? (
-            <Link to={'/cms'}>
-              <button>CMS</button>
-            </Link>
+            (location.pathname !== '/cms' && (
+              <Link to={'/cms'}>
+                <button>CMS</button>
+              </Link>
+            )) ||
+            (location.pathname === '/cms' && (
+              <button onClick={logOut}>Log Out</button>
+            ))
           ) : (
             <LogInForm />
           )}

@@ -1,4 +1,3 @@
-import { useMediaQuery, useTheme } from '@mui/material';
 import React from 'react';
 import { useParams } from 'react-router-dom';
 import AllHeroes from '../components/HeroDetails/AllHeroes';
@@ -14,12 +13,10 @@ import { heroColor } from '../utils/heroColor';
 interface Props {
   members: Member[];
   teams: Team[];
+  mobile: boolean;
 }
 
-const HeroDetails: React.FC<Props> = ({ members, teams }) => {
-  const theme = useTheme();
-  const mobile = useMediaQuery(theme.breakpoints.down('md'));
-
+const HeroDetails: React.FC<Props> = ({ members, teams, mobile }) => {
   const { heroId } = useParams();
 
   if (!heroId) {
@@ -60,6 +57,8 @@ const HeroDetails: React.FC<Props> = ({ members, teams }) => {
           heroNameEN2={currentMember.heroNameEN2}
           heroNameJP1={currentMember.heroNameJP1}
           heroNameJP2={currentMember.heroNameJP2}
+          locationEN={currentMember.locationEN}
+          locationJP={currentMember.locationJP}
           mobile={mobile}
         />
       </HeroDetailsContainer>

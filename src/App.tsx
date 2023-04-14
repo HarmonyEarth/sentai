@@ -18,10 +18,15 @@ import { logUserIn, logUserOut } from './rtk/slice/userSlice';
 import EditTeam from './pages/EditTeam';
 import EditMember from './pages/EditMember';
 import { streamMembers, streamTeams } from './firebase';
+import { useMediaQuery, useTheme } from '@mui/material';
 
 function App() {
   const [teams, setTeams] = useState<Team[] | null>(null);
   const [members, setMembers] = useState<Member[] | null>(null);
+
+  const theme = useTheme();
+  const mobile = useMediaQuery(theme.breakpoints.down('md'));
+
   const dispatch = useAppDispatch();
 
   useStream({ setFileArray: setTeams, streamData: streamTeams });
@@ -61,14 +66,24 @@ function App() {
       <Routes>
         <Route
           path="/"
-          element={<Series teams={completeTeams} members={completeMembers} />}
+          element={
+            <Series
+              teams={completeTeams}
+              members={completeMembers}
+              mobile={mobile}
+            />
+          }
         />
         <Route path="/teams" element={<Teams />} />
         <Route path="/team/:teamId" element={<TeamDetails />} />
         <Route
           path="/:teamId/:heroId"
           element={
-            <HeroDetails members={completeMembers} teams={completeTeams} />
+            <HeroDetails
+              members={completeMembers}
+              teams={completeTeams}
+              mobile={mobile}
+            />
           }
         />
         <Route

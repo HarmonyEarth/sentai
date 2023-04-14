@@ -27,6 +27,8 @@ export interface Member {
   heroSymbol: FileState;
   teamId: string;
   id: string;
+  locationEN: string;
+  locationJP: string;
 }
 
 export const memberInputData = [
@@ -108,6 +110,25 @@ export const memberInputColorData = [
   'Light Blue',
   'Purple',
   'White',
+];
+
+export const memberInputNameLocationData = [
+  {
+    display: 'Top Left',
+    name: 'top-left',
+  },
+  {
+    display: 'Top Right',
+    name: 'top-right',
+  },
+  {
+    display: 'Bottom Left',
+    name: 'bottom-left',
+  },
+  {
+    display: 'Bottom Right',
+    name: 'bottom-right',
+  },
 ];
 
 export const teamInputData = [

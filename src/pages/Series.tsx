@@ -7,13 +7,14 @@ import { Member, Team } from '../models/team';
 interface Props {
   teams: Team[];
   members: Member[];
+  mobile: boolean;
 }
 
-const Series: React.FC<Props> = ({ teams, members }) => {
+const Series: React.FC<Props> = ({ teams, members, mobile }) => {
   return (
     <>
-      <HeroBanner teams={teams} members={members} />
-      <TeamSection teams={teams} />
+      <HeroBanner teams={teams} members={members} mobile={mobile} />
+      <TeamSection teams={teams} mobile={mobile} />
     </>
   );
 };

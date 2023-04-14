@@ -6,9 +6,10 @@ import TeamCard from './TeamCard';
 
 interface Props {
   teams: Team[];
+  mobile: boolean;
 }
 
-const TeamSection: React.FC<Props> = ({ teams }) => {
+const TeamSection: React.FC<Props> = ({ teams, mobile }) => {
   return (
     <Grid container>
       {teams.map((team) => (
@@ -27,6 +28,7 @@ const TeamSection: React.FC<Props> = ({ teams }) => {
             symbol={String(team.symbol)}
             year={Number(team.year)}
             shortTeamName={team.shortTeamName}
+            mobile={mobile}
           />
         </Grid>
       ))}
