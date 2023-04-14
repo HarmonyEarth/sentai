@@ -45,6 +45,7 @@ export const HeroContent: React.FC<Props> = ({
         heroNameJP={transformation ? heroNameJP2 : heroNameJP1}
         locationEN={locationEN}
         locationJP={locationJP}
+        mobile={mobile}
       />
       <SenshiImage
         src={transformation ? heroImage4 : heroImage3}

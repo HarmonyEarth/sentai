@@ -42,6 +42,8 @@ const NewButton: React.FC<Props> = ({ purpose, clicked, setClicked }) => {
           heroSymbol: '',
           teamId: '',
           id: '',
+          locationEN: '',
+          locationJP: '',
         });
         toast.dismiss();
         toast.success('Successfully created New Member!');

@@ -67,6 +67,7 @@ export const SenshiContainer = styled.div`
 `;
 
 export const SenshiImage = styled.img<Props>`
+  position: absolute;
   align-self: center;
   scale: 1.1;
   z-index: 0;
