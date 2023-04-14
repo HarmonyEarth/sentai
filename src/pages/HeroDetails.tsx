@@ -57,6 +57,8 @@ const HeroDetails: React.FC<Props> = ({ members, teams, mobile }) => {
           heroNameEN2={currentMember.heroNameEN2}
           heroNameJP1={currentMember.heroNameJP1}
           heroNameJP2={currentMember.heroNameJP2}
+          locationEN={currentMember.locationEN}
+          locationJP={currentMember.locationJP}
           mobile={mobile}
         />
       </HeroDetailsContainer>

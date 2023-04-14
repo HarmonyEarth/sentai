@@ -3,6 +3,7 @@ import {
   SenshiContainer,
   SenshiImage,
 } from '../../styles/HeroDetails/HeroContent.styles';
+import SenshiName from './SenshiName';
 
 interface Props {
   heroImage3: string;
@@ -11,6 +12,8 @@ interface Props {
   heroNameEN2: string;
   heroNameJP1: string;
   heroNameJP2: string;
+  locationEN: string;
+  locationJP: string;
   mobile: boolean;
 }
 
@@ -21,6 +24,8 @@ export const HeroContent: React.FC<Props> = ({
   heroNameEN2,
   heroNameJP1,
   heroNameJP2,
+  locationEN,
+  locationJP,
   mobile,
 }) => {
   const [transformation, setTransformation] = useState(false);
@@ -35,6 +40,12 @@ export const HeroContent: React.FC<Props> = ({
 
   return (
     <SenshiContainer onClick={handleTransformation}>
+      <SenshiName
+        heroNameEN={transformation ? heroNameEN2 : heroNameEN1}
+        heroNameJP={transformation ? heroNameJP2 : heroNameJP1}
+        locationEN={locationEN}
+        locationJP={locationJP}
+      />
       <SenshiImage
         src={transformation ? heroImage4 : heroImage3}
         alt={transformation ? heroNameEN2 : heroNameEN1}
