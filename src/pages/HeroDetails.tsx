@@ -35,6 +35,23 @@ const HeroDetails: React.FC<Props> = ({ members, teams, mobile }) => {
   if (!currentTeam) {
     return <h1>Team does not exist</h1>;
   }
+
+  type MembersByYearType = Member & {
+    year: string;
+  };
+
+  const membersByYear: MembersByYearType[] = [];
+
+  members.forEach((member) => {
+    const grabTeam = teams.find((element) => element.teamId === member.teamId);
+    if (grabTeam) {
+      const updatedMember = { ...member, year: grabTeam.year };
+      return membersByYear.push(updatedMember);
+    }
+  });
+
+  membersByYear.sort((a, b) => Number(a.year) - Number(b.year));
+
   return (
     <>
       <ScrollToTop />
@@ -62,7 +79,7 @@ const HeroDetails: React.FC<Props> = ({ members, teams, mobile }) => {
           mobile={mobile}
         />
       </HeroDetailsContainer>
-      <AllHeroes members={members} mobile={mobile} />
+      <AllHeroes members={membersByYear} mobile={mobile} />
     </>
   );
 };
