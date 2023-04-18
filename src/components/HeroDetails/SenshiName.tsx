@@ -27,7 +27,7 @@ const SenshiName: React.FC<Props> = ({
   const secondaryTextLocation = senshiNameLocation({ location: locationJP });
 
   return (
-    <SenshiNameContainer mobile={mobile}>
+    <SenshiNameContainer>
       <SenshiNameTextContainer
         top={mainTextLocation.top}
         bottom={mainTextLocation.bottom}
