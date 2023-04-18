@@ -71,5 +71,6 @@ export const SenshiImage = styled.img<Props>`
   align-self: center;
   scale: 1.1;
   z-index: 0;
-  height: ${(props) => (props.mobile ? '600px' : '1200px')};
+  height: ${(props) => (props.mobile ? '640px' : '740px')};
+  bottom: 1.6rem;
 `;
