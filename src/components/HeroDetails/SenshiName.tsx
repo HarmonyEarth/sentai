@@ -13,7 +13,6 @@ interface Props {
   locationEN: string;
   locationJP: string;
   mobile: boolean;
-  marginTop?: string;
 }
 
 const SenshiName: React.FC<Props> = ({
@@ -22,7 +21,6 @@ const SenshiName: React.FC<Props> = ({
   locationEN,
   locationJP,
   mobile,
-  marginTop,
 }) => {
   const mainTextLocation = senshiNameLocation({ location: locationEN });
 
@@ -35,17 +33,24 @@ const SenshiName: React.FC<Props> = ({
         bottom={mainTextLocation.bottom}
         left={mainTextLocation.left}
         right={mainTextLocation.right}
+        marginBottom={
+          locationEN === locationJP ? (mobile ? '4rem' : '96px') : '0px'
+        }
       >
-        <SenshiNameMainText>{heroNameEN}</SenshiNameMainText>
+        <SenshiNameMainText mobile={mobile}>{heroNameEN}</SenshiNameMainText>
       </SenshiNameTextContainer>
       <SenshiNameTextContainer
         top={secondaryTextLocation.top}
         bottom={secondaryTextLocation.bottom}
         left={secondaryTextLocation.left}
         right={secondaryTextLocation.right}
-        marginTop={locationEN === locationJP ? '96px' : '0px'}
+        marginTop={
+          locationEN === locationJP ? (mobile ? '4rem' : '96px') : '0px'
+        }
       >
-        <SenshiNameSecondaryText>{heroNameJP}</SenshiNameSecondaryText>
+        <SenshiNameSecondaryText mobile={mobile}>
+          {heroNameJP}
+        </SenshiNameSecondaryText>
       </SenshiNameTextContainer>
     </SenshiNameContainer>
   );

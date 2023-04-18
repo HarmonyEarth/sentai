@@ -21,38 +21,18 @@ const AllHeroes: React.FC<Props> = ({ members, mobile }) => {
       spaceBetween={4}
       breakpoints={{
         200: { slidesPerView: 2.5 },
-        320: { slidesPerView: 3.8 },
-        480: { slidesPerView: 5.2 },
-        640: {
-          slidesPerView: 6.2,
-        },
-        768: {
-          slidesPerView: 7.2,
-        },
-        856: {
-          slidesPerView: 8.3,
-        },
-        1024: {
-          slidesPerView: 10,
-        },
-        1280: {
-          slidesPerView: 12.3,
-        },
-        1368: {
-          slidesPerView: 14.6,
-        },
-        1640: {
-          slidesPerView: 16.2,
-        },
-        2100: {
-          slidesPerView: 21.2,
-        },
-        2400: {
-          slidesPerView: 24.2,
-        },
-        2500: {
-          slidesPerView: 28.4,
-        },
+        370: { slidesPerView: 3.4 },
+        480: { slidesPerView: 4.5 },
+        640: { slidesPerView: 6.2 },
+        768: { slidesPerView: 7.2 },
+        856: { slidesPerView: 8.3 },
+        1024: { slidesPerView: 10 },
+        1280: { slidesPerView: 12.3 },
+        1368: { slidesPerView: 14.6 },
+        1640: { slidesPerView: 16.2 },
+        2100: { slidesPerView: 21.2 },
+        2400: { slidesPerView: 24.2 },
+        2500: { slidesPerView: 28.4 },
       }}
     >
       {members.map((member) => (
