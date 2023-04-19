@@ -55,8 +55,6 @@ const MemberForm: React.FC<Props> = ({
 }) => {
   const navigate = useNavigate();
 
-  console.log(memberData);
-
   const handleMemberInput = (e: React.ChangeEvent<HTMLInputElement>): void => {
     const id = e.target.id;
     const value = e.target.value;

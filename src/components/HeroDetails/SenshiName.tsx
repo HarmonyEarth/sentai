@@ -6,6 +6,7 @@ import {
   SenshiNameTextContainer,
 } from '../../styles/HeroDetails/SenshiName.styles';
 import { senshiNameLocation } from '../../utils/senshiNameLocation';
+import { locationText } from '../../utils/constants';
 
 interface Props {
   heroNameEN: string;
@@ -34,7 +35,15 @@ const SenshiName: React.FC<Props> = ({
         left={mainTextLocation.left}
         right={mainTextLocation.right}
         marginBottom={
-          locationEN === locationJP ? (mobile ? '4rem' : '96px') : '0px'
+          locationEN === locationJP
+            ? '96px'
+            : locationEN === locationText.bottomRight &&
+              locationJP === locationText.bottomLeft
+            ? '5rem'
+            : locationEN === locationText.bottomLeft &&
+              locationJP === locationText.bottomRight
+            ? '5rem'
+            : '0px'
         }
       >
         <SenshiNameMainText mobile={mobile}>{heroNameEN}</SenshiNameMainText>
@@ -45,7 +54,15 @@ const SenshiName: React.FC<Props> = ({
         left={secondaryTextLocation.left}
         right={secondaryTextLocation.right}
         marginTop={
-          locationEN === locationJP ? (mobile ? '4rem' : '96px') : '0px'
+          locationEN === locationJP
+            ? '96px'
+            : locationEN === locationText.topLeft &&
+              locationJP === locationText.topRight
+            ? '5rem'
+            : locationEN === locationText.topRight &&
+              locationJP === locationText.topLeft
+            ? '5rem'
+            : '0px'
         }
       >
         <SenshiNameSecondaryText mobile={mobile}>
