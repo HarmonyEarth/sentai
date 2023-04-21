@@ -41,6 +41,8 @@ export const HeroContent: React.FC<Props> = ({
     return <h1>Loading...</h1>;
   }
 
+  const imageLocations = senshiImageLocation({ locationImage });
+
   return (
     <SenshiContainer onClick={handleTransformation}>
       <SenshiName
@@ -53,7 +55,9 @@ export const HeroContent: React.FC<Props> = ({
       <SenshiImage
         src={transformation ? heroImage4 : heroImage3}
         alt={transformation ? heroNameEN2 : heroNameEN1}
-        locationImage={senshiImageLocation({ locationImage })}
+        locationLeft={imageLocations.left}
+        locationCenter={imageLocations.center}
+        locationRight={imageLocations.right}
         mobile={mobile}
       />
     </SenshiContainer>

@@ -5,17 +5,33 @@ interface Props {
 }
 
 export const senshiImageLocation = ({ locationImage }: Props) => {
-  let newLocation = '';
+  let newLocation = {
+    left: false,
+    center: false,
+    right: false,
+  };
 
   switch (locationImage) {
     case imageLocationText.left:
-      newLocation = 'flex-start';
+      newLocation = {
+        left: true,
+        center: false,
+        right: false,
+      };
       break;
     case imageLocationText.center:
-      newLocation = 'center';
+      newLocation = {
+        left: false,
+        center: true,
+        right: false,
+      };
       break;
     case imageLocationText.right:
-      newLocation = 'flex-end';
+      newLocation = {
+        left: false,
+        center: false,
+        right: true,
+      };
       break;
     default:
       break;
