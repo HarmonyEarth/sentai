@@ -7,3 +7,9 @@ export const locationText = {
   bottomLeft: 'bottom-left',
   bottomRight: 'bottom-right',
 };
+
+export const imageLocationText = {
+  left: 'Left',
+  center: 'Center',
+  right: 'Right',
+};

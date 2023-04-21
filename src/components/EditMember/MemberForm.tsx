@@ -9,6 +9,7 @@ import {
   memberInputColorData,
   memberInputData,
   memberInputFileData,
+  memberInputImageLocation,
   memberInputNameLocationData,
   Team,
 } from '../../models/team';
@@ -178,7 +179,15 @@ const MemberForm: React.FC<Props> = ({
         getValue={(location) => location.name}
         originalValue={memberData.locationJP}
       />
-
+      <FormSelect
+        arrayData={memberInputImageLocation}
+        handleMemberSelect={handleMemberSelect}
+        purpose="locationImage"
+        getKey={(location) => location.imageLocationName}
+        optionPreview={(location) => location.imageLocationName}
+        getValue={(location) => location.imageLocationName}
+        originalValue={memberData.locationImage}
+      />
       {memberInputFileData.map((memberInputFile) => (
         <FormInput
           key={memberInputFile.formData}

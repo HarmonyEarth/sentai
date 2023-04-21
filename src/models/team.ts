@@ -1,4 +1,4 @@
-import { locationText } from '../utils/constants';
+import { imageLocationText, locationText } from '../utils/constants';
 import { FileState } from './fileState';
 
 export interface Team {
@@ -30,6 +30,7 @@ export interface Member {
   id: string;
   locationEN: string;
   locationJP: string;
+  locationImage: string;
 }
 
 export const memberInputData = [
@@ -130,6 +131,12 @@ export const memberInputNameLocationData = [
     display: 'Bottom Right',
     name: locationText.bottomRight,
   },
+];
+
+export const memberInputImageLocation = [
+  { imageLocationName: imageLocationText.left },
+  { imageLocationName: imageLocationText.center },
+  { imageLocationName: imageLocationText.right },
 ];
 
 export const teamInputData = [
