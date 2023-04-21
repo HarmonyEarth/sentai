@@ -5,6 +5,7 @@ import DeleteButton from '../components/CMS/DeleteButton';
 import NewButton from '../components/CMS/NewButton';
 import { Member, Team } from '../models/team';
 import { noImageIcon } from '../utils/constants';
+import { sortMembersByYear } from '../utils/sortMembersByYear';
 
 interface Props {
   teams: Team[];
@@ -13,6 +14,8 @@ interface Props {
 
 const CMS: React.FC<Props> = ({ teams, members }) => {
   const [clicked, setClicked] = useState(false);
+
+  const membersByYear = sortMembersByYear({ members, teams });
   return (
     <Grid container>
       <Grid container item spacing={2}>
@@ -63,7 +66,7 @@ const CMS: React.FC<Props> = ({ teams, members }) => {
           <Grid item xs={12}>
             <h3>Click to edit or delete a member</h3>
           </Grid>
-          {members.map((member) => (
+          {membersByYear.map((member) => (
             <Grid item key={member.id} xs={12} sm={4} md={3} marginTop={2}>
               <img
                 src={String(member.heroImage1) || noImageIcon}

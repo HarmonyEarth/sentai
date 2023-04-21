@@ -4,6 +4,7 @@ import {
   SenshiImage,
 } from '../../styles/HeroDetails/HeroContent.styles';
 import SenshiName from './SenshiName';
+import { senshiImageLocation } from '../../utils/senshiImageLocation';
 
 interface Props {
   heroImage3: string;
@@ -14,6 +15,7 @@ interface Props {
   heroNameJP2: string;
   locationEN: string;
   locationJP: string;
+  locationImage: string;
   mobile: boolean;
 }
 
@@ -26,6 +28,7 @@ export const HeroContent: React.FC<Props> = ({
   heroNameJP2,
   locationEN,
   locationJP,
+  locationImage,
   mobile,
 }) => {
   const [transformation, setTransformation] = useState(false);
@@ -37,6 +40,8 @@ export const HeroContent: React.FC<Props> = ({
   if (!heroImage3 || !heroImage4) {
     return <h1>Loading...</h1>;
   }
+
+  const imageLocations = senshiImageLocation({ locationImage });
 
   return (
     <SenshiContainer onClick={handleTransformation}>
@@ -50,6 +55,9 @@ export const HeroContent: React.FC<Props> = ({
       <SenshiImage
         src={transformation ? heroImage4 : heroImage3}
         alt={transformation ? heroNameEN2 : heroNameEN1}
+        locationLeft={imageLocations.left}
+        locationCenter={imageLocations.center}
+        locationRight={imageLocations.right}
         mobile={mobile}
       />
     </SenshiContainer>

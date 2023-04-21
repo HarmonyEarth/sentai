@@ -1,3 +1,4 @@
+import { imageLocationText, locationText } from '../utils/constants';
 import { FileState } from './fileState';
 
 export interface Team {
@@ -29,6 +30,7 @@ export interface Member {
   id: string;
   locationEN: string;
   locationJP: string;
+  locationImage: string;
 }
 
 export const memberInputData = [
@@ -115,20 +117,26 @@ export const memberInputColorData = [
 export const memberInputNameLocationData = [
   {
     display: 'Top Left',
-    name: 'top-left',
+    name: locationText.topLeft,
   },
   {
     display: 'Top Right',
-    name: 'top-right',
+    name: locationText.topRight,
   },
   {
     display: 'Bottom Left',
-    name: 'bottom-left',
+    name: locationText.bottomLeft,
   },
   {
     display: 'Bottom Right',
-    name: 'bottom-right',
+    name: locationText.bottomRight,
   },
+];
+
+export const memberInputImageLocation = [
+  { imageLocationName: imageLocationText.left },
+  { imageLocationName: imageLocationText.center },
+  { imageLocationName: imageLocationText.right },
 ];
 
 export const teamInputData = [
