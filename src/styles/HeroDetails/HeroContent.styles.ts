@@ -4,6 +4,7 @@ interface Props {
   mobile: boolean;
   locationLeft: boolean;
   locationRight: boolean;
+  transformation: boolean;
 }
 
 export const SenshiContainer = styled.div`
@@ -69,6 +70,7 @@ export const SenshiContainer = styled.div`
 `;
 
 export const SenshiImage = styled.img<Props>`
+  display: ${(props) => (props.transformation ? 'none' : 'unset')};
   position: absolute;
   align-self: center;
   left: ${(props) => (props.locationLeft ? 0 : 'unset')};
