@@ -6,9 +6,10 @@ import { Member, Team } from '../models/team';
 interface Props {
   members: Member[];
   teams: Team[];
+  mobile: boolean;
 }
 
-const EditMember: React.FC<Props> = ({ members, teams }) => {
+const EditMember: React.FC<Props> = ({ members, teams, mobile }) => {
   const { id } = useParams();
 
   if (!id) {
@@ -27,6 +28,7 @@ const EditMember: React.FC<Props> = ({ members, teams }) => {
         docId={id}
         currentMember={currentMember}
         teams={teams}
+        mobile={mobile}
       />
     </>
   );

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Routes, Route } from 'react-router-dom';
 
 import Navbar from './components/Navbar/Navbar';
@@ -106,7 +106,11 @@ function App() {
           path="/cms/member/:id"
           element={
             <RequireAuth>
-              <EditMember members={members} teams={completeTeams} />
+              <EditMember
+                members={members}
+                teams={completeTeams}
+                mobile={mobile}
+              />
             </RequireAuth>
           }
         />

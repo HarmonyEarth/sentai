@@ -4,19 +4,26 @@ import React, { useState } from 'react';
 import useFileUpload from '../../hooks/useFileUpload';
 import { FileState } from '../../models/fileState';
 import { Member, Team } from '../../models/team';
-import FormImage from '../CMS/FormImage';
 import MemberForm from './MemberForm';
+import { HeroDetailsContainer } from '../../styles/HeroDetails/HeroDetails.styles';
+import HeroBackground from '../HeroDetails/HeroBackground';
+import { heroColor } from '../../utils/heroColor';
+import HeroesBar from '../HeroesBar/HeroesBar';
+import { HeroContent } from '../HeroDetails/HeroContent';
+import ScrollToTop from '../HeroDetails/ScrollToTop';
 
 interface Props {
   docId: string;
   currentMember: Member;
   teams: Team[];
+  mobile: boolean;
 }
 
 const MemberFormSection: React.FC<Props> = ({
   docId,
   currentMember,
   teams,
+  mobile,
 }) => {
   const [heroImage1, setHeroImage1] = useState<FileState>();
   const [heroImage2, setHeroImage2] = useState<FileState>();
@@ -77,63 +84,16 @@ const MemberFormSection: React.FC<Props> = ({
   });
 
   return (
-    <Grid container>
-      <Grid container item>
-        <Grid container item justifyContent="space-around" xs={12} md={6}>
-          <Grid container item>
-            <Grid item xs={6} md={4}>
-              <FormImage
-                firestoreImage={String(memberData.heroImage1)}
-                image={heroImage1}
-                imagePercent={heroImage1Percent}
-                imageName={'Hero Image 1'}
-              />
-            </Grid>
-            <Grid item xs={6} md={4}>
-              <FormImage
-                firestoreImage={String(memberData.heroImage2)}
-                image={heroImage2}
-                imagePercent={heroImage2Percent}
-                imageName={'Hero Image 2'}
-              />
-            </Grid>
-            <Grid item xs={6} md={4}>
-              <FormImage
-                firestoreImage={String(memberData.heroHelmet)}
-                image={heroHelmet}
-                imagePercent={heroHelmetPercent}
-                imageName={'Hero Helmet'}
-              />
-            </Grid>
-          </Grid>
-          <Grid container item>
-            <Grid item xs={6} md={4}>
-              <FormImage
-                firestoreImage={String(memberData.heroImage3)}
-                image={heroImage3}
-                imagePercent={heroImage3Percent}
-                imageName={'Hero Image 3'}
-              />
-            </Grid>
-            <Grid item xs={6} md={4}>
-              <FormImage
-                firestoreImage={String(memberData.heroImage4)}
-                image={heroImage4}
-                imagePercent={heroImage4Percent}
-                imageName={'Hero Image 4'}
-              />
-            </Grid>
-            <Grid item xs={6} md={4}>
-              <FormImage
-                firestoreImage={String(memberData.heroSymbol)}
-                image={heroSymbol}
-                imagePercent={heroSymbolPercent}
-                imageName={'Hero Symbol'}
-              />
-            </Grid>
-          </Grid>
-        </Grid>
-        <Grid container item justifyContent="space-around" xs={12} md={6}>
+    <>
+      <ScrollToTop />
+      <Grid container>
+        <Grid
+          container
+          item
+          justifyContent="space-around"
+          alignItems={'center'}
+          xs={12}
+        >
           <Grid item>
             <h4>Member Form</h4>
             <MemberForm
@@ -157,7 +117,33 @@ const MemberFormSection: React.FC<Props> = ({
           </Grid>
         </Grid>
       </Grid>
-    </Grid>
+      <br />
+      <HeroDetailsContainer>
+        <HeroBackground
+          heroImage1={String(memberData.heroImage1)}
+          color={heroColor(memberData.color)}
+          mobile={mobile}
+        />
+        <HeroesBar
+          heroSymbol={String(memberData.heroSymbol)}
+          heroNameEN1={memberData.heroNameEN1}
+          heroNameEN2={memberData.heroNameEN2}
+          mobile={mobile}
+        />
+        <HeroContent
+          heroImage3={String(memberData.heroImage3)}
+          heroImage4={String(memberData.heroImage4)}
+          heroNameEN1={memberData.heroNameEN1}
+          heroNameEN2={memberData.heroNameEN2}
+          heroNameJP1={memberData.heroNameJP1}
+          heroNameJP2={memberData.heroNameJP2}
+          locationEN={memberData.locationEN}
+          locationJP={memberData.locationJP}
+          locationImage={memberData.locationImage}
+          mobile={mobile}
+        />
+      </HeroDetailsContainer>
+    </>
   );
 };
 
