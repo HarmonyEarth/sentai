@@ -16,6 +16,7 @@ import {
 
 import FormInput from '../CMS/FormInput';
 import FormSelect from '../CMS/FormSelect';
+import { Grid } from '@mui/material';
 
 interface Props {
   setHeroImage1: React.Dispatch<React.SetStateAction<FileState>>;
@@ -123,83 +124,90 @@ const MemberForm: React.FC<Props> = ({
 
   return (
     <form id="editMemberForm" onSubmit={handleSubmit}>
-      {memberInputData.map((memberFormData) => {
-        let memberInput = memberFormData.formData as keyof typeof memberData;
-
-        return (
-          <FormInput
-            key={memberFormData.formData}
-            placeholder={String(memberFormData.placeholder) ?? ''}
-            teamFormData={memberFormData.formData}
-            type={memberFormData.type}
-            id={memberFormData.formData}
-            readonly={false}
-            handleInput={handleMemberInput}
-            defaultValue={String(memberData[memberInput])}
+      <Grid container>
+        <Grid item xs={12} sm={4}>
+          {memberInputData.map((memberFormData) => {
+            let memberInput =
+              memberFormData.formData as keyof typeof memberData;
+            return (
+              <FormInput
+                key={memberFormData.formData}
+                placeholder={String(memberFormData.placeholder) ?? ''}
+                teamFormData={memberFormData.formData}
+                type={memberFormData.type}
+                id={memberFormData.formData}
+                readonly={false}
+                handleInput={handleMemberInput}
+                defaultValue={String(memberData[memberInput])}
+              />
+            );
+          })}
+        </Grid>
+        <Grid item xs={12} sm={4}>
+          <FormSelect
+            arrayData={memberInputColorData}
+            handleMemberSelect={handleMemberSelect}
+            purpose="color"
+            optionPreview={(color) => color}
+            getKey={(color) => color}
+            getValue={(color) => color}
+            originalValue={memberData.color}
           />
-        );
-      })}
 
-      <FormSelect
-        arrayData={memberInputColorData}
-        handleMemberSelect={handleMemberSelect}
-        purpose="color"
-        optionPreview={(color) => color}
-        getKey={(color) => color}
-        getValue={(color) => color}
-        originalValue={memberData.color}
-      />
+          <FormSelect
+            arrayData={teams}
+            handleMemberSelect={handleMemberSelect}
+            purpose="teamId"
+            getKey={(team) => team.id}
+            optionPreview={(team) => team.shortTeamName}
+            getValue={(team) => team.teamId}
+            originalValue={memberData.teamId}
+          />
 
-      <FormSelect
-        arrayData={teams}
-        handleMemberSelect={handleMemberSelect}
-        purpose="teamId"
-        getKey={(team) => team.id}
-        optionPreview={(team) => team.shortTeamName}
-        getValue={(team) => team.teamId}
-        originalValue={memberData.teamId}
-      />
+          <FormSelect
+            arrayData={memberInputNameLocationData}
+            handleMemberSelect={handleMemberSelect}
+            purpose="locationEN"
+            getKey={(location) => location.name}
+            optionPreview={(location) => location.display}
+            getValue={(location) => location.name}
+            originalValue={memberData.locationEN}
+          />
 
-      <FormSelect
-        arrayData={memberInputNameLocationData}
-        handleMemberSelect={handleMemberSelect}
-        purpose="locationEN"
-        getKey={(location) => location.name}
-        optionPreview={(location) => location.display}
-        getValue={(location) => location.name}
-        originalValue={memberData.locationEN}
-      />
+          <FormSelect
+            arrayData={memberInputNameLocationData}
+            handleMemberSelect={handleMemberSelect}
+            purpose="locationJP"
+            getKey={(location) => location.name}
+            optionPreview={(location) => location.display}
+            getValue={(location) => location.name}
+            originalValue={memberData.locationJP}
+          />
+          <FormSelect
+            arrayData={memberInputImageLocation}
+            handleMemberSelect={handleMemberSelect}
+            purpose="locationImage"
+            getKey={(location) => location.imageLocationName}
+            optionPreview={(location) => location.imageLocationName}
+            getValue={(location) => location.imageLocationName}
+            originalValue={memberData.locationImage}
+          />
+        </Grid>
 
-      <FormSelect
-        arrayData={memberInputNameLocationData}
-        handleMemberSelect={handleMemberSelect}
-        purpose="locationJP"
-        getKey={(location) => location.name}
-        optionPreview={(location) => location.display}
-        getValue={(location) => location.name}
-        originalValue={memberData.locationJP}
-      />
-      <FormSelect
-        arrayData={memberInputImageLocation}
-        handleMemberSelect={handleMemberSelect}
-        purpose="locationImage"
-        getKey={(location) => location.imageLocationName}
-        optionPreview={(location) => location.imageLocationName}
-        getValue={(location) => location.imageLocationName}
-        originalValue={memberData.locationImage}
-      />
-      {memberInputFileData.map((memberInputFile) => (
-        <FormInput
-          key={memberInputFile.formData}
-          teamFormData={memberInputFile.formData}
-          type={memberInputFile.type}
-          id={memberInputFile.formData}
-          readonly={false}
-          handleInput={handleMemberInput}
-          accept={memberInputFile.accept ?? ''}
-        />
-      ))}
-
+        <Grid item xs={12} sm={4}>
+          {memberInputFileData.map((memberInputFile) => (
+            <FormInput
+              key={memberInputFile.formData}
+              teamFormData={memberInputFile.formData}
+              type={memberInputFile.type}
+              id={memberInputFile.formData}
+              readonly={false}
+              handleInput={handleMemberInput}
+              accept={memberInputFile.accept ?? ''}
+            />
+          ))}
+        </Grid>
+      </Grid>
       <br />
       <button
         type="submit"
