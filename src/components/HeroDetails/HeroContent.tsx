@@ -53,11 +53,20 @@ export const HeroContent: React.FC<Props> = ({
         mobile={mobile}
       />
       <SenshiImage
-        src={transformation ? heroImage4 : heroImage3}
-        alt={transformation ? heroNameEN2 : heroNameEN1}
+        src={heroImage3}
+        alt={heroNameEN1}
         locationLeft={imageLocations.left}
         locationRight={imageLocations.right}
         mobile={mobile}
+        transformation={transformation}
+      />
+      <SenshiImage
+        src={heroImage4}
+        alt={heroNameEN2}
+        locationLeft={imageLocations.left}
+        locationRight={imageLocations.right}
+        mobile={mobile}
+        transformation={!transformation}
       />
     </SenshiContainer>
   );
