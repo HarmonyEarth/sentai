@@ -56,7 +56,6 @@ export const HeroContent: React.FC<Props> = ({
         src={transformation ? heroImage4 : heroImage3}
         alt={transformation ? heroNameEN2 : heroNameEN1}
         locationLeft={imageLocations.left}
-        locationCenter={imageLocations.center}
         locationRight={imageLocations.right}
         mobile={mobile}
       />
