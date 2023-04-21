@@ -3,7 +3,6 @@ import styled from 'styled-components';
 interface Props {
   mobile: boolean;
   locationLeft: boolean;
-  locationCenter: boolean;
   locationRight: boolean;
 }
 
@@ -71,7 +70,7 @@ export const SenshiContainer = styled.div`
 
 export const SenshiImage = styled.img<Props>`
   position: absolute;
-  align-self: ${(props) => (props.locationCenter ? 'center' : 'unset')};
+  align-self: center;
   left: ${(props) => (props.locationLeft ? 0 : 'unset')};
   right: ${(props) => (props.locationRight ? 0 : 'unset')};
   scale: 1.1;
