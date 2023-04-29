@@ -19,6 +19,7 @@ import EditTeam from './pages/EditTeam';
 import EditMember from './pages/EditMember';
 import { streamMembers, streamTeams } from './firebase';
 import { useMediaQuery, useTheme } from '@mui/material';
+import { HelmetProvider } from 'react-helmet-async';
 
 function App() {
   const [teams, setTeams] = useState<Team[] | null>(null);
@@ -60,71 +61,82 @@ function App() {
   );
 
   return (
-    <div className="App">
+    <>
       <Navbar />
       <Toaster />
-      <Routes>
-        <Route
-          path="/"
-          element={
-            <Series
-              teams={completeTeams}
-              members={completeMembers}
-              mobile={mobile}
-            />
-          }
-        />
-        <Route path="/teams" element={<Teams />} />
-        <Route path="/team/:teamId" element={<TeamDetails />} />
-        <Route
-          path="/:teamId/:heroId"
-          element={
-            <HeroDetails
-              members={completeMembers}
-              teams={completeTeams}
-              mobile={mobile}
-            />
-          }
-        />
-        <Route
-          path="/cms"
-          element={
-            <RequireAuth>
-              <CMS teams={teams} members={members} />
-            </RequireAuth>
-          }
-        />
-        <Route
-          path="/cms/team/:id"
-          element={
-            <RequireAuth>
-              <EditTeam teams={teams} />
-            </RequireAuth>
-          }
-        />
-        <Route
-          path="/cms/member/:id"
-          element={
-            <RequireAuth>
-              <EditMember
-                members={members}
+      <HelmetProvider>
+        <Routes>
+          <Route
+            path="/"
+            element={
+              <Series
+                teams={completeTeams}
+                members={completeMembers}
+                mobile={mobile}
+              />
+            }
+          />
+          <Route path="/teams" element={<Teams />} />
+          <Route
+            path="/:teamId"
+            element={
+              <TeamDetails
+                teams={completeTeams}
+                members={completeMembers}
+                mobile={mobile}
+              />
+            }
+          />
+          <Route
+            path="/:teamId/:heroId"
+            element={
+              <HeroDetails
+                members={completeMembers}
                 teams={completeTeams}
                 mobile={mobile}
               />
-            </RequireAuth>
-          }
-        />
-        <Route
-          path="*"
-          element={
-            <>
-              <h1>Error 404</h1>
-              <p>Page Not Found</p>
-            </>
-          }
-        />
-      </Routes>
-    </div>
+            }
+          />
+          <Route
+            path="/cms"
+            element={
+              <RequireAuth>
+                <CMS teams={teams} members={members} />
+              </RequireAuth>
+            }
+          />
+          <Route
+            path="/cms/team/:id"
+            element={
+              <RequireAuth>
+                <EditTeam teams={teams} />
+              </RequireAuth>
+            }
+          />
+          <Route
+            path="/cms/member/:id"
+            element={
+              <RequireAuth>
+                <EditMember
+                  members={members}
+                  teams={completeTeams}
+                  mobile={mobile}
+                />
+              </RequireAuth>
+            }
+          />
+          <Route
+            path="*"
+            element={
+              <>
+                <h1>Error 404</h1>
+                <p>Page Not Found</p>
+              </>
+            }
+          />
+        </Routes>
+      </HelmetProvider>
+    </>
   );
 }
 

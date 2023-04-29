@@ -45,7 +45,7 @@ const CMS: React.FC<Props> = ({ teams, members }) => {
                 height={'150px'}
               />
               <h4>{`${team.year} ${team.shortTeamName}`}</h4>
-              <Link to={`/team/${team.teamId}`}>
+              <Link to={`/${team.teamId}`}>
                 <button>View</button>
               </Link>
               <Link to={`/cms/team/${team.id}`}>

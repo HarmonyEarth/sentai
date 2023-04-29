@@ -10,6 +10,7 @@ import { Member, Team } from '../models/team';
 import { HeroDetailsContainer } from '../styles/HeroDetails/HeroDetails.styles';
 import { heroColor } from '../utils/heroColor';
 import { sortMembersByYear } from '../utils/sortMembersByYear';
+import { Helmet } from 'react-helmet-async';
 
 interface Props {
   members: Member[];
@@ -37,9 +38,22 @@ const HeroDetails: React.FC<Props> = ({ members, teams, mobile }) => {
     return <h1>Team does not exist</h1>;
   }
 
+  const metaDescription = `${currentMember.heroNameEN1} / ${currentMember.heroNameEN2} from ${currentTeam.year}'s ${currentTeam.fullTeamNameEN}`;
   return (
     <>
       <ScrollToTop />
+      <Helmet>
+        <title>
+          {currentMember.heroNameEN1} / {currentMember.heroNameEN2} -{' '}
+          {currentTeam.fullTeamNameEN}
+        </title>
+        <meta name="description" content={metaDescription} />
+        <link
+          rel="shortcut icon"
+          href={String(currentMember.heroHelmet)}
+          type="image/x-icon"
+        />
+      </Helmet>
       <HeroDetailsContainer>
         <HeroBackground
           heroImage1={String(currentMember.heroImage1)}
