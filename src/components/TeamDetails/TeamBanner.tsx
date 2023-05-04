@@ -14,7 +14,6 @@ const TeamBanner: React.FC<Props> = ({ members, mobile }) => {
   const allGridInfo = teamMemberGridSlots({
     arrayData: members,
   });
-  console.log(allGridInfo?.grid3Members);
   return (
     <Grid container>
       {!mobile && (
