@@ -15,7 +15,6 @@ interface Props {
 const AllHeroes: React.FC<Props> = ({ members, mobile }) => {
   return (
     <Swiper
-      // slidesPerView={mobile ? 6 : 15}
       freeMode={true}
       modules={[FreeMode]}
       spaceBetween={4}

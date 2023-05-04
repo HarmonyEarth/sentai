@@ -17,12 +17,32 @@ const TeamBanner: React.FC<Props> = ({ members, mobile }) => {
   console.log(allGridInfo?.grid3Members);
   return (
     <Grid container>
-      {!mobile && allGridInfo?.grid1Members && (
+      {!mobile && (
+        <Grid container item columns={mobile ? 12 : members.length}>
+          {members.map((member) => (
+            <Grid
+              item
+              md={1}
+              key={member.id}
+              component={Link}
+              to={`/${member.teamId}/${member.heroId}`}
+            >
+              <TeamMember
+                heroImage3={String(member.heroImage3)}
+                heroImage4={String(member.heroImage4)}
+                color={member.color}
+                mobile={mobile}
+              />
+            </Grid>
+          ))}
+        </Grid>
+      )}
+      {mobile && allGridInfo?.grid1Members && (
         <Grid container item columns={mobile ? 12 : members.length}>
           {allGridInfo?.grid1Members.map((member) => (
             <Grid
               item
-              md={allGridInfo.grid1.md}
+              xs={allGridInfo.grid1.xs}
               key={member.id}
               component={Link}
               to={`/${member.teamId}/${member.heroId}`}
@@ -43,26 +63,6 @@ const TeamBanner: React.FC<Props> = ({ members, mobile }) => {
             <Grid
               item
               xs={allGridInfo.grid2.xs}
-              key={member.id}
-              component={Link}
-              to={`/${member.teamId}/${member.heroId}`}
-            >
-              <TeamMember
-                heroImage3={String(member.heroImage3)}
-                heroImage4={String(member.heroImage4)}
-                color={member.color}
-                mobile={mobile}
-              />
-            </Grid>
-          ))}
-        </Grid>
-      )}
-      {mobile && allGridInfo?.grid3Members && (
-        <Grid container item columns={mobile ? 12 : members.length}>
-          {allGridInfo?.grid3Members.map((member) => (
-            <Grid
-              item
-              xs={allGridInfo.grid3.xs}
               key={member.id}
               component={Link}
               to={`/${member.teamId}/${member.heroId}`}
