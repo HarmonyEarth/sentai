@@ -24,7 +24,7 @@ const HeroBanner: React.FC<Props> = ({ teams, members, mobile }) => {
             container
             item
             xs={4}
-            sm={4}
+            md={4}
             key={shuffledMember.heroId}
             component={Link}
             to={`/${shuffledMember.teamId}/${shuffledMember.heroId}`}
