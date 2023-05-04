@@ -3,7 +3,6 @@ import { locationText } from './constants';
 interface Props {
   location: string;
 }
-
 export const senshiNameLocation = ({ location }: Props) => {
   let newSpot = {
     top: false,

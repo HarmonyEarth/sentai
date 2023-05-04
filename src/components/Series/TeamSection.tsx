@@ -19,7 +19,7 @@ const TeamSection: React.FC<Props> = ({ teams, mobile }) => {
           sm={6}
           md={4}
           component={Link}
-          to={`/team/${team.teamId}`}
+          to={`/${team.teamId}`}
           sx={{ textDecoration: 'none' }}
           key={team.teamId}
         >

@@ -7,11 +7,11 @@ import './main.css';
 import { store } from './rtk/store';
 
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
-  <Provider store={store}>
-    <BrowserRouter>
-      <React.StrictMode>
+  <React.StrictMode>
+    <Provider store={store}>
+      <BrowserRouter>
         <App />
-      </React.StrictMode>
-    </BrowserRouter>
-  </Provider>
+      </BrowserRouter>
+    </Provider>
+  </React.StrictMode>
 );

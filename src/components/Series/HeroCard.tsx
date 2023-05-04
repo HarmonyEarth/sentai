@@ -6,7 +6,7 @@ interface Props {
   mobile: boolean;
 }
 
-const HeroCard = ({ heroImage2, mobile }: Props) => {
+const HeroCard: React.FC<Props> = ({ heroImage2, mobile }) => {
   return (
     <SenshiCard
       randomColor={randomColor()}
