@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Suspense, useEffect, useState } from 'react';
 import {
   SenshiCard,
   SenshiCardImage,
