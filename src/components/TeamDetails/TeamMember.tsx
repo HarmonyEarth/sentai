@@ -1,5 +1,8 @@
 import React from 'react';
-import { TeamMemberCard } from '../../styles/TeamDetails/TeamMember.styles';
+import {
+  TeamMemberCard,
+  TeamMemberStateImage,
+} from '../../styles/TeamDetails/TeamMember.styles';
 
 interface Props {
   heroImage3: string;
@@ -14,13 +17,20 @@ const TeamMember: React.FC<Props> = ({
   color,
   mobile,
 }) => {
+  const heroTransformed = true;
   return (
-    <TeamMemberCard
-      heroImage3={heroImage3}
-      heroImage4={heroImage4}
-      color={color}
-      mobile={mobile}
-    />
+    <TeamMemberCard color={color} mobile={mobile}>
+      <TeamMemberStateImage
+        src={heroImage4}
+        mobile={mobile}
+        heroState={heroTransformed}
+      />
+      <TeamMemberStateImage
+        src={heroImage3}
+        mobile={mobile}
+        heroState={!heroTransformed}
+      />
+    </TeamMemberCard>
   );
 };
 

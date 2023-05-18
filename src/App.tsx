@@ -37,10 +37,8 @@ function App() {
     trackAuthStatus((user) => {
       if (user) {
         dispatch(logUserIn());
-        console.log('User is available');
       } else {
         dispatch(logUserOut());
-        console.log('User is not available');
       }
     });
   }, [dispatch]);
