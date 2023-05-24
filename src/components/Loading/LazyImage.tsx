@@ -16,23 +16,26 @@ interface Props {
 
 const LazyImage: React.FC<Props> = ({ src, alt, className, height, width }) => {
   const [imageLoaded, setImageLoaded] = useState(false);
-  // const [imageError, setImageError] = useState(false);
+  const [imageError, setImageError] = useState(false);
 
   useEffect(() => {
     const image = new Image();
-    image.onload = () => setImageLoaded((prev) => true);
-    // image.onerror = () => setImageError((prev) => true);
+    image.onload = () => {
+      setImageLoaded((prev) => true);
+      setImageError(false);
+    };
+    image.onerror = () => setImageError((prev) => true);
 
     image.src = src;
     return () => {
       image.onload = null;
-      // image.onerror = null;
+      image.onerror = null;
     };
-  }, [src]);
+  }, [src, imageLoaded, imageError]);
 
   return (
     <img
-      src={imageLoaded ? src : loadingGif}
+      src={imageError ? errorImage : imageLoaded ? src : loadingGif}
       alt={alt}
       loading="lazy"
       className={className}

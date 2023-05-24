@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import DeleteButton from '../components/CMS/DeleteButton';
 import NewButton from '../components/CMS/NewButton';
 import { Member, Team } from '../models/team';
-import { noImageIcon } from '../utils/constants';
+import { noImageIcon, siteFavIcon } from '../utils/constants';
 import { sortMembersByYear } from '../utils/sortMembersByYear';
 import { Helmet } from 'react-helmet-async';
 import LazyImage from '../components/Loading/LazyImage';
@@ -23,6 +23,7 @@ const CMS: React.FC<Props> = ({ teams, members }) => {
     <>
       <Helmet>
         <title>CMS</title>
+        <link rel="shortcut icon" href={siteFavIcon} type="image/x-icon" />
       </Helmet>
       <Grid container>
         <Grid container item spacing={2}>

@@ -1,3 +1,4 @@
+import { toast } from 'react-hot-toast';
 import { auth } from './firebase';
 import {
   createUserWithEmailAndPassword,
@@ -27,9 +28,11 @@ export const logIn = ({ email, password }: UserProps) => {
   signInWithEmailAndPassword(auth, email, password)
     .then((result) => {
       console.log('Log In Successful', result);
+      toast.success('Log In Successful');
     })
     .catch((error) => {
       console.log('Log In Failed', error);
+      toast.error('Log In Failed');
     });
 };
 

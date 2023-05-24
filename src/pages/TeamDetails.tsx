@@ -38,7 +38,7 @@ const TeamDetails: React.FC<Props> = ({ teams, members, mobile }) => {
         <link
           rel="shortcut icon"
           href={String(currentTeam.symbol)}
-          type="image/x-icon"
+          type="image/webp"
         />
       </Helmet>
       <Suspense fallback={<Spinner />}>

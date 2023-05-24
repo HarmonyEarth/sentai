@@ -3,6 +3,7 @@ import { useParams } from 'react-router-dom';
 import MemberFormSection from '../components/EditMember/MemberFormSection';
 import { Member, Team } from '../models/team';
 import { Helmet } from 'react-helmet-async';
+import { siteFavIcon } from '../utils/constants';
 
 interface Props {
   members: Member[];
@@ -27,6 +28,7 @@ const EditMember: React.FC<Props> = ({ members, teams, mobile }) => {
     <>
       <Helmet>
         <title>Edit Member: {currentMember.heroNameEN1}</title>
+        <link rel="shortcut icon" href={siteFavIcon} type="image/x-icon" />
       </Helmet>
       <MemberFormSection
         docId={id}

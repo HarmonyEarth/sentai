@@ -11,7 +11,7 @@ const convertToWEBP = async ({ rawFile }: Props) => {
 
     let rawImage = new Image();
 
-    rawImage.onload = () => {
+    const onLoad = () => {
       canvas.width = rawImage.width;
       canvas.height = rawImage.height;
       canvasContext?.drawImage(rawImage, 0, 0);
@@ -27,13 +27,23 @@ const convertToWEBP = async ({ rawFile }: Props) => {
         'image/webp',
         1
       );
+
+      URL.revokeObjectURL(src); // Release the object URL
     };
 
-    rawImage.onerror = (error) => {
+    const onError = (error: Event | string) => {
       reject(error);
     };
 
+    rawImage.onload = onLoad;
+    rawImage.onerror = onError;
+
     rawImage.src = src;
+
+    return () => {
+      rawImage.onload = null; // Clean up the onload event handler
+      rawImage.onerror = null; // Clean up the onerror event handler
+    };
   });
 };
 

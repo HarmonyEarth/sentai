@@ -52,7 +52,7 @@ const HeroDetails: React.FC<Props> = ({ members, teams, mobile }) => {
         <link
           rel="shortcut icon"
           href={String(currentMember.heroHelmet)}
-          type="image/x-icon"
+          type="image/webp"
         />
       </Helmet>
       <HeroDetailsContainer>
