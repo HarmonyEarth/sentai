@@ -1,6 +1,7 @@
 import React from 'react';
 import { FileState } from '../../models/fileState';
 import { noImageIcon } from '../../utils/constants';
+import LazyImage from '../Loading/LazyImage';
 
 interface Props {
   firestoreImage: string;
@@ -18,14 +19,14 @@ const FormImage: React.FC<Props> = ({
   return (
     <div>
       {firestoreImage ? (
-        <img
+        <LazyImage
           src={firestoreImage}
           alt={`Team ${imageName}`}
           height={'300px'}
           width={'auto'}
         />
       ) : (
-        <img
+        <LazyImage
           src={
             image
               ? URL.createObjectURL(image as Blob | MediaSource)

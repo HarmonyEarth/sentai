@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import LazyImage from '../../components/Loading/LazyImage';
 
 interface Props {
   randomColor: string;
@@ -21,7 +22,7 @@ export const SenshiCard = styled.div<Props>`
   overflow: hidden;
 `;
 
-export const SenshiCardImage = styled.img<{ mobile: boolean }>`
+export const SenshiCardImage = styled(LazyImage)<{ mobile: boolean }>`
   position: absolute;
   height: inherit;
   scale: 1.4;

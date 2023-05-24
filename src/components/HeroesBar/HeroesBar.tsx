@@ -1,4 +1,4 @@
-import React, { Suspense } from 'react';
+import React from 'react';
 import {
   SenshiBar,
   SenshiBarTitleContainer,
@@ -7,7 +7,6 @@ import {
   SenshiBarLeft,
   SenshiBarLeftSymbol,
 } from '../../styles/HeroesBar/HeroesBar.styles';
-import Spinner from '../Loading/Spinner';
 
 interface Props {
   heroSymbol: string;

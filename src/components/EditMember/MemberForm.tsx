@@ -1,5 +1,5 @@
 import { doc, updateDoc } from 'firebase/firestore';
-import React from 'react';
+import React, { useState } from 'react';
 import { toast } from 'react-hot-toast';
 import { useNavigate } from 'react-router-dom';
 import { db } from '../../firebase';
@@ -17,6 +17,7 @@ import {
 import FormInput from '../CMS/FormInput';
 import FormSelect from '../CMS/FormSelect';
 import { Grid } from '@mui/material';
+import makeItWEBP from '../../utils/makeItWEBP';
 
 interface Props {
   setHeroImage1: React.Dispatch<React.SetStateAction<FileState>>;
@@ -57,40 +58,50 @@ const MemberForm: React.FC<Props> = ({
 }) => {
   const navigate = useNavigate();
 
-  const handleMemberInput = (e: React.ChangeEvent<HTMLInputElement>): void => {
+  console.log(memberData);
+
+  const handleMemberInput = (e: React.ChangeEvent<HTMLInputElement>) => {
     const id = e.target.id;
     const value = e.target.value;
+    const file =
+      e.target.files && e.target.files.length !== 0 && e.target.files[0];
 
-    if (id === 'heroImage1') {
-      if (!e.target.files || e.target.files.length === 0) {
-        return;
-      }
-      setHeroImage1(e.target.files[0]);
-    } else if (id === 'heroImage2') {
-      if (!e.target.files || e.target.files.length === 0) {
-        return;
-      }
-      setHeroImage2(e.target.files[0]);
-    } else if (id === 'heroImage3') {
-      if (!e.target.files || e.target.files.length === 0) {
-        return;
-      }
-      setHeroImage3(e.target.files[0]);
-    } else if (id === 'heroImage4') {
-      if (!e.target.files || e.target.files.length === 0) {
-        return;
-      }
-      setHeroImage4(e.target.files[0]);
-    } else if (id === 'heroHelmet') {
-      if (!e.target.files || e.target.files.length === 0) {
-        return;
-      }
-      setHeroHelmet(e.target.files[0]);
-    } else if (id === 'heroSymbol') {
-      if (!e.target.files || e.target.files.length === 0) {
-        return;
-      }
-      setHeroSymbol(e.target.files[0]);
+    if (id === 'heroImage1' && file) {
+      makeItWEBP({
+        filename: id,
+        rawFile: file,
+        setImage: setHeroImage1,
+      });
+    } else if (id === 'heroImage2' && file) {
+      makeItWEBP({
+        filename: id,
+        rawFile: file,
+        setImage: setHeroImage2,
+      });
+    } else if (id === 'heroImage3' && file) {
+      makeItWEBP({
+        filename: id,
+        rawFile: file,
+        setImage: setHeroImage3,
+      });
+    } else if (id === 'heroImage4' && file) {
+      makeItWEBP({
+        filename: id,
+        rawFile: file,
+        setImage: setHeroImage4,
+      });
+    } else if (id === 'heroHelmet' && file) {
+      makeItWEBP({
+        filename: id,
+        rawFile: file,
+        setImage: setHeroHelmet,
+      });
+    } else if (id === 'heroSymbol' && file) {
+      makeItWEBP({
+        filename: id,
+        rawFile: file,
+        setImage: setHeroSymbol,
+      });
     }
     setMemberData({ ...memberData, [id]: value });
   };

@@ -37,28 +37,19 @@ const useFileUpload = ({
   const addFileToData = useCallbackRef(setFile);
   useEffect(() => {
     const uploadFile = () => {
-      const fileExtension = (file: File) => {
-        let extension = '.' + file.name.split('.').pop();
-        return extension;
-      };
       const name = fileId;
+      const extensionWEBP = '.webp';
       const type = file.type;
       console.log('type', type);
 
       let fileURL = '';
-      if (structure === 'team') {
-        fileURL = 'images/teams/' + docId + '/' + name + fileExtension(file);
-      } else if (structure === 'member') {
-        fileURL = 'images/members/' + docId + '/' + name + fileExtension(file);
-      }
 
       switch (structure) {
         case 'team':
-          fileURL = 'images/teams/' + docId + '/' + name + fileExtension(file);
+          fileURL = 'images/teams/' + docId + '/' + name + extensionWEBP;
           break;
         case 'member':
-          fileURL =
-            'images/members/' + docId + '/' + name + fileExtension(file);
+          fileURL = 'images/members/' + docId + '/' + name + extensionWEBP;
           break;
         default:
           break;

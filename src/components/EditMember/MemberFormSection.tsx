@@ -118,7 +118,7 @@ const MemberFormSection: React.FC<Props> = ({
         </Grid>
       </Grid>
       <br />
-      <HeroDetailsContainer>
+      {/* <HeroDetailsContainer>
         <HeroBackground
           heroImage1={String(memberData.heroImage1)}
           color={heroColor(memberData.color)}
@@ -142,7 +142,7 @@ const MemberFormSection: React.FC<Props> = ({
           locationImage={memberData.locationImage}
           mobile={mobile}
         />
-      </HeroDetailsContainer>
+      </HeroDetailsContainer> */}
     </>
   );
 };

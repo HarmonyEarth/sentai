@@ -6,6 +6,7 @@ import 'swiper/css/free-mode';
 import { FreeMode } from 'swiper';
 import { Link } from 'react-router-dom';
 import { HeroSlide } from '../../styles/HeroDetails/AllHeroes.styles';
+import LazyImage from '../Loading/LazyImage';
 
 interface Props {
   members: Member[];
@@ -38,7 +39,7 @@ const AllHeroes: React.FC<Props> = ({ members, mobile }) => {
         <SwiperSlide key={member.id}>
           <HeroSlide>
             <Link to={`/${member.teamId}/${member.heroId}`}>
-              <img
+              <LazyImage
                 src={String(member.heroImage2)}
                 alt={member.heroNameEN2}
                 height="200px"

@@ -24,7 +24,7 @@ const EditTeam: React.FC<Props> = ({ teams }) => {
   return (
     <>
       <Helmet>
-        <title>Edit: {currentTeam.fullTeamNameEN}</title>
+        <title>Edit Team: {currentTeam.fullTeamNameEN}</title>
       </Helmet>
       <TeamFormSection docId={id} currentTeam={currentTeam} />
     </>

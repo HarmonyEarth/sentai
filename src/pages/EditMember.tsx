@@ -26,7 +26,7 @@ const EditMember: React.FC<Props> = ({ members, teams, mobile }) => {
   return (
     <>
       <Helmet>
-        <title>Edit: {currentMember.heroNameEN1}</title>
+        <title>Edit Member: {currentMember.heroNameEN1}</title>
       </Helmet>
       <MemberFormSection
         docId={id}

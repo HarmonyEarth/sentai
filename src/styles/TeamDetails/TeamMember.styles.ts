@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import LazyImage from '../../components/Loading/LazyImage';
 
 interface CardProps {
   color: string;
@@ -26,7 +27,7 @@ export const TeamMemberCard = styled.div<CardProps>`
   overflow: hidden;
 `;
 
-export const TeamMemberStateImage = styled.img<FormProps>`
+export const TeamMemberStateImage = styled(LazyImage)<FormProps>`
   z-index: -1;
   position: absolute;
   scale: ${(props) => (props.heroState === true ? 1.1 : 'unset')};

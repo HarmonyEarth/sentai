@@ -7,6 +7,7 @@ import { Member, Team } from '../models/team';
 import { noImageIcon } from '../utils/constants';
 import { sortMembersByYear } from '../utils/sortMembersByYear';
 import { Helmet } from 'react-helmet-async';
+import LazyImage from '../components/Loading/LazyImage';
 
 interface Props {
   teams: Team[];
@@ -17,6 +18,7 @@ const CMS: React.FC<Props> = ({ teams, members }) => {
   const [clicked, setClicked] = useState(false);
 
   const membersByYear = sortMembersByYear({ members, teams });
+
   return (
     <>
       <Helmet>
@@ -48,7 +50,7 @@ const CMS: React.FC<Props> = ({ teams, members }) => {
             </Grid>
             {teams.map((team) => (
               <Grid item key={team.id} xs={12} sm={4} md={3} marginTop={2}>
-                <img
+                <LazyImage
                   src={String(team.symbol) || noImageIcon}
                   alt={`${team.shortTeamName} Symbol`}
                   height={'150px'}
@@ -77,7 +79,7 @@ const CMS: React.FC<Props> = ({ teams, members }) => {
             </Grid>
             {membersByYear.map((member) => (
               <Grid item key={member.id} xs={12} sm={4} md={3} marginTop={2}>
-                <img
+                <LazyImage
                   src={String(member.heroImage1) || noImageIcon}
                   alt={`${member.heroNameEN1}`}
                   height={'150px'}
