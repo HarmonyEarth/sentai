@@ -20,5 +20,10 @@ export const sortMembersByYear = ({ members, teams }: Props) => {
     }
   });
 
-  return membersByYear.sort((a, b) => Number(a.year) - Number(b.year));
+  membersByYear.sort((a, b) => Number(a?.year) - Number(b?.year));
+
+  const incompleteMembers = members.filter((member) => member.teamId === '');
+
+  const allMembers = incompleteMembers.concat(membersByYear);
+  return allMembers;
 };

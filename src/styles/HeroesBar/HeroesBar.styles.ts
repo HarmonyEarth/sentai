@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import LazyImage from '../../components/Loading/LazyImage';
 
 interface Props {
   mobile: boolean;
@@ -101,7 +102,7 @@ export const SenshiBarLeft = styled.div`
   gap: 1rem;
 `;
 
-export const SenshiBarLeftSymbol = styled.img`
+export const SenshiBarLeftSymbol = styled(LazyImage)`
   height: 100%;
   width: auto;
 `;

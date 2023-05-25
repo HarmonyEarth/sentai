@@ -1,25 +1,26 @@
-import { useEffect, useState } from 'react';
+import { Suspense, lazy, useEffect, useState } from 'react';
 import { Routes, Route } from 'react-router-dom';
 
 import Navbar from './components/Navbar/Navbar';
-import HeroDetails from './pages/HeroDetails';
-import Series from './pages/Series';
-import TeamDetails from './pages/TeamDetails';
-import CMS from './pages/CMS';
-import Teams from './pages/Teams';
 import { Member, Team } from './models/team';
 import { Toaster } from 'react-hot-toast';
-
 import RequireAuth from './HOC/RequireAuth';
 import useStream from './hooks/useStream';
 import { useAppDispatch } from './hooks/reduxTypedHooks';
 import { trackAuthStatus } from './auth';
 import { logUserIn, logUserOut } from './rtk/slice/userSlice';
-import EditTeam from './pages/EditTeam';
-import EditMember from './pages/EditMember';
 import { streamMembers, streamTeams } from './firebase';
 import { useMediaQuery, useTheme } from '@mui/material';
 import { HelmetProvider } from 'react-helmet-async';
+import Loading from './components/Loading/Loading';
+
+const Series = lazy(() => import('./pages/Series'));
+const HeroDetails = lazy(() => import('./pages/HeroDetails'));
+const TeamDetails = lazy(() => import('./pages/TeamDetails'));
+const CMS = lazy(() => import('./pages/CMS'));
+const Teams = lazy(() => import('./pages/Teams'));
+const EditTeam = lazy(() => import('./pages/EditTeam'));
+const EditMember = lazy(() => import('./pages/EditMember'));
 
 function App() {
   const [teams, setTeams] = useState<Team[] | null>(null);
@@ -37,20 +38,13 @@ function App() {
     trackAuthStatus((user) => {
       if (user) {
         dispatch(logUserIn());
-        console.log('User is available');
       } else {
         dispatch(logUserOut());
-        console.log('User is not available');
       }
     });
   }, [dispatch]);
 
-  if (!teams || !members)
-    return (
-      <>
-        <h1>Loading</h1>
-      </>
-    );
+  if (!teams || !members) return <Loading />;
 
   const completeTeams = teams.filter((team) =>
     Object.values(team).every((value) => value)
@@ -69,39 +63,47 @@ function App() {
           <Route
             path="/"
             element={
-              <Series
-                teams={completeTeams}
-                members={completeMembers}
-                mobile={mobile}
-              />
+              <Suspense fallback={<Loading />}>
+                <Series
+                  teams={completeTeams}
+                  members={completeMembers}
+                  mobile={mobile}
+                />
+              </Suspense>
             }
           />
           <Route path="/teams" element={<Teams />} />
           <Route
             path="/:teamId"
             element={
-              <TeamDetails
-                teams={completeTeams}
-                members={completeMembers}
-                mobile={mobile}
-              />
+              <Suspense fallback={<Loading />}>
+                <TeamDetails
+                  teams={completeTeams}
+                  members={completeMembers}
+                  mobile={mobile}
+                />
+              </Suspense>
             }
           />
           <Route
             path="/:teamId/:heroId"
             element={
-              <HeroDetails
-                members={completeMembers}
-                teams={completeTeams}
-                mobile={mobile}
-              />
+              <Suspense fallback={<Loading />}>
+                <HeroDetails
+                  members={completeMembers}
+                  teams={completeTeams}
+                  mobile={mobile}
+                />
+              </Suspense>
             }
           />
           <Route
             path="/cms"
             element={
               <RequireAuth>
-                <CMS teams={teams} members={members} />
+                <Suspense fallback={<Loading />}>
+                  <CMS teams={teams} members={members} />
+                </Suspense>
               </RequireAuth>
             }
           />
@@ -109,7 +111,9 @@ function App() {
             path="/cms/team/:id"
             element={
               <RequireAuth>
-                <EditTeam teams={teams} />
+                <Suspense fallback={<Loading />}>
+                  <EditTeam teams={teams} />
+                </Suspense>
               </RequireAuth>
             }
           />
@@ -117,11 +121,13 @@ function App() {
             path="/cms/member/:id"
             element={
               <RequireAuth>
-                <EditMember
-                  members={members}
-                  teams={completeTeams}
-                  mobile={mobile}
-                />
+                <Suspense fallback={<Loading />}>
+                  <EditMember
+                    members={members}
+                    teams={completeTeams}
+                    mobile={mobile}
+                  />
+                </Suspense>
               </RequireAuth>
             }
           />

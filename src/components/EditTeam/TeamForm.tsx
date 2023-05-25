@@ -5,6 +5,7 @@ import { db } from '../../firebase';
 import { FileState } from '../../models/fileState';
 import { Team, teamInputData, teamInputFileData } from '../../models/team';
 import FormInput from '../CMS/FormInput';
+import makeItWEBP from '../../utils/makeItWEBP';
 
 interface Props {
   symbolPercent: number | null;
@@ -30,17 +31,21 @@ const TeamForm: React.FC<Props> = ({
   const handleTeamInput = (e: React.ChangeEvent<HTMLInputElement>): void => {
     const id = e.target.id;
     const value = e.target.value;
+    const file =
+      e.target.files && e.target.files.length !== 0 && e.target.files[0];
 
-    if (id === 'symbol') {
-      if (!e.target.files || e.target.files.length === 0) {
-        return;
-      }
-      setSymbol(e.target.files[0]);
-    } else if (id === 'logo') {
-      if (!e.target.files || e.target.files.length === 0) {
-        return;
-      }
-      setLogo(e.target.files[0]);
+    if (id === 'symbol' && file) {
+      makeItWEBP({
+        filename: id,
+        rawFile: file,
+        setImage: setSymbol,
+      });
+    } else if (id === 'logo' && file) {
+      makeItWEBP({
+        filename: id,
+        rawFile: file,
+        setImage: setLogo,
+      });
     }
     setTeamData({ ...teamData, [id]: value });
   };

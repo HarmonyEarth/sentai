@@ -1,6 +1,5 @@
-import React from 'react';
+import React, { Suspense, lazy } from 'react';
 import { useParams } from 'react-router-dom';
-import AllHeroes from '../components/HeroDetails/AllHeroes';
 import HeroBackground from '../components/HeroDetails/HeroBackground';
 import { HeroContent } from '../components/HeroDetails/HeroContent';
 import HeroesBar from '../components/HeroesBar/HeroesBar';
@@ -11,7 +10,9 @@ import { HeroDetailsContainer } from '../styles/HeroDetails/HeroDetails.styles';
 import { heroColor } from '../utils/heroColor';
 import { sortMembersByYear } from '../utils/sortMembersByYear';
 import { Helmet } from 'react-helmet-async';
+import Loading from '../components/Loading/Loading';
 
+const AllHeroes = lazy(() => import('../components/HeroDetails/AllHeroes'));
 interface Props {
   members: Member[];
   teams: Team[];
@@ -51,7 +52,7 @@ const HeroDetails: React.FC<Props> = ({ members, teams, mobile }) => {
         <link
           rel="shortcut icon"
           href={String(currentMember.heroHelmet)}
-          type="image/x-icon"
+          type="image/webp"
         />
       </Helmet>
       <HeroDetailsContainer>
@@ -79,10 +80,12 @@ const HeroDetails: React.FC<Props> = ({ members, teams, mobile }) => {
           mobile={mobile}
         />
       </HeroDetailsContainer>
-      <AllHeroes
-        members={sortMembersByYear({ members, teams })}
-        mobile={mobile}
-      />
+      <Suspense fallback={<Loading />}>
+        <AllHeroes
+          members={sortMembersByYear({ members, teams })}
+          mobile={mobile}
+        />
+      </Suspense>
     </>
   );
 };

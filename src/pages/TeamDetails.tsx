@@ -1,8 +1,10 @@
-import React from 'react';
+import React, { Suspense, lazy } from 'react';
 import { useParams } from 'react-router-dom';
-import TeamBanner from '../components/TeamDetails/TeamBanner';
 import { Member, Team } from '../models/team';
 import { Helmet } from 'react-helmet-async';
+import Spinner from '../components/Loading/Spinner';
+
+const TeamBanner = lazy(() => import('../components/TeamDetails/TeamBanner'));
 
 interface Props {
   teams: Team[];
@@ -36,10 +38,12 @@ const TeamDetails: React.FC<Props> = ({ teams, members, mobile }) => {
         <link
           rel="shortcut icon"
           href={String(currentTeam.symbol)}
-          type="image/x-icon"
+          type="image/webp"
         />
       </Helmet>
-      <TeamBanner members={currentMembers} mobile={mobile} />
+      <Suspense fallback={<Spinner />}>
+        <TeamBanner members={currentMembers} mobile={mobile} />
+      </Suspense>
     </>
   );
 };

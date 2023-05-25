@@ -1,5 +1,8 @@
 import React from 'react';
-import { SenshiCard } from '../../styles/Series/HeroCard.styles';
+import {
+  SenshiCard,
+  SenshiCardImage,
+} from '../../styles/Series/HeroCard.styles';
 import { randomColor, randomColor2 } from '../../utils/randomColor';
 interface Props {
   heroImage2: string;
@@ -11,9 +14,10 @@ const HeroCard: React.FC<Props> = ({ heroImage2, mobile }) => {
     <SenshiCard
       randomColor={randomColor()}
       randomColor2={randomColor2()}
-      heroImage2={heroImage2}
       mobile={mobile}
-    />
+    >
+      <SenshiCardImage src={heroImage2} mobile={mobile} />
+    </SenshiCard>
   );
 };
 

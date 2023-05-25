@@ -4,7 +4,7 @@ import HeroBanner from '../components/Series/HeroBanner';
 import TeamSection from '../components/Series/TeamSection';
 import { Member, Team } from '../models/team';
 import { Helmet } from 'react-helmet-async';
-import Favicon from '../../favicon.ico';
+import { siteFavIcon } from '../utils/constants';
 
 interface Props {
   teams: Team[];
@@ -21,7 +21,7 @@ const Series: React.FC<Props> = ({ teams, members, mobile }) => {
           name="description"
           content="View over 45 years of Super Sentai history"
         />
-        <link rel="shortcut icon" href={Favicon} type="image/x-icon" />
+        <link rel="shortcut icon" href={siteFavIcon} type="image/x-icon" />
       </Helmet>
       <HeroBanner teams={teams} members={members} mobile={mobile} />
       <TeamSection teams={teams} mobile={mobile} />

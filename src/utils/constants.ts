@@ -1,3 +1,7 @@
+import FavIcon from '../../favicon.ico';
+
+export const siteFavIcon = FavIcon;
+
 export const noImageIcon =
   'https://upload.wikimedia.org/wikipedia/commons/thumb/a/ac/No_image_available.svg/480px-No_image_available.svg.png';
 

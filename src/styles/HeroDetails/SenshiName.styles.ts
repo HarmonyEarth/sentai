@@ -15,7 +15,6 @@ export const SenshiNameContainer = styled.div`
   height: 100vh;
   h2 {
     margin: 0;
-    position: relative;
     display: block;
     z-index: -1;
     height: 80px;

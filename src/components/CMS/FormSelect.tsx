@@ -27,15 +27,12 @@ const FormSelect = <T,>({
         name={purpose}
         id={purpose}
         onChange={handleMemberSelect}
+        defaultValue={originalValue}
         required
       >
         <option value="">--Please choose an option--</option>
         {arrayData.map((arrayDataItem) => (
-          <option
-            value={getValue(arrayDataItem)}
-            key={getKey(arrayDataItem)}
-            selected={getValue(arrayDataItem) === originalValue}
-          >
+          <option value={getValue(arrayDataItem)} key={getKey(arrayDataItem)}>
             {optionPreview(arrayDataItem)}
           </option>
         ))}

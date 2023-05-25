@@ -5,6 +5,7 @@ import {
 } from '../../styles/HeroDetails/HeroContent.styles';
 import SenshiName from './SenshiName';
 import { senshiImageLocation } from '../../utils/senshiImageLocation';
+import Loading from '../Loading/Loading';
 
 interface Props {
   heroImage3: string;
@@ -38,7 +39,7 @@ export const HeroContent: React.FC<Props> = ({
   };
 
   if (!heroImage3 || !heroImage4) {
-    return <h1>Loading...</h1>;
+    return <Loading />;
   }
 
   const imageLocations = senshiImageLocation({ locationImage });

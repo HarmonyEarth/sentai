@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import LazyImage from '../../components/Loading/LazyImage';
 
 interface Props {
   randomColor: string;
@@ -43,7 +44,7 @@ export const SeriesTeamText = styled.h1`
   z-index: 1;
 `;
 
-export const SeriesSymbol = styled.img`
+export const SeriesSymbol = styled(LazyImage)`
   position: absolute;
   width: 80px;
   height: auto;
@@ -51,7 +52,7 @@ export const SeriesSymbol = styled.img`
   filter: grayscale(1);
 `;
 
-export const SeriesLogo = styled.img`
+export const SeriesLogo = styled(LazyImage)`
   max-width: 150px;
   height: 80px;
 `;

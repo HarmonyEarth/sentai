@@ -17,7 +17,7 @@ const TeamBanner: React.FC<Props> = ({ members, mobile }) => {
   return (
     <Grid container>
       {!mobile && (
-        <Grid container item columns={mobile ? 12 : members.length}>
+        <Grid container item columns={members.length}>
           {members.map((member) => (
             <Grid
               item

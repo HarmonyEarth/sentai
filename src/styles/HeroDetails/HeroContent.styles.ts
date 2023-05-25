@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import LazyImage from '../../components/Loading/LazyImage';
 
 interface Props {
   mobile: boolean;
@@ -69,7 +70,7 @@ export const SenshiContainer = styled.div`
   }
 `;
 
-export const SenshiImage = styled.img<Props>`
+export const SenshiImage = styled(LazyImage)<Props>`
   display: ${(props) => (props.transformation ? 'none' : 'unset')};
   position: absolute;
   align-self: center;
