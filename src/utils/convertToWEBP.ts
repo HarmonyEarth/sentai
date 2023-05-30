@@ -25,7 +25,7 @@ const convertToWEBP = async ({ rawFile }: Props) => {
           }
         },
         'image/webp',
-        1
+        0.9
       );
 
       URL.revokeObjectURL(src); // Release the object URL

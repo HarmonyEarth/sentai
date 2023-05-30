@@ -50,9 +50,10 @@ const HeroDetails: React.FC<Props> = ({ members, teams, mobile }) => {
         </title>
         <meta name="description" content={metaDescription} />
         <link
-          rel="shortcut icon"
+          rel="icon"
           href={String(currentMember.heroHelmet)}
           type="image/webp"
+          sizes="16x16"
         />
       </Helmet>
       <HeroDetailsContainer>
@@ -81,10 +82,7 @@ const HeroDetails: React.FC<Props> = ({ members, teams, mobile }) => {
         />
       </HeroDetailsContainer>
       <Suspense fallback={<Loading />}>
-        <AllHeroes
-          members={sortMembersByYear({ members, teams })}
-          mobile={mobile}
-        />
+        <AllHeroes members={sortMembersByYear({ members, teams })} />
       </Suspense>
     </>
   );

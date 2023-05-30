@@ -10,10 +10,9 @@ import LazyImage from '../Loading/LazyImage';
 
 interface Props {
   members: Member[];
-  mobile: boolean;
 }
 
-const AllHeroes: React.FC<Props> = ({ members, mobile }) => {
+const AllHeroes: React.FC<Props> = ({ members }) => {
   return (
     <Swiper
       freeMode={true}

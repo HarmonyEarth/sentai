@@ -28,7 +28,7 @@ const EditMember: React.FC<Props> = ({ members, teams, mobile }) => {
     <>
       <Helmet>
         <title>Edit Member: {currentMember.heroNameEN1}</title>
-        <link rel="shortcut icon" href={siteFavIcon} type="image/x-icon" />
+        <link rel="icon" href={siteFavIcon} type="image/x-icon" sizes="16x16" />
       </Helmet>
       <MemberFormSection
         docId={id}

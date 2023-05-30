@@ -23,7 +23,7 @@ const CMS: React.FC<Props> = ({ teams, members }) => {
     <>
       <Helmet>
         <title>CMS</title>
-        <link rel="shortcut icon" href={siteFavIcon} type="image/x-icon" />
+        <link rel="icon" href={siteFavIcon} type="image/x-icon" sizes="16x16" />
       </Helmet>
       <Grid container>
         <Grid container item spacing={2}>

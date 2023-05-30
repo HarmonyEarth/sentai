@@ -21,7 +21,7 @@ const Series: React.FC<Props> = ({ teams, members, mobile }) => {
           name="description"
           content="View over 45 years of Super Sentai history"
         />
-        <link rel="shortcut icon" href={siteFavIcon} type="image/x-icon" />
+        <link rel="icon" href={siteFavIcon} type="image/x-icon" sizes="16x16" />
       </Helmet>
       <HeroBanner teams={teams} members={members} mobile={mobile} />
       <TeamSection teams={teams} mobile={mobile} />
