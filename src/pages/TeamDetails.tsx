@@ -1,10 +1,10 @@
-import React, { Suspense, lazy } from 'react';
+import React, { lazy } from 'react';
 import { useParams } from 'react-router-dom';
 import { Member, Team } from '../models/team';
 import { Helmet } from 'react-helmet-async';
-import Spinner from '../components/Loading/Spinner';
-
-const TeamBanner = lazy(() => import('../components/TeamDetails/TeamBanner'));
+import TeamBio from '../components/TeamDetails/TeamBio';
+import TeamBanner from '../components/TeamDetails/TeamBanner';
+import AllTeams from '../components/TeamDetails/AllTeams';
 
 interface Props {
   teams: Team[];
@@ -36,14 +36,15 @@ const TeamDetails: React.FC<Props> = ({ teams, members, mobile }) => {
       <Helmet>
         <title>{currentTeam.fullTeamNameEN} - Super Sentai</title>
         <link
-          rel="shortcut icon"
+          rel="icon"
           href={String(currentTeam.symbol)}
           type="image/webp"
+          sizes="16x16"
         />
       </Helmet>
-      <Suspense fallback={<Spinner />}>
-        <TeamBanner members={currentMembers} mobile={mobile} />
-      </Suspense>
+      <TeamBanner members={currentMembers} mobile={mobile} />
+      <TeamBio team={currentTeam} mobile={mobile} />
+      <AllTeams teams={teams} />
     </>
   );
 };

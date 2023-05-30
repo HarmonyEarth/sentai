@@ -26,7 +26,7 @@ const EditTeam: React.FC<Props> = ({ teams }) => {
     <>
       <Helmet>
         <title>Edit Team: {currentTeam.fullTeamNameEN}</title>
-        <link rel="shortcut icon" href={siteFavIcon} type="image/x-icon" />
+        <link rel="icon" href={siteFavIcon} type="image/x-icon" sizes="16x16" />
       </Helmet>
       <TeamFormSection docId={id} currentTeam={currentTeam} />
     </>
