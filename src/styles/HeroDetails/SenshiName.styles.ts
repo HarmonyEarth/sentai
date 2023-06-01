@@ -7,7 +7,6 @@ interface Props {
   left: boolean;
   marginTop?: string;
   marginBottom?: string;
-  mobile?: boolean;
 }
 
 export const SenshiNameContainer = styled.div`
@@ -34,9 +33,9 @@ export const SenshiNameTextContainer = styled.div<Props>`
 `;
 
 export const SenshiNameMainText = styled.h2<{ mobile: boolean }>`
-  font-size: ${(props) => (props.mobile ? '4rem' : '6rem')};
+  font-size: ${(props) => (props.mobile ? '2.5rem' : '6rem')};
 `;
 
 export const SenshiNameSecondaryText = styled.h2<{ mobile: boolean }>`
-  font-size: ${(props) => (props.mobile ? '3rem' : '5rem')};
+  font-size: ${(props) => (props.mobile ? '2rem' : '5rem')};
 `;

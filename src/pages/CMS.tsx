@@ -1,5 +1,5 @@
 import { Grid } from '@mui/material';
-import React, { useState } from 'react';
+import React, { useMemo, useState } from 'react';
 import { Link } from 'react-router-dom';
 import DeleteButton from '../components/CMS/DeleteButton';
 import NewButton from '../components/CMS/NewButton';
@@ -17,7 +17,10 @@ interface Props {
 const CMS: React.FC<Props> = ({ teams, members }) => {
   const [clicked, setClicked] = useState(false);
 
-  const membersByYear = sortMembersByYear({ members, teams });
+  const membersByYear = useMemo(
+    () => sortMembersByYear({ members, teams }),
+    [members, teams]
+  );
 
   return (
     <>

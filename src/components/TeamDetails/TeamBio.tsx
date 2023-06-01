@@ -26,6 +26,7 @@ const TeamBio: React.FC<Props> = ({ team, mobile }) => {
       <Grid
         container={mobile ? true : false}
         item
+        md={4}
         direction={mobile ? 'row' : 'column'}
         textAlign={'center'}
       >
