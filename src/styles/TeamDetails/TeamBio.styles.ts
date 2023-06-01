@@ -12,14 +12,13 @@ export const TeamBioContainer = styled(Grid)<Props>`
 `;
 
 export const TeamBioImage = styled(LazyImage)<Props>`
-  /* height: 10rem; */
   max-width: ${(props) => (props.mobile ? '10rem' : '17rem')};
-  max-height: 8rem;
+  height: ${(props) => (props.mobile ? '6rem' : '8rem')};
 `;
 
 export const TeamBioNameEN = styled.h1<Props>`
-  line-height: 0.5;
-  font-size: ${(props) => (props.mobile ? '1.5rem' : '2.5rem')};
+  line-height: ${(props) => (props.mobile ? 1 : 1)};
+  font-size: ${(props) => (props.mobile ? '1.5rem' : '2rem')};
 `;
 
 export const TeamBioNameJP = styled(TeamBioNameEN)``;

@@ -10,27 +10,26 @@ import { TeamSlide } from '../../styles/TeamDetails/AllTeams.styles';
 
 interface Props {
   teams: Team[];
+  mobile: boolean;
 }
 
-const AllTeams: React.FC<Props> = ({ teams }) => {
+const AllTeams: React.FC<Props> = ({ teams, mobile }) => {
   return (
     <Swiper
       freeMode={true}
       modules={[FreeMode]}
-      spaceBetween={3}
-      slidesPerView={3.3}
+      spaceBetween={4}
+      slidesPerView={mobile ? 2.5 : 3.3}
     >
       {teams.map((team) => (
         <SwiperSlide key={team.teamId}>
-          <TeamSlide>
-            <Link to={`/${team.teamId}`}>
-              <LazyImage
-                src={String(team.logo)}
-                alt={team.fullTeamNameEN}
-                height="150px"
-              />
-            </Link>
-          </TeamSlide>
+          <Link to={`/${team.teamId}`}>
+            <LazyImage
+              src={String(team.logo)}
+              alt={team.fullTeamNameEN}
+              height={mobile ? '40px' : '150px'}
+            />
+          </Link>
         </SwiperSlide>
       ))}
     </Swiper>

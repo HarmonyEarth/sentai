@@ -1,4 +1,4 @@
-import React, { Suspense, lazy } from 'react';
+import React, { Suspense, lazy, useMemo } from 'react';
 import { useParams } from 'react-router-dom';
 import HeroBackground from '../components/HeroDetails/HeroBackground';
 import { HeroContent } from '../components/HeroDetails/HeroContent';
@@ -10,9 +10,8 @@ import { HeroDetailsContainer } from '../styles/HeroDetails/HeroDetails.styles';
 import { heroColor } from '../utils/heroColor';
 import { sortMembersByYear } from '../utils/sortMembersByYear';
 import { Helmet } from 'react-helmet-async';
-import Loading from '../components/Loading/Loading';
+import AllHeroes from '../components/HeroDetails/AllHeroes';
 
-const AllHeroes = lazy(() => import('../components/HeroDetails/AllHeroes'));
 interface Props {
   members: Member[];
   teams: Team[];
@@ -39,10 +38,14 @@ const HeroDetails: React.FC<Props> = ({ members, teams, mobile }) => {
     return <h1>Team does not exist</h1>;
   }
 
+  const membersByYear = useMemo(
+    () => sortMembersByYear({ members, teams }),
+    [members, teams]
+  );
+
   const metaDescription = `${currentMember.heroNameEN1} / ${currentMember.heroNameEN2} from ${currentTeam.year}'s ${currentTeam.fullTeamNameEN}`;
   return (
     <>
-      <ScrollToTop />
       <Helmet>
         <title>
           {currentMember.heroNameEN1} / {currentMember.heroNameEN2} -{' '}
@@ -56,6 +59,7 @@ const HeroDetails: React.FC<Props> = ({ members, teams, mobile }) => {
           sizes="16x16"
         />
       </Helmet>
+      <ScrollToTop />
       <HeroDetailsContainer>
         <HeroBackground
           heroImage1={String(currentMember.heroImage1)}
@@ -81,9 +85,7 @@ const HeroDetails: React.FC<Props> = ({ members, teams, mobile }) => {
           mobile={mobile}
         />
       </HeroDetailsContainer>
-      <Suspense fallback={<Loading />}>
-        <AllHeroes members={sortMembersByYear({ members, teams })} />
-      </Suspense>
+      <AllHeroes members={membersByYear} />
     </>
   );
 };

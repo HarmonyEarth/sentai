@@ -4,7 +4,6 @@ import { Link } from 'react-router-dom';
 import HeroCard from './HeroCard';
 import { Member, Team } from '../../models/team';
 import Title from './Title';
-import { deepClone } from '../../utils/deepClone';
 import { shuffle } from '../../utils/shuffle';
 
 interface Props {
@@ -14,7 +13,7 @@ interface Props {
 }
 
 const HeroBanner: React.FC<Props> = ({ teams, members, mobile }) => {
-  const shuffledMembers = shuffle(deepClone(members));
+  const shuffledMembers = shuffle(structuredClone(members));
 
   return (
     <Grid container>
