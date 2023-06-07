@@ -1,4 +1,7 @@
 import styled from 'styled-components';
+import { Swiper } from 'swiper/react';
+
+export const AllHeroesSwiper = styled(Swiper)``;
 
 export const HeroSlide = styled.div`
   background-color: #000000;

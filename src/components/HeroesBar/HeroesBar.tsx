@@ -24,7 +24,7 @@ const HeroesBar: React.FC<Props> = ({
   return (
     <>
       <SenshiBarTitleContainer>
-        <SenshiBarText>
+        <SenshiBarText mobile={mobile}>
           Super Sentai Series
           <SenshiBarSpan mobile={mobile}>Heroes</SenshiBarSpan>
         </SenshiBarText>
@@ -36,7 +36,6 @@ const HeroesBar: React.FC<Props> = ({
             {heroNameEN1} / {heroNameEN2}
           </h3>
         </SenshiBarLeft>
-        <div>{/* <p>Display Heroes by Team</p> */}</div>
       </SenshiBar>
     </>
   );

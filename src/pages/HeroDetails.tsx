@@ -1,4 +1,4 @@
-import React, { Suspense, lazy, useMemo } from 'react';
+import React, { useMemo } from 'react';
 import { useParams } from 'react-router-dom';
 import HeroBackground from '../components/HeroDetails/HeroBackground';
 import { HeroContent } from '../components/HeroDetails/HeroContent';

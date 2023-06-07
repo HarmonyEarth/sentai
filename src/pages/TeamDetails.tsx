@@ -1,4 +1,4 @@
-import React, { lazy } from 'react';
+import React from 'react';
 import { useParams } from 'react-router-dom';
 import { Member, Team } from '../models/team';
 import { Helmet } from 'react-helmet-async';

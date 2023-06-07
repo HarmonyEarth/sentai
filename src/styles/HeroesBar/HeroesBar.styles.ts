@@ -63,10 +63,11 @@ export const SenshiBarTitleContainer = styled.div`
   }
 `;
 
-export const SenshiBarText = styled.h2`
+export const SenshiBarText = styled.h2<Props>`
   margin: 0 auto;
   padding: 0;
   text-transform: uppercase;
+  font-size: ${(props) => !props.mobile && '2.5rem'};
 `;
 
 export const SenshiBarSpan = styled.span<Props>`

@@ -1,11 +1,14 @@
 import React from 'react';
-import { Swiper, SwiperSlide } from 'swiper/react';
+import { SwiperSlide } from 'swiper/react';
 import { Member } from '../../models/team';
 import 'swiper/css';
 import 'swiper/css/free-mode';
 import { FreeMode } from 'swiper';
 import { Link } from 'react-router-dom';
-import { HeroSlide } from '../../styles/HeroDetails/AllHeroes.styles';
+import {
+  AllHeroesSwiper,
+  HeroSlide,
+} from '../../styles/HeroDetails/AllHeroes.styles';
 import LazyImage from '../Loading/LazyImage';
 
 interface Props {
@@ -14,7 +17,8 @@ interface Props {
 
 const AllHeroes: React.FC<Props> = ({ members }) => {
   return (
-    <Swiper
+    <AllHeroesSwiper
+      slideToClickedSlide={true}
       freeMode={true}
       modules={[FreeMode]}
       spaceBetween={4}
@@ -47,7 +51,7 @@ const AllHeroes: React.FC<Props> = ({ members }) => {
           </HeroSlide>
         </SwiperSlide>
       ))}
-    </Swiper>
+    </AllHeroesSwiper>
   );
 };
 
