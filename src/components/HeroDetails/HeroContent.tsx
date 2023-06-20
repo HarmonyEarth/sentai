@@ -6,6 +6,8 @@ import {
 import SenshiName from './SenshiName';
 import { senshiImageLocation } from '../../utils/senshiImageLocation';
 import Loading from '../Loading/Loading';
+import AllHeroes from './AllHeroes';
+import { Member } from '../../models/team';
 
 interface Props {
   heroImage3: string;
@@ -18,6 +20,7 @@ interface Props {
   locationJP: string;
   locationImage: string;
   mobile: boolean;
+  members?: Member[];
 }
 
 export const HeroContent: React.FC<Props> = ({
@@ -31,6 +34,7 @@ export const HeroContent: React.FC<Props> = ({
   locationJP,
   locationImage,
   mobile,
+  members,
 }) => {
   const [transformation, setTransformation] = useState(false);
 
@@ -69,6 +73,8 @@ export const HeroContent: React.FC<Props> = ({
         mobile={mobile}
         transformation={!transformation}
       />
+
+      {members && <AllHeroes members={members} />}
     </SenshiContainer>
   );
 };

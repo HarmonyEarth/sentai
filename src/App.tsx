@@ -112,7 +112,7 @@ function App() {
             element={
               <RequireAuth>
                 <Suspense fallback={<Loading />}>
-                  <EditTeam teams={teams} />
+                  <EditTeam teams={teams} mobile={mobile} />
                 </Suspense>
               </RequireAuth>
             }

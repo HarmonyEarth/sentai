@@ -15,10 +15,8 @@ export const SenshiNameContainer = styled.div`
   h2 {
     margin: 0;
     display: block;
-    z-index: -1;
     height: 80px;
     padding: 10px 0px;
-    white-space: nowrap;
   }
 `;
 
@@ -33,9 +31,9 @@ export const SenshiNameTextContainer = styled.div<Props>`
 `;
 
 export const SenshiNameMainText = styled.h2<{ mobile: boolean }>`
-  font-size: ${(props) => (props.mobile ? '2.5rem' : '6rem')};
+  font-size: ${(props) => (props.mobile ? '2.8rem' : '6rem')};
 `;
 
 export const SenshiNameSecondaryText = styled.h2<{ mobile: boolean }>`
-  font-size: ${(props) => (props.mobile ? '2rem' : '5rem')};
+  font-size: ${(props) => (props.mobile ? '2.5rem' : '5rem')};
 `;

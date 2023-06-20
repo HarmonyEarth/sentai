@@ -7,7 +7,6 @@ interface Props {
 
 export const SenshiBarTitleContainer = styled.div`
   display: flex;
-
   h2 {
     background: linear-gradient(
       270deg,
@@ -64,10 +63,11 @@ export const SenshiBarTitleContainer = styled.div`
 `;
 
 export const SenshiBarText = styled.h2<Props>`
+  text-align: center;
   margin: 0 auto;
   padding: 0;
   text-transform: uppercase;
-  font-size: ${(props) => !props.mobile && '2.5rem'};
+  font-size: ${(props) => (props.mobile ? '1rem' : '1.5rem')};
 `;
 
 export const SenshiBarSpan = styled.span<Props>`

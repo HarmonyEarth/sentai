@@ -10,9 +10,10 @@ import TeamForm from './TeamForm';
 interface Props {
   docId: string;
   currentTeam: Team;
+  mobile: boolean;
 }
 
-const TeamFormSection: React.FC<Props> = ({ docId, currentTeam }) => {
+const TeamFormSection: React.FC<Props> = ({ docId, currentTeam, mobile }) => {
   const [logo, setLogo] = useState<FileState>();
   const [symbol, setSymbol] = useState<FileState>();
   const [teamData, setTeamData] = useState<Team>({
@@ -34,14 +35,13 @@ const TeamFormSection: React.FC<Props> = ({ docId, currentTeam }) => {
     docId,
   });
 
-  console.log(teamData);
-
   return (
     <Grid container>
       <Grid container item>
-        <Grid container item justifyContent="space-around" xs={12} md={6}>
+        <Grid container item justifyContent="space-between" xs={12} md={6}>
           <Grid item xs={6} md={3}>
             <FormImage
+              mobile={mobile}
               firestoreImage={String(teamData.logo)}
               image={logo}
               imagePercent={logoPercent}
@@ -50,6 +50,7 @@ const TeamFormSection: React.FC<Props> = ({ docId, currentTeam }) => {
           </Grid>
           <Grid item xs={6} md={3}>
             <FormImage
+              mobile={mobile}
               firestoreImage={String(teamData.symbol)}
               image={symbol}
               imagePercent={symbolPercent}

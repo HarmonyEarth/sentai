@@ -8,6 +8,7 @@ interface Props {
   image: FileState;
   imagePercent: number | null;
   imageName: string;
+  mobile: boolean;
 }
 
 const FormImage: React.FC<Props> = ({
@@ -15,35 +16,29 @@ const FormImage: React.FC<Props> = ({
   image,
   imagePercent,
   imageName,
+  mobile,
 }) => {
   return (
-    <div>
-      {firestoreImage ? (
-        <LazyImage
-          src={firestoreImage}
-          alt={`Team ${imageName}`}
-          height={'300px'}
-          width={'auto'}
-        />
-      ) : (
-        <LazyImage
-          src={
-            image
-              ? URL.createObjectURL(image as Blob | MediaSource)
-              : noImageIcon
-          }
-          alt={`Team ${imageName}`}
-          height={'200px'}
-          width={'auto'}
-        />
-      )}
+    <>
+      <LazyImage
+        src={
+          firestoreImage
+            ? firestoreImage
+            : image
+            ? URL.createObjectURL(image as Blob | MediaSource)
+            : noImageIcon
+        }
+        alt={`Team ${imageName}`}
+        height={mobile ? '100px' : '200px'}
+        width={'auto'}
+      />
 
       <h3>{imageName}</h3>
       <p>
         {(imagePercent !== null && imagePercent < 100 && 'File Uploading') ||
           (imagePercent === 100 && 'File Uploaded')}
       </p>
-    </div>
+    </>
   );
 };
 

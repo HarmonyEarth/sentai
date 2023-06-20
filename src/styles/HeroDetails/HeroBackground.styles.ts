@@ -33,7 +33,7 @@ export const SenshiBackgroundColor = styled.div<Props>`
     display: ${(props) => (props.mobile ? 'none' : 'unset')};
     position: absolute;
     top: 0;
-    left: -84.5%;
+    left: -80%;
     width: 100%;
     height: 100%;
     transform: skewX(-15deg);
@@ -46,7 +46,7 @@ export const SenshiBackgroundColor = styled.div<Props>`
     position: absolute;
     top: 0;
     bottom: 0;
-    right: -73%;
+    right: -70%;
     width: 100%;
     transform: skewX(-15deg);
     background: white;
@@ -57,8 +57,8 @@ export const SenshiBackgroundImage = styled(LazyImage)<{ mobile: boolean }>`
   position: fixed;
   top: 4px;
   z-index: -1;
-  width: ${(props) => (props.mobile ? '100%' : '70%')};
-  height: 114%;
+  width: ${(props) => (props.mobile ? '100%' : '65%')};
+  height: 120%;
   scale: 1.01;
 `;
 
