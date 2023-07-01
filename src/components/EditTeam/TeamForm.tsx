@@ -2,8 +2,8 @@ import { doc, updateDoc } from 'firebase/firestore';
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import { db } from '../../firebase';
-import { FileState } from '../../models/fileState';
-import { Team, teamInputData, teamInputFileData } from '../../models/team';
+import { FileState, Team } from '../../models/types';
+import { teamInputData, teamInputFileData } from '../../models/team';
 import FormInput from '../CMS/FormInput';
 import makeItWEBP from '../../utils/makeItWEBP';
 

@@ -1,4 +1,4 @@
-import { Member, Team } from '../models/team';
+import { Member, Team } from '../models/types';
 
 interface Props {
   members: Member[];

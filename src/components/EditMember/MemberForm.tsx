@@ -3,15 +3,13 @@ import React, { useState } from 'react';
 import { toast } from 'react-hot-toast';
 import { useNavigate } from 'react-router-dom';
 import { db } from '../../firebase';
-import { FileState } from '../../models/fileState';
+import { FileState, Member, Team } from '../../models/types';
 import {
-  Member,
   memberInputColorData,
   memberInputData,
   memberInputFileData,
   memberInputImageLocation,
   memberInputNameLocationData,
-  Team,
 } from '../../models/team';
 
 import FormInput from '../CMS/FormInput';

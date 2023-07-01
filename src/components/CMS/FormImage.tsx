@@ -1,5 +1,5 @@
 import React from 'react';
-import { FileState } from '../../models/fileState';
+import { FileState } from '../../models/types';
 import { noImageIcon } from '../../utils/constants';
 import LazyImage from '../Loading/LazyImage';
 

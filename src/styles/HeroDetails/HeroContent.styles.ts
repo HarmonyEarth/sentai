@@ -2,7 +2,7 @@ import styled from 'styled-components';
 import LazyImage from '../../components/Loading/LazyImage';
 
 interface Props {
-  mobile: boolean;
+  extraSmall: boolean;
   locationLeft: boolean;
   locationRight: boolean;
   transformation: boolean;
@@ -74,10 +74,8 @@ export const SenshiImage = styled(LazyImage)<Props>`
   display: ${(props) => (props.transformation ? 'none' : 'unset')};
   position: absolute;
   align-self: center;
-  left: ${(props) => (props.locationLeft ? 0 : 'unset')};
-  right: ${(props) => (props.locationRight ? 0 : 'unset')};
+  left: ${(props) => (props.locationLeft && !props.extraSmall ? 0 : 'unset')};
+  right: ${(props) => (props.locationRight && !props.extraSmall ? 0 : 'unset')};
   scale: 1.1;
-  z-index: ${(props) => (props.mobile ? -1 : 0)};
-  height: ${(props) => (props.mobile ? '800px' : '1140px')};
-  bottom: ${(props) => props.mobile && '1.6rem'};
+  height: 60rem;
 `;

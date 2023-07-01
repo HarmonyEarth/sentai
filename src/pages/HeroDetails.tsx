@@ -5,36 +5,43 @@ import { HeroContent } from '../components/HeroDetails/HeroContent';
 import HeroesBar from '../components/HeroesBar/HeroesBar';
 import ScrollToTop from '../components/HeroDetails/ScrollToTop';
 
-import { Member, Team } from '../models/team';
 import { HeroDetailsContainer } from '../styles/HeroDetails/HeroDetails.styles';
 import { heroColor } from '../utils/heroColor';
 import { sortMembersByYear } from '../utils/sortMembersByYear';
 import { Helmet } from 'react-helmet-async';
+import { Member, ScreenSizesType, Team } from '../models/types';
 
 interface Props {
   members: Member[];
   teams: Team[];
   mobile: boolean;
+  screenSizes: ScreenSizesType;
 }
 
-const HeroDetails: React.FC<Props> = ({ members, teams, mobile }) => {
-  const { heroId } = useParams();
+const HeroDetails: React.FC<Props> = ({
+  members,
+  teams,
+  mobile,
+  screenSizes,
+}) => {
+  const { teamId, heroId } = useParams();
 
   if (!heroId) {
     return <h1>Hero does not exist</h1>;
   }
-
   const currentMember = members.find((element) => element.heroId === heroId);
 
   if (!currentMember) {
-    return <h1>Member does not exist or is incomplete</h1>;
+    return <h1>Hero does not exist or is incomplete</h1>;
   }
-  const currentTeam = teams.find(
-    (element) => element.teamId === currentMember.teamId
-  );
+
+  if (!teamId) {
+    return <h1>Team does not exist</h1>;
+  }
+  const currentTeam = teams.find((element) => element.teamId === teamId);
 
   if (!currentTeam) {
-    return <h1>Team does not exist</h1>;
+    return <h1>Team does not exist or is incomplete</h1>;
   }
 
   const membersByYear = useMemo(
@@ -42,7 +49,8 @@ const HeroDetails: React.FC<Props> = ({ members, teams, mobile }) => {
     [members, teams]
   );
 
-  const metaDescription = `${currentMember.heroNameEN1} / ${currentMember.heroNameEN2} from ${currentTeam.year}'s ${currentTeam.fullTeamNameEN}`;
+  const metaDescription = `${currentMember.heroNameEN1} / ${currentMember.heroNameEN2} 
+  from ${currentTeam.year}'s ${currentTeam.fullTeamNameEN}`;
   return (
     <>
       <Helmet>
@@ -82,6 +90,7 @@ const HeroDetails: React.FC<Props> = ({ members, teams, mobile }) => {
           locationJP={currentMember.locationJP}
           locationImage={currentMember.locationImage}
           mobile={mobile}
+          screenSizes={screenSizes}
           members={membersByYear}
         />
       </HeroDetailsContainer>

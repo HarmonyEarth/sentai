@@ -1,6 +1,5 @@
 import React from 'react';
 import { SwiperSlide } from 'swiper/react';
-import { Member } from '../../models/team';
 import 'swiper/css';
 import 'swiper/css/free-mode';
 import { FreeMode } from 'swiper';
@@ -10,6 +9,7 @@ import {
   HeroSlide,
 } from '../../styles/HeroDetails/AllHeroes.styles';
 import LazyImage from '../Loading/LazyImage';
+import { Member } from '../../models/types';
 
 interface Props {
   members: Member[];

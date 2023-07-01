@@ -1,8 +1,7 @@
 import React, { useEffect, useState, useRef, useLayoutEffect } from 'react';
 import { ref, uploadBytesResumable, getDownloadURL } from 'firebase/storage';
 import { storage } from '../firebase';
-import { Member, Team } from '../models/team';
-import { FileState } from '../models/fileState';
+import { FileState, Member, Team } from '../models/types';
 
 interface Props {
   file: File;

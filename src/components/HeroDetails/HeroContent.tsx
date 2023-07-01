@@ -5,9 +5,8 @@ import {
 } from '../../styles/HeroDetails/HeroContent.styles';
 import SenshiName from './SenshiName';
 import { senshiImageLocation } from '../../utils/senshiImageLocation';
-import Loading from '../Loading/Loading';
 import AllHeroes from './AllHeroes';
-import { Member } from '../../models/team';
+import { Member, ScreenSizesType } from '../../models/types';
 
 interface Props {
   heroImage3: string;
@@ -20,6 +19,7 @@ interface Props {
   locationJP: string;
   locationImage: string;
   mobile: boolean;
+  screenSizes: ScreenSizesType;
   members?: Member[];
 }
 
@@ -34,6 +34,7 @@ export const HeroContent: React.FC<Props> = ({
   locationJP,
   locationImage,
   mobile,
+  screenSizes,
   members,
 }) => {
   const [transformation, setTransformation] = useState(false);
@@ -41,10 +42,6 @@ export const HeroContent: React.FC<Props> = ({
   const handleTransformation = () => {
     setTransformation((prev) => !prev);
   };
-
-  if (!heroImage3 || !heroImage4) {
-    return <Loading />;
-  }
 
   const imageLocations = senshiImageLocation({ locationImage });
 
@@ -62,7 +59,7 @@ export const HeroContent: React.FC<Props> = ({
         alt={heroNameEN1}
         locationLeft={imageLocations.left}
         locationRight={imageLocations.right}
-        mobile={mobile}
+        extraSmall={screenSizes.extraSmall}
         transformation={transformation}
       />
       <SenshiImage
@@ -70,7 +67,7 @@ export const HeroContent: React.FC<Props> = ({
         alt={heroNameEN2}
         locationLeft={imageLocations.left}
         locationRight={imageLocations.right}
-        mobile={mobile}
+        extraSmall={screenSizes.extraSmall}
         transformation={!transformation}
       />
 

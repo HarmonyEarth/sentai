@@ -9,7 +9,7 @@ interface Props {
   marginBottom?: string;
 }
 
-export const SenshiNameContainer = styled.div`
+export const SenshiNameContainer = styled.div<{ mobile: boolean }>`
   position: relative;
   height: 100vh;
   h2 {
@@ -18,6 +18,7 @@ export const SenshiNameContainer = styled.div`
     height: 80px;
     padding: 10px 0px;
   }
+  z-index: ${(props) => (props.mobile ? 1 : 0)};
 `;
 
 export const SenshiNameTextContainer = styled.div<Props>`

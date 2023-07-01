@@ -3,11 +3,11 @@ import React, { useMemo, useState } from 'react';
 import { Link } from 'react-router-dom';
 import DeleteButton from '../components/CMS/DeleteButton';
 import NewButton from '../components/CMS/NewButton';
-import { Member, Team } from '../models/team';
 import { noImageIcon, siteFavIcon } from '../utils/constants';
 import { sortMembersByYear } from '../utils/sortMembersByYear';
 import { Helmet } from 'react-helmet-async';
 import LazyImage from '../components/Loading/LazyImage';
+import { Member, Team } from '../models/types';
 
 interface Props {
   teams: Team[];

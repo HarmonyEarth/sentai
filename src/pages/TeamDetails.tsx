@@ -1,11 +1,11 @@
 import React from 'react';
 import { useParams } from 'react-router-dom';
-import { Member, Team } from '../models/team';
 import { Helmet } from 'react-helmet-async';
 import TeamBio from '../components/TeamDetails/TeamBio';
 import TeamBanner from '../components/TeamDetails/TeamBanner';
 import AllTeams from '../components/TeamDetails/AllTeams';
 import ScrollToTop from '../components/HeroDetails/ScrollToTop';
+import { Member, Team } from '../models/types';
 
 interface Props {
   teams: Team[];

@@ -2,11 +2,10 @@ import React from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css';
 import 'swiper/css/free-mode';
-import { Team } from '../../models/team';
 import { FreeMode } from 'swiper';
 import { Link } from 'react-router-dom';
 import LazyImage from '../Loading/LazyImage';
-import { TeamSlide } from '../../styles/TeamDetails/AllTeams.styles';
+import { Team } from '../../models/types';
 
 interface Props {
   teams: Team[];
