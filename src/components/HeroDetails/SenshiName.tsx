@@ -23,12 +23,38 @@ const SenshiName: React.FC<Props> = ({
   locationJP,
   mobile,
 }) => {
-  const mainTextLocation = senshiNameLocation({ location: locationEN });
+  if (mobile) {
+    switch (locationEN) {
+      case locationText.topLeft:
+        locationEN = locationText.bottomLeft;
+        break;
+      case locationText.topRight:
+        locationEN = locationText.bottomRight;
+        break;
+      default:
+        break;
+    }
+    switch (locationJP) {
+      case locationText.topLeft:
+        locationJP = locationText.bottomLeft;
+        break;
+      case locationText.topRight:
+        locationJP = locationText.bottomRight;
+        break;
+      default:
+        break;
+    }
+  }
+  const mainTextLocation = senshiNameLocation({
+    location: locationEN,
+  });
 
-  const secondaryTextLocation = senshiNameLocation({ location: locationJP });
+  const secondaryTextLocation = senshiNameLocation({
+    location: locationJP,
+  });
 
   return (
-    <SenshiNameContainer>
+    <SenshiNameContainer mobile={mobile}>
       <SenshiNameTextContainer
         top={mainTextLocation.top}
         bottom={mainTextLocation.bottom}
@@ -39,10 +65,10 @@ const SenshiName: React.FC<Props> = ({
             ? '96px'
             : locationEN === locationText.bottomRight &&
               locationJP === locationText.bottomLeft
-            ? '5rem'
+            ? '6rem'
             : locationEN === locationText.bottomLeft &&
               locationJP === locationText.bottomRight
-            ? '5rem'
+            ? '6rem'
             : '0px'
         }
       >
@@ -58,10 +84,10 @@ const SenshiName: React.FC<Props> = ({
             ? '96px'
             : locationEN === locationText.topLeft &&
               locationJP === locationText.topRight
-            ? '5rem'
+            ? '6rem'
             : locationEN === locationText.topRight &&
               locationJP === locationText.topLeft
-            ? '5rem'
+            ? '6rem'
             : '0px'
         }
       >

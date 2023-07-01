@@ -2,9 +2,9 @@ import React from 'react';
 
 import HeroBanner from '../components/Series/HeroBanner';
 import TeamSection from '../components/Series/TeamSection';
-import { Member, Team } from '../models/team';
 import { Helmet } from 'react-helmet-async';
 import { siteFavIcon } from '../utils/constants';
+import { Member, Team } from '../models/types';
 
 interface Props {
   teams: Team[];

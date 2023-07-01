@@ -1,5 +1,4 @@
 import React from 'react';
-import { Team } from '../../models/team';
 import { Grid } from '@mui/material';
 import {
   TeamBioContainer,
@@ -8,6 +7,7 @@ import {
   TeamBioNameJP,
   TeamBioYear,
 } from '../../styles/TeamDetails/TeamBio.styles';
+import { Team } from '../../models/types';
 
 interface Props {
   team: Team;

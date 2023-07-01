@@ -9,17 +9,16 @@ interface Props {
   marginBottom?: string;
 }
 
-export const SenshiNameContainer = styled.div`
+export const SenshiNameContainer = styled.div<{ mobile: boolean }>`
   position: relative;
   height: 100vh;
   h2 {
     margin: 0;
     display: block;
-    z-index: -1;
     height: 80px;
     padding: 10px 0px;
-    white-space: nowrap;
   }
+  z-index: ${(props) => (props.mobile ? 1 : 0)};
 `;
 
 export const SenshiNameTextContainer = styled.div<Props>`
@@ -33,9 +32,9 @@ export const SenshiNameTextContainer = styled.div<Props>`
 `;
 
 export const SenshiNameMainText = styled.h2<{ mobile: boolean }>`
-  font-size: ${(props) => (props.mobile ? '2.5rem' : '6rem')};
+  font-size: ${(props) => (props.mobile ? '2.8rem' : '6rem')};
 `;
 
 export const SenshiNameSecondaryText = styled.h2<{ mobile: boolean }>`
-  font-size: ${(props) => (props.mobile ? '2rem' : '5rem')};
+  font-size: ${(props) => (props.mobile ? '2.5rem' : '5rem')};
 `;

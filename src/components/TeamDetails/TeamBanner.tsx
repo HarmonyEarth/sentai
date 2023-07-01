@@ -1,9 +1,9 @@
 import React from 'react';
-import { Member } from '../../models/team';
 import { Grid } from '@mui/material';
 import TeamMember from './TeamMember';
 import { Link } from 'react-router-dom';
 import { teamMemberGridSlots } from '../../utils/teamMemberGridSlots';
+import { Member } from '../../models/types';
 
 interface Props {
   members: Member[];

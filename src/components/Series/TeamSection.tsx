@@ -1,8 +1,8 @@
 import { Grid } from '@mui/material';
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { Team } from '../../models/team';
 import TeamCard from './TeamCard';
+import { Team } from '../../models/types';
 
 interface Props {
   teams: Team[];

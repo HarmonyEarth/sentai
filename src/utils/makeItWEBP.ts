@@ -1,6 +1,6 @@
 import { toast } from 'react-hot-toast';
 import convertToWEBP from './convertToWEBP';
-import { FileState } from '../models/fileState';
+import { FileState } from '../models/types';
 
 interface FileConvertProps {
   filename: string;

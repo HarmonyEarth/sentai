@@ -1,9 +1,7 @@
 import { Grid } from '@mui/material';
 import React, { useState } from 'react';
-
 import useFileUpload from '../../hooks/useFileUpload';
-import { FileState } from '../../models/fileState';
-import { Member, Team } from '../../models/team';
+import { FileState, Member, ScreenSizesType, Team } from '../../models/types';
 import MemberForm from './MemberForm';
 import { HeroDetailsContainer } from '../../styles/HeroDetails/HeroDetails.styles';
 import HeroBackground from '../HeroDetails/HeroBackground';
@@ -17,6 +15,7 @@ interface Props {
   currentMember: Member;
   teams: Team[];
   mobile: boolean;
+  screenSizes: ScreenSizesType;
 }
 
 const MemberFormSection: React.FC<Props> = ({
@@ -24,6 +23,7 @@ const MemberFormSection: React.FC<Props> = ({
   currentMember,
   teams,
   mobile,
+  screenSizes,
 }) => {
   const [heroImage1, setHeroImage1] = useState<FileState>();
   const [heroImage2, setHeroImage2] = useState<FileState>();
@@ -86,7 +86,7 @@ const MemberFormSection: React.FC<Props> = ({
   return (
     <>
       <ScrollToTop />
-      <Grid container>
+      <Grid container sx={{ backgroundColor: 'white' }}>
         <Grid
           container
           item
@@ -117,7 +117,6 @@ const MemberFormSection: React.FC<Props> = ({
           </Grid>
         </Grid>
       </Grid>
-      <br />
       <HeroDetailsContainer>
         <HeroBackground
           heroImage1={String(memberData.heroImage1)}
@@ -141,6 +140,7 @@ const MemberFormSection: React.FC<Props> = ({
           locationJP={memberData.locationJP}
           locationImage={memberData.locationImage}
           mobile={mobile}
+          screenSizes={screenSizes}
         />
       </HeroDetailsContainer>
     </>
