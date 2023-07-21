@@ -12,7 +12,7 @@ export const SenshiContainer = styled.div`
   display: flex;
   flex-direction: column;
   text-transform: uppercase;
-  cursor: pointer;
+
   user-select: none;
   line-height: 0.8;
   h1,
@@ -78,4 +78,5 @@ export const SenshiImage = styled(LazyImage)<Props>`
   right: ${(props) => (props.locationRight && !props.extraSmall ? 0 : 'unset')};
   scale: 1.1;
   height: 60rem;
+  cursor: pointer;
 `;

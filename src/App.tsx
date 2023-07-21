@@ -58,12 +58,14 @@ function App() {
 
   if (!teams || !members) return <Loading />;
 
-  const completeTeams = teams.filter((team) =>
-    Object.values(team).every((value) => value)
-  );
-
   const completeMembers = members.filter((member) =>
     Object.values(member).every((value) => value)
+  );
+
+  const completeTeams = teams.filter(
+    (team) =>
+      completeMembers.some((member) => member.teamId === team.teamId) &&
+      Object.values(team).every((value) => value)
   );
 
   return (

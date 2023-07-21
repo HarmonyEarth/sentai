@@ -42,7 +42,6 @@ export const SenshiBackgroundColor = styled.div<Props>`
 
   ::after {
     content: '';
-    display: inline-block;
     position: absolute;
     top: 0;
     bottom: 0;

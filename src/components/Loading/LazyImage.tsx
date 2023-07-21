@@ -13,15 +13,17 @@ interface Props {
   className?: string;
   height?: string;
   width?: string;
+  onClick?: (event: React.MouseEvent<HTMLImageElement>) => void;
 }
 
-let options = {
-  root: document.querySelector('#scrollArea'),
-  rootMargin: '0px',
-  threshold: 1.0,
-};
-
-const LazyImage: React.FC<Props> = ({ src, alt, className, height, width }) => {
+const LazyImage: React.FC<Props> = ({
+  src,
+  alt,
+  className,
+  height,
+  width,
+  onClick,
+}) => {
   const imgRef = useRef<HTMLImageElement | null>(null);
 
   const [imageLoaded, setImageLoaded] = useState(false);
@@ -62,12 +64,13 @@ const LazyImage: React.FC<Props> = ({ src, alt, className, height, width }) => {
       className={className}
       height={height}
       width={width}
+      onClick={onClick}
     />
   ) : (
     <img
       src={siteLogo}
       ref={imgRef}
-      alt={'Image Placeholder'}
+      alt={'Placeholder'}
       loading="lazy"
       className={className}
       height={height}

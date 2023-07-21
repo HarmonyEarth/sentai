@@ -53,6 +53,5 @@ export const SeriesSymbol = styled(LazyImage)`
 `;
 
 export const SeriesLogo = styled(LazyImage)`
-  max-width: 150px;
-  height: 80px;
+  width: 150px;
 `;

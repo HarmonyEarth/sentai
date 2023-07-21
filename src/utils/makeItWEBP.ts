@@ -20,9 +20,8 @@ const makeItWEBP = async ({
     toast.dismiss();
     toast.success(`Successfully converted ${filename} to WEBP!`);
   } catch (err) {
-    console.log(err);
     toast.dismiss();
-    toast.error(`Failed to convert ${filename}!`);
+    toast.error(`Failed to convert ${filename}, due to ${err}!`);
   } finally {
   }
 };
