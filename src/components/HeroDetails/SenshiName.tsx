@@ -14,6 +14,7 @@ interface Props {
   locationEN: string;
   locationJP: string;
   mobile: boolean;
+  onClick?: (event: React.MouseEvent<HTMLDivElement>) => void | undefined;
 }
 
 const SenshiName: React.FC<Props> = ({
@@ -22,6 +23,7 @@ const SenshiName: React.FC<Props> = ({
   locationEN,
   locationJP,
   mobile,
+  onClick,
 }) => {
   if (mobile) {
     switch (locationEN) {
@@ -54,7 +56,7 @@ const SenshiName: React.FC<Props> = ({
   });
 
   return (
-    <SenshiNameContainer mobile={mobile}>
+    <SenshiNameContainer mobile={mobile} onClick={mobile ? onClick : undefined}>
       <SenshiNameTextContainer
         top={mainTextLocation.top}
         bottom={mainTextLocation.bottom}

@@ -19,6 +19,7 @@ export const SenshiNameContainer = styled.div<{ mobile: boolean }>`
     padding: 10px 0px;
   }
   z-index: ${(props) => (props.mobile ? 1 : 0)};
+  cursor: ${(props) => props.mobile && 'pointer'};
 `;
 
 export const SenshiNameTextContainer = styled.div<Props>`

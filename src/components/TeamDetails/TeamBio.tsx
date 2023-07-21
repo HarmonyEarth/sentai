@@ -17,10 +17,10 @@ interface Props {
 const TeamBio: React.FC<Props> = ({ team, mobile }) => {
   return (
     <TeamBioContainer container mobile={mobile}>
-      <Grid item xs={6} md={3} textAlign={'center'}>
+      <Grid item xs={6} md={3}>
         <TeamBioImage src={String(team.symbol)} mobile={mobile} />
       </Grid>
-      <Grid item xs={6} md={3} textAlign={'center'}>
+      <Grid item xs={6} md={3}>
         <TeamBioImage src={String(team.logo)} mobile={mobile} />
       </Grid>
       <Grid
@@ -28,7 +28,6 @@ const TeamBio: React.FC<Props> = ({ team, mobile }) => {
         item
         md={4}
         direction={mobile ? 'row' : 'column'}
-        textAlign={'center'}
       >
         <Grid item xs={mobile ? 6 : 12} md={4}>
           <TeamBioNameEN mobile={mobile}>{team.fullTeamNameEN}</TeamBioNameEN>
@@ -37,7 +36,7 @@ const TeamBio: React.FC<Props> = ({ team, mobile }) => {
           <TeamBioNameJP mobile={mobile}>{team.fullTeamNameJP}</TeamBioNameJP>
         </Grid>
       </Grid>
-      <Grid item justifyContent={'center'} textAlign={'center'} md={2}>
+      <Grid item md={2}>
         <TeamBioYear mobile={mobile}>{team.year}</TeamBioYear>
       </Grid>
     </TeamBioContainer>

@@ -18,7 +18,6 @@ interface Props {
 const AllHeroes: React.FC<Props> = ({ members }) => {
   return (
     <AllHeroesSwiper
-      slideToClickedSlide={true}
       freeMode={true}
       modules={[FreeMode]}
       spaceBetween={4}

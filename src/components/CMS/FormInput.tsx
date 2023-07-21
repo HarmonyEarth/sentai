@@ -7,7 +7,7 @@ interface Props {
   accept?: string;
   readonly: boolean;
   id: string;
-  handleInput(e: React.ChangeEvent<HTMLInputElement>): void;
+  handleInput: (e: React.ChangeEvent<HTMLInputElement>) => void;
   defaultValue?: string;
 }
 

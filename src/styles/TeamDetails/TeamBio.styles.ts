@@ -9,6 +9,7 @@ interface Props {
 export const TeamBioContainer = styled(Grid)<Props>`
   align-items: ${(props) => props.mobile && 'center'};
   justify-content: ${(props) => props.mobile && 'center'};
+  text-align: center;
 `;
 
 export const TeamBioImage = styled(LazyImage)<Props>`

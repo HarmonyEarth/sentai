@@ -15,10 +15,10 @@ import Loading from './components/Loading/Loading';
 import { Member, Team } from './models/types';
 
 const Series = lazy(() => import('./pages/Series'));
+const Heroes = lazy(() => import('./pages/Heroes'));
 const HeroDetails = lazy(() => import('./pages/HeroDetails'));
 const TeamDetails = lazy(() => import('./pages/TeamDetails'));
 const CMS = lazy(() => import('./pages/CMS'));
-const Teams = lazy(() => import('./pages/Teams'));
 const EditTeam = lazy(() => import('./pages/EditTeam'));
 const EditMember = lazy(() => import('./pages/EditMember'));
 
@@ -58,12 +58,14 @@ function App() {
 
   if (!teams || !members) return <Loading />;
 
-  const completeTeams = teams.filter((team) =>
-    Object.values(team).every((value) => value)
-  );
-
   const completeMembers = members.filter((member) =>
     Object.values(member).every((value) => value)
+  );
+
+  const completeTeams = teams.filter(
+    (team) =>
+      completeMembers.some((member) => member.teamId === team.teamId) &&
+      Object.values(team).every((value) => value)
   );
 
   return (
@@ -84,12 +86,24 @@ function App() {
               </Suspense>
             }
           />
-          <Route path="/teams" element={<Teams />} />
           <Route
             path="/:teamId"
             element={
               <Suspense fallback={<Loading />}>
                 <TeamDetails
+                  teams={completeTeams}
+                  members={completeMembers}
+                  mobile={mobile}
+                />
+              </Suspense>
+            }
+          />
+
+          <Route
+            path="/heroes"
+            element={
+              <Suspense fallback={<Loading />}>
+                <Heroes
                   teams={completeTeams}
                   members={completeMembers}
                   mobile={mobile}

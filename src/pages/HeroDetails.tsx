@@ -10,6 +10,7 @@ import { heroColor } from '../utils/heroColor';
 import { sortMembersByYear } from '../utils/sortMembersByYear';
 import { Helmet } from 'react-helmet-async';
 import { Member, ScreenSizesType, Team } from '../models/types';
+import AllHeroes from '../components/HeroDetails/AllHeroes';
 
 interface Props {
   members: Member[];
@@ -91,8 +92,8 @@ const HeroDetails: React.FC<Props> = ({
           locationImage={currentMember.locationImage}
           mobile={mobile}
           screenSizes={screenSizes}
-          members={membersByYear}
         />
+        <AllHeroes members={membersByYear} />
       </HeroDetailsContainer>
     </>
   );
