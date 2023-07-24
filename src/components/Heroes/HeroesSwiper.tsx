@@ -8,7 +8,7 @@ import {
   SenshiSwiperStateImage,
 } from '../../styles/Heroes/HeroesSwiper.styles';
 import { Member, Team } from '../../models/types';
-import { Grid } from '@mui/material';
+import Grid from '@mui/material/Grid/Grid';
 
 import { Link } from 'react-router-dom';
 

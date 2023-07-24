@@ -1,5 +1,5 @@
-import { Grid } from '@mui/material';
 import React, { useMemo, useState } from 'react';
+import Grid from '@mui/material/Grid/Grid';
 import { Link } from 'react-router-dom';
 import DeleteButton from '../components/CMS/DeleteButton';
 import NewButton from '../components/CMS/NewButton';

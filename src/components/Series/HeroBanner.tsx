@@ -1,5 +1,5 @@
 import React from 'react';
-import { Grid } from '@mui/material';
+import Grid from '@mui/material/Grid/Grid';
 import { Link } from 'react-router-dom';
 import HeroCard from './HeroCard';
 import Title from './Title';

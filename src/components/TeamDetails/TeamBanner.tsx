@@ -1,5 +1,5 @@
 import React from 'react';
-import { Grid } from '@mui/material';
+import Grid from '@mui/material/Grid/Grid';
 import TeamMember from './TeamMember';
 import { Link } from 'react-router-dom';
 import { teamMemberGridSlots } from '../../utils/teamMemberGridSlots';
