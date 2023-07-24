@@ -30,6 +30,7 @@ const HeroBanner: React.FC<Props> = ({ teams, members, mobile }) => {
           >
             <HeroCard
               heroImage2={String(shuffledMember.heroImage2)}
+              heroNameEN2={shuffledMember.heroNameEN2}
               mobile={mobile}
             />
           </Grid>
@@ -59,6 +60,7 @@ const HeroBanner: React.FC<Props> = ({ teams, members, mobile }) => {
           >
             <HeroCard
               heroImage2={String(shuffledMember.heroImage2)}
+              heroNameEN2={shuffledMember.heroNameEN2}
               mobile={mobile}
             />
           </Grid>

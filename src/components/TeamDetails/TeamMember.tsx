@@ -7,6 +7,8 @@ import {
 interface Props {
   heroImage3: string;
   heroImage4: string;
+  heroNameEN1: string;
+  heroNameEN2: string;
   color: string;
   mobile: boolean;
 }
@@ -14,6 +16,8 @@ interface Props {
 const TeamMember: React.FC<Props> = ({
   heroImage3,
   heroImage4,
+  heroNameEN1,
+  heroNameEN2,
   color,
   mobile,
 }) => {
@@ -24,11 +28,13 @@ const TeamMember: React.FC<Props> = ({
         src={heroImage4}
         mobile={mobile}
         heroState={heroTransformed}
+        alt={heroNameEN2}
       />
       <TeamMemberStateImage
         src={heroImage3}
         mobile={mobile}
         heroState={!heroTransformed}
+        alt={heroNameEN1}
       />
     </TeamMemberCard>
   );

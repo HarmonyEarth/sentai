@@ -9,7 +9,7 @@ const errorImage =
 
 interface Props {
   src: string;
-  alt?: string;
+  alt: string;
   className?: string;
   height?: string;
   width?: string;

@@ -31,7 +31,7 @@ const HeroesBar: React.FC<Props> = ({
       </SenshiBarTitleContainer>
       <SenshiBar mobile={mobile}>
         <SenshiBarLeft>
-          <SenshiBarLeftSymbol src={heroSymbol} />
+          <SenshiBarLeftSymbol src={heroSymbol} alt={`${heroNameEN2} Symbol`} />
           <h3>
             {heroNameEN1} / {heroNameEN2}
           </h3>

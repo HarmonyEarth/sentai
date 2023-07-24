@@ -1,5 +1,5 @@
-import { Grid, Modal } from '@mui/material';
 import React, { useState } from 'react';
+import { Grid, Modal } from '@mui/material';
 import { logIn } from '../../auth';
 import { LogInContainer } from '../../styles/Navbar/LogInForm.styles';
 

@@ -27,6 +27,8 @@ const TeamBanner: React.FC<Props> = ({ members, mobile }) => {
               to={`/${member.teamId}/${member.heroId}`}
             >
               <TeamMember
+                heroNameEN1={member.heroNameEN1}
+                heroNameEN2={member.heroNameEN2}
                 heroImage3={String(member.heroImage3)}
                 heroImage4={String(member.heroImage4)}
                 color={member.color}
@@ -47,6 +49,8 @@ const TeamBanner: React.FC<Props> = ({ members, mobile }) => {
               to={`/${member.teamId}/${member.heroId}`}
             >
               <TeamMember
+                heroNameEN1={member.heroNameEN1}
+                heroNameEN2={member.heroNameEN2}
                 heroImage3={String(member.heroImage3)}
                 heroImage4={String(member.heroImage4)}
                 color={member.color}
@@ -67,6 +71,8 @@ const TeamBanner: React.FC<Props> = ({ members, mobile }) => {
               to={`/${member.teamId}/${member.heroId}`}
             >
               <TeamMember
+                heroNameEN1={member.heroNameEN1}
+                heroNameEN2={member.heroNameEN2}
                 heroImage3={String(member.heroImage3)}
                 heroImage4={String(member.heroImage4)}
                 color={member.color}

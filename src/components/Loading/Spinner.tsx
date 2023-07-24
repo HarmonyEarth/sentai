@@ -1,5 +1,3 @@
-import React from 'react';
-
 const Spinner = () => {
   return (
     <svg viewBox="0 0 2400 2400" width={20} height={20}>

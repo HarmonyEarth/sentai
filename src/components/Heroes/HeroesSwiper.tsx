@@ -41,8 +41,14 @@ const HeroesSwiper: React.FC<Props> = ({ team, members }) => {
         {members.map((member) => (
           <SwiperSlide>
             <Link to={`/${member.teamId}/${member.heroId}`}>
-              <SenshiSwiperStateImage src={String(member.heroImage3)} />
-              <SenshiSwiperStateImage src={String(member.heroImage4)} />
+              <SenshiSwiperStateImage
+                src={String(member.heroImage3)}
+                alt={member.heroNameEN1}
+              />
+              <SenshiSwiperStateImage
+                src={String(member.heroImage4)}
+                alt={member.heroNameEN2}
+              />
             </Link>
           </SwiperSlide>
         ))}
