@@ -11,6 +11,7 @@ import { Member, Team } from '../../models/types';
 import Grid from '@mui/material/Grid/Grid';
 
 import { Link } from 'react-router-dom';
+import LazyImage from '../Loading/LazyImage';
 
 interface Props {
   team: Team;
@@ -27,7 +28,7 @@ const HeroesSwiper: React.FC<Props> = ({ team, members }) => {
         <h1>{team.fullTeamNameEN}</h1>
         <button onClick={() => swiper?.slidePrev()}>Backward</button>
         {members.map((member, index) => (
-          <img
+          <LazyImage
             src={String(member.heroHelmet)}
             alt=""
             height={'50px'}
