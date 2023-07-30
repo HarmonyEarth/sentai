@@ -3,6 +3,7 @@ import { Member, Team } from '../models/types';
 import { Helmet } from 'react-helmet-async';
 import { siteFavIcon } from '../utils/constants';
 import HeroesSwiper from '../components/Heroes/HeroesSwiper';
+import HeroesBar from '../components/HeroesBar/HeroesBar';
 
 interface Props {
   teams: Team[];
@@ -21,7 +22,7 @@ const Heroes: React.FC<Props> = ({ teams, members, mobile }) => {
         />
         <link rel="icon" href={siteFavIcon} type="image/x-icon" sizes="16x16" />
       </Helmet>
-
+      <HeroesBar mobile={mobile} />
       {teams.map((team) => (
         <HeroesSwiper
           members={members.filter((member) => member.teamId === team.teamId)}

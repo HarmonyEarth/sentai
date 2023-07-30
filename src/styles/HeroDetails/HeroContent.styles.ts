@@ -13,7 +13,6 @@ export const SenshiContainer = styled.div`
   flex-direction: column;
   text-transform: uppercase;
 
-  user-select: none;
   line-height: 0.8;
   h1,
   h2 {

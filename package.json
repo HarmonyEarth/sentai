@@ -9,8 +9,6 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "@emotion/react": "^11.10.6",
-    "@emotion/styled": "^11.10.6",
     "@mui/material": "^5.11.15",
     "@reduxjs/toolkit": "^1.9.3",
     "firebase": "^9.18.0",

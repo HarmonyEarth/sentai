@@ -7,11 +7,12 @@ import {
   SenshiBarLeft,
   SenshiBarLeftSymbol,
 } from '../../styles/HeroesBar/HeroesBar.styles';
+import { siteFavIcon } from '../../utils/constants';
 
 interface Props {
-  heroSymbol: string;
-  heroNameEN1: string;
-  heroNameEN2: string;
+  heroSymbol?: string;
+  heroNameEN1?: string;
+  heroNameEN2?: string;
   mobile: boolean;
 }
 
@@ -31,10 +32,17 @@ const HeroesBar: React.FC<Props> = ({
       </SenshiBarTitleContainer>
       <SenshiBar mobile={mobile}>
         <SenshiBarLeft>
-          <SenshiBarLeftSymbol src={heroSymbol} alt={`${heroNameEN2} Symbol`} />
-          <h3>
-            {heroNameEN1} / {heroNameEN2}
-          </h3>
+          <SenshiBarLeftSymbol
+            src={heroSymbol || siteFavIcon}
+            alt={`${heroNameEN2 || 'Super Sentai'} Symbol`}
+          />
+          {!heroNameEN1 || !heroNameEN2 ? (
+            <h3>Display Heroes</h3>
+          ) : (
+            <h3>
+              {heroNameEN1} / {heroNameEN2}
+            </h3>
+          )}
         </SenshiBarLeft>
       </SenshiBar>
     </>
