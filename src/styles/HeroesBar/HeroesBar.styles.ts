@@ -104,6 +104,6 @@ export const SenshiBarLeft = styled.div`
 `;
 
 export const SenshiBarLeftSymbol = styled(LazyImage)`
-  height: 100%;
-  width: auto;
+  max-height: 60px;
+  max-width: 60px;
 `;

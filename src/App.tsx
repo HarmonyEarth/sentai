@@ -1,6 +1,5 @@
 import { Suspense, lazy, useEffect, useState } from 'react';
 import { Routes, Route } from 'react-router-dom';
-
 import Navbar from './components/Navbar/Navbar';
 import { Toaster } from 'react-hot-toast';
 import RequireAuth from './HOC/RequireAuth';
@@ -152,7 +151,7 @@ function App() {
                 <Suspense fallback={<Loading />}>
                   <EditMember
                     members={members}
-                    teams={completeTeams}
+                    teams={teams}
                     mobile={mobile}
                     screenSizes={screenSizes}
                   />

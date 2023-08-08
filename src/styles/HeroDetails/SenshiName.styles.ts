@@ -15,7 +15,7 @@ export const SenshiNameContainer = styled.div<{ mobile: boolean }>`
   h2 {
     margin: 0;
     display: block;
-    padding: 10px 0px;
+    padding: 10px 2px;
   }
   z-index: ${(props) => (props.mobile ? 1 : 0)};
   cursor: ${(props) => props.mobile && 'pointer'};

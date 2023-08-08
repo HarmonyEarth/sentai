@@ -42,6 +42,7 @@ export const SeriesYearText = styled.h1`
 export const SeriesTeamText = styled.h1`
   font-size: 20px;
   z-index: 1;
+  white-space: nowrap;
 `;
 
 export const SeriesSymbol = styled(LazyImage)`
