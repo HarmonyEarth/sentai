@@ -17,8 +17,7 @@ const AllTeams: React.FC<Props> = ({ teams, mobile }) => {
     <Swiper
       freeMode={true}
       modules={[FreeMode]}
-      spaceBetween={mobile ? 200 : 0}
-      slidesPerView={mobile ? 2.5 : 3.3}
+      slidesPerView={mobile ? 1.5 : 2.3}
     >
       {teams.map((team) => (
         <SwiperSlide key={team.teamId}>
@@ -26,7 +25,7 @@ const AllTeams: React.FC<Props> = ({ teams, mobile }) => {
             <LazyImage
               src={String(team.logo)}
               alt={team.fullTeamNameEN}
-              height={mobile ? '80px' : '150px'}
+              height={mobile ? '80px' : '120px'}
             />
           </Link>
         </SwiperSlide>
