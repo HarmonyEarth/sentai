@@ -55,6 +55,25 @@ const SenshiName: React.FC<Props> = ({
     location: locationJP,
   });
 
+  let margin = '';
+
+  if (locationEN === locationJP) {
+    margin = '96px';
+  } else if (
+    (locationEN === locationText.bottomRight &&
+      locationJP === locationText.bottomLeft) ||
+    (locationEN === locationText.bottomLeft &&
+      locationJP === locationText.bottomRight) ||
+    (locationEN === locationText.topLeft &&
+      locationJP === locationText.topRight) ||
+    (locationEN === locationText.topRight &&
+      locationJP === locationText.topLeft)
+  ) {
+    margin = '6rem';
+  } else {
+    margin = '0px';
+  }
+
   return (
     <SenshiNameContainer mobile={mobile} onClick={mobile ? onClick : undefined}>
       <SenshiNameTextContainer
@@ -62,17 +81,7 @@ const SenshiName: React.FC<Props> = ({
         bottom={mainTextLocation.bottom}
         left={mainTextLocation.left}
         right={mainTextLocation.right}
-        marginBottom={
-          locationEN === locationJP
-            ? '96px'
-            : locationEN === locationText.bottomRight &&
-              locationJP === locationText.bottomLeft
-            ? '6rem'
-            : locationEN === locationText.bottomLeft &&
-              locationJP === locationText.bottomRight
-            ? '6rem'
-            : '0px'
-        }
+        marginBottom={margin}
       >
         <SenshiNameMainText mobile={mobile}>{heroNameEN}</SenshiNameMainText>
       </SenshiNameTextContainer>
@@ -81,17 +90,7 @@ const SenshiName: React.FC<Props> = ({
         bottom={secondaryTextLocation.bottom}
         left={secondaryTextLocation.left}
         right={secondaryTextLocation.right}
-        marginTop={
-          locationEN === locationJP
-            ? '96px'
-            : locationEN === locationText.topLeft &&
-              locationJP === locationText.topRight
-            ? '6rem'
-            : locationEN === locationText.topRight &&
-              locationJP === locationText.topLeft
-            ? '6rem'
-            : '0px'
-        }
+        marginTop={margin}
       >
         <SenshiNameSecondaryText mobile={mobile}>
           {heroNameJP}

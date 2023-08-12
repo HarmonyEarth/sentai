@@ -8,11 +8,17 @@ import {
 
 interface Props {
   heroImage1: string;
+
   color: string;
   mobile: boolean;
 }
 
-const HeroBackground: React.FC<Props> = ({ heroImage1, color, mobile }) => {
+const HeroBackground: React.FC<Props> = ({
+  heroImage1,
+
+  color,
+  mobile,
+}) => {
   return (
     <SenshiBackgroundContainer>
       <SenshiBackgroundColor color={color} mobile={mobile}>

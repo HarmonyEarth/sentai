@@ -11,10 +11,9 @@ import {
   memberInputImageLocation,
   memberInputNameLocationData,
 } from '../../models/team';
-
 import FormInput from '../CMS/FormInput';
 import FormSelect from '../CMS/FormSelect';
-import { Grid } from '@mui/material';
+import Grid from '@mui/material/Grid/Grid';
 import makeItWEBP from '../../utils/makeItWEBP';
 
 interface Props {

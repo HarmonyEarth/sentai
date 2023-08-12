@@ -1,5 +1,5 @@
-import { Grid } from '@mui/material';
 import React, { useState } from 'react';
+import Grid from '@mui/material/Grid/Grid';
 import useFileUpload from '../../hooks/useFileUpload';
 import { FileState, Team } from '../../models/types';
 import FormImage from '../CMS/FormImage';

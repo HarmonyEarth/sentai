@@ -93,6 +93,7 @@ const HeroDetails: React.FC<Props> = ({
           mobile={mobile}
           screenSizes={screenSizes}
         />
+
         <AllHeroes members={membersByYear} />
       </HeroDetailsContainer>
     </>

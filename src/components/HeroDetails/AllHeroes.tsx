@@ -20,7 +20,6 @@ const AllHeroes: React.FC<Props> = ({ members }) => {
     <AllHeroesSwiper
       freeMode={true}
       modules={[FreeMode]}
-      spaceBetween={4}
       breakpoints={{
         200: { slidesPerView: 2.5 },
         370: { slidesPerView: 3.4 },

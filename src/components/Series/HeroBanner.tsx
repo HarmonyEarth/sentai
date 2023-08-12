@@ -1,5 +1,5 @@
 import React from 'react';
-import { Grid } from '@mui/material';
+import Grid from '@mui/material/Grid/Grid';
 import { Link } from 'react-router-dom';
 import HeroCard from './HeroCard';
 import Title from './Title';
@@ -30,6 +30,7 @@ const HeroBanner: React.FC<Props> = ({ teams, members, mobile }) => {
           >
             <HeroCard
               heroImage2={String(shuffledMember.heroImage2)}
+              heroNameEN2={shuffledMember.heroNameEN2}
               mobile={mobile}
             />
           </Grid>
@@ -59,6 +60,7 @@ const HeroBanner: React.FC<Props> = ({ teams, members, mobile }) => {
           >
             <HeroCard
               heroImage2={String(shuffledMember.heroImage2)}
+              heroNameEN2={shuffledMember.heroNameEN2}
               mobile={mobile}
             />
           </Grid>

@@ -29,9 +29,9 @@ const TeamCard: React.FC<Props> = ({
       <SeriesLeftSide isMobile={mobile}>
         <SeriesYearText>{year}</SeriesYearText>
         <SeriesTeamText>{shortTeamName}</SeriesTeamText>
-        <SeriesSymbol src={symbol} />
+        <SeriesSymbol src={symbol} alt={`${shortTeamName} Symbol`} />
       </SeriesLeftSide>
-      <SeriesLogo src={logo} />
+      <SeriesLogo src={logo} alt={`${shortTeamName} Logo`} />
     </SeriesCard>
   );
 };

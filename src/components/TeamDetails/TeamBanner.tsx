@@ -1,5 +1,5 @@
 import React from 'react';
-import { Grid } from '@mui/material';
+import Grid from '@mui/material/Grid/Grid';
 import TeamMember from './TeamMember';
 import { Link } from 'react-router-dom';
 import { teamMemberGridSlots } from '../../utils/teamMemberGridSlots';
@@ -27,6 +27,8 @@ const TeamBanner: React.FC<Props> = ({ members, mobile }) => {
               to={`/${member.teamId}/${member.heroId}`}
             >
               <TeamMember
+                heroNameEN1={member.heroNameEN1}
+                heroNameEN2={member.heroNameEN2}
                 heroImage3={String(member.heroImage3)}
                 heroImage4={String(member.heroImage4)}
                 color={member.color}
@@ -47,6 +49,8 @@ const TeamBanner: React.FC<Props> = ({ members, mobile }) => {
               to={`/${member.teamId}/${member.heroId}`}
             >
               <TeamMember
+                heroNameEN1={member.heroNameEN1}
+                heroNameEN2={member.heroNameEN2}
                 heroImage3={String(member.heroImage3)}
                 heroImage4={String(member.heroImage4)}
                 color={member.color}
@@ -67,6 +71,8 @@ const TeamBanner: React.FC<Props> = ({ members, mobile }) => {
               to={`/${member.teamId}/${member.heroId}`}
             >
               <TeamMember
+                heroNameEN1={member.heroNameEN1}
+                heroNameEN2={member.heroNameEN2}
                 heroImage3={String(member.heroImage3)}
                 heroImage4={String(member.heroImage4)}
                 color={member.color}

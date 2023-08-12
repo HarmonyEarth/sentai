@@ -1,6 +1,5 @@
 import { Suspense, lazy, useEffect, useState } from 'react';
 import { Routes, Route } from 'react-router-dom';
-
 import Navbar from './components/Navbar/Navbar';
 import { Toaster } from 'react-hot-toast';
 import RequireAuth from './HOC/RequireAuth';
@@ -9,7 +8,8 @@ import { useAppDispatch } from './hooks/reduxTypedHooks';
 import { trackAuthStatus } from './auth';
 import { logUserIn, logUserOut } from './rtk/slice/userSlice';
 import { streamMembers, streamTeams } from './firebase';
-import { useMediaQuery, useTheme } from '@mui/material';
+import useMediaQuery from '@mui/material/useMediaQuery/useMediaQuery';
+import useTheme from '@mui/material/styles/useTheme';
 import { HelmetProvider } from 'react-helmet-async';
 import Loading from './components/Loading/Loading';
 import { Member, Team } from './models/types';
@@ -151,7 +151,7 @@ function App() {
                 <Suspense fallback={<Loading />}>
                   <EditMember
                     members={members}
-                    teams={completeTeams}
+                    teams={teams}
                     mobile={mobile}
                     screenSizes={screenSizes}
                   />

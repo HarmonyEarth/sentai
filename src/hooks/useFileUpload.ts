@@ -1,15 +1,12 @@
 import React, { useEffect, useState, useRef, useLayoutEffect } from 'react';
 import { ref, uploadBytesResumable, getDownloadURL } from 'firebase/storage';
 import { storage } from '../firebase';
-import { FileState, Member, Team } from '../models/types';
 
-interface Props {
+interface Props<T> {
   file: File;
   fileId: string;
   docId: string;
-  setFile:
-    | React.Dispatch<React.SetStateAction<Team>>
-    | React.Dispatch<React.SetStateAction<Member>>;
+  setFile: React.Dispatch<React.SetStateAction<T>>;
   structure: string;
   year?: number | string;
 }
@@ -22,14 +19,14 @@ const useCallbackRef = (callback: any) => {
   return callbackRef;
 };
 
-const useFileUpload = ({
+const useFileUpload = <T>({
   file,
   docId,
   fileId,
   setFile,
   structure,
   year,
-}: Props) => {
+}: Props<T>) => {
   //Upload Percentage
   const [percent, setPercent] = useState<number | null>(null);
 
@@ -81,7 +78,7 @@ const useFileUpload = ({
         },
         () => {
           getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
-            addFileToData.current?.((prev: FileState) => ({
+            addFileToData.current?.((prev: T) => ({
               ...prev,
               [fileId]: downloadURL,
             }));

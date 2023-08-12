@@ -8,9 +8,9 @@ import {
   SenshiSwiperStateImage,
 } from '../../styles/Heroes/HeroesSwiper.styles';
 import { Member, Team } from '../../models/types';
-import { Grid } from '@mui/material';
-
+import Grid from '@mui/material/Grid/Grid';
 import { Link } from 'react-router-dom';
+import LazyImage from '../Loading/LazyImage';
 
 interface Props {
   team: Team;
@@ -23,31 +23,51 @@ const HeroesSwiper: React.FC<Props> = ({ team, members }) => {
 
   return (
     <Grid container>
-      <h1>{team.fullTeamNameEN}</h1>
-
-      <SenshiSwiper
-        loop={true}
-        slidesPerView={1}
-        modules={[A11y]}
-        a11y={{
-          prevSlideMessage: 'Previous Hero',
-          nextSlideMessage: 'Next Hero',
-        }}
-        onInit={(swiperInstance) => setSwiper((prev) => swiperInstance)}
-        onRealIndexChange={(swiperInstance) =>
-          setActiveIndex((prev) => swiperInstance.realIndex)
-        }
-      >
-        {members.map((member) => (
-          <SwiperSlide>
-            <Link to={`/${member.teamId}/${member.heroId}`}>
-              <SenshiSwiperStateImage src={String(member.heroImage3)} />
-              <SenshiSwiperStateImage src={String(member.heroImage4)} />
-            </Link>
-          </SwiperSlide>
+      <Grid item md={6}>
+        <h1>{team.fullTeamNameEN}</h1>
+        <button onClick={() => swiper?.slidePrev()}>Backward</button>
+        {members.map((member, index) => (
+          <LazyImage
+            key={member.id}
+            src={String(member.heroHelmet)}
+            alt=""
+            height={'50px'}
+            onClick={() => swiper?.slideTo(index)}
+          />
         ))}
-      </SenshiSwiper>
-      <p>{members[activeIndex].heroNameEN1}</p>
+        <button onClick={() => swiper?.slideNext()}>Forward</button>
+      </Grid>
+      <Grid item md={6}>
+        <SenshiSwiper
+          loop={true}
+          slidesPerView={1}
+          modules={[A11y]}
+          a11y={{
+            prevSlideMessage: 'Previous Hero',
+            nextSlideMessage: 'Next Hero',
+          }}
+          onInit={(swiperInstance) => setSwiper((prev) => swiperInstance)}
+          onRealIndexChange={(swiperInstance) =>
+            setActiveIndex((prev) => swiperInstance.realIndex)
+          }
+        >
+          {members.map((member) => (
+            <SwiperSlide>
+              <Link to={`/${member.teamId}/${member.heroId}`}>
+                <SenshiSwiperStateImage
+                  src={String(member.heroImage3)}
+                  alt={member.heroNameEN1}
+                />
+                <SenshiSwiperStateImage
+                  src={String(member.heroImage4)}
+                  alt={member.heroNameEN2}
+                />
+              </Link>
+            </SwiperSlide>
+          ))}
+        </SenshiSwiper>
+        <p>{members[activeIndex].heroNameEN1}</p>
+      </Grid>
     </Grid>
   );
 };

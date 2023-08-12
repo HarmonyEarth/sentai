@@ -18,6 +18,9 @@ const FormImage: React.FC<Props> = ({
   imageName,
   mobile,
 }) => {
+  let word = imageName;
+  const capitalizedWord = word.charAt(0).toUpperCase() + word.slice(1);
+
   return (
     <>
       <LazyImage
@@ -33,7 +36,7 @@ const FormImage: React.FC<Props> = ({
         width={'auto'}
       />
 
-      <h3>{imageName}</h3>
+      <h3>{capitalizedWord}</h3>
       <p>
         {(imagePercent !== null && imagePercent < 100 && 'File Uploading') ||
           (imagePercent === 100 && 'File Uploaded')}

@@ -1,5 +1,5 @@
 import React from 'react';
-import { Grid } from '@mui/material';
+import Grid from '@mui/material/Grid/Grid';
 import {
   TeamBioContainer,
   TeamBioImage,
@@ -18,10 +18,18 @@ const TeamBio: React.FC<Props> = ({ team, mobile }) => {
   return (
     <TeamBioContainer container mobile={mobile}>
       <Grid item xs={6} md={3}>
-        <TeamBioImage src={String(team.symbol)} mobile={mobile} />
+        <TeamBioImage
+          src={String(team.symbol)}
+          mobile={mobile}
+          alt={`${team.shortTeamName} Symbol`}
+        />
       </Grid>
       <Grid item xs={6} md={3}>
-        <TeamBioImage src={String(team.logo)} mobile={mobile} />
+        <TeamBioImage
+          src={String(team.logo)}
+          mobile={mobile}
+          alt={`${team.shortTeamName} Logo`}
+        />
       </Grid>
       <Grid
         container={mobile ? true : false}
