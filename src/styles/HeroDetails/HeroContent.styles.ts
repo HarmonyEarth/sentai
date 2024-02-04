@@ -76,6 +76,6 @@ export const SenshiImage = styled(LazyImage)<Props>`
   left: ${(props) => (props.locationLeft && !props.extraSmall ? 0 : 'unset')};
   right: ${(props) => (props.locationRight && !props.extraSmall ? 0 : 'unset')};
   scale: 1.1;
-  height: 60rem;
+  height: 85vh;
   cursor: pointer;
 `;

@@ -55,7 +55,7 @@ const SenshiName: React.FC<Props> = ({
     location: locationJP,
   });
 
-  let margin = '';
+  let margin = '0px';
 
   if (locationEN === locationJP) {
     margin = '96px';
@@ -70,8 +70,6 @@ const SenshiName: React.FC<Props> = ({
       locationJP === locationText.topLeft)
   ) {
     margin = '6rem';
-  } else {
-    margin = '0px';
   }
 
   return (
