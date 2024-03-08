@@ -2,4 +2,4 @@
 
 This app allows you to view information with teams from the Super Sentai series. You can explore and interact with 45 years of heroes. The design is based off the [Super Smash Bros. Ultimate](https://www.smashbros.com/en_US/fighter/index.html) website.
 
-![Super Sentai Series Logo](https://static.wikia.nocookie.net/powerrangers/images/5/5b/Super_Sentai_logo.png)
+![Super Sentai Series Logo](https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/ed991cf4-7c8c-4530-b6ba-a3abf3ab2eae/ddya5md-df079af1-19e8-48d6-96a1-158afec15c84.png/v1/fill/w_1600,h_729/super_sentai_series_logo_by_joshuat1306_ddya5md-fullview.png?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOjdlMGQxODg5ODIyNjQzNzNhNWYwZDQxNWVhMGQyNmUwIiwiaXNzIjoidXJuOmFwcDo3ZTBkMTg4OTgyMjY0MzczYTVmMGQ0MTVlYTBkMjZlMCIsIm9iaiI6W1t7ImhlaWdodCI6Ijw9NzI5IiwicGF0aCI6IlwvZlwvZWQ5OTFjZjQtN2M4Yy00NTMwLWI2YmEtYTNhYmYzYWIyZWFlXC9kZHlhNW1kLWRmMDc5YWYxLTE5ZTgtNDhkNi05NmExLTE1OGFmZWMxNWM4NC5wbmciLCJ3aWR0aCI6Ijw9MTYwMCJ9XV0sImF1ZCI6WyJ1cm46c2VydmljZTppbWFnZS5vcGVyYXRpb25zIl19.1E8udzzi8B2UCcHcwt9R7N6JQg4flNeLh0mVGU1WfF0)
