@@ -1,4 +1,4 @@
-import React from 'react';
+import React from "react";
 import {
   SenshiBar,
   SenshiBarTitleContainer,
@@ -6,8 +6,8 @@ import {
   SenshiBarText,
   SenshiBarLeft,
   SenshiBarLeftSymbol,
-} from '../../styles/HeroesBar/HeroesBar.styles';
-import { siteFavIcon } from '../../utils/constants';
+} from "../../styles/HeroesBar/HeroesBar.styles";
+import { siteFavIcon } from "../../constants";
 
 interface Props {
   heroSymbol?: string;
@@ -34,7 +34,7 @@ const HeroesBar: React.FC<Props> = ({
         <SenshiBarLeft>
           <SenshiBarLeftSymbol
             src={heroSymbol || siteFavIcon}
-            alt={`${heroNameEN2 || 'Super Sentai'} Symbol`}
+            alt={`${heroNameEN2 || "Super Sentai"} Symbol`}
           />
           {!heroNameEN1 || !heroNameEN2 ? (
             <h3>Display Heroes</h3>

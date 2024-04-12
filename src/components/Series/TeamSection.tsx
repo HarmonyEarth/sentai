@@ -1,8 +1,8 @@
-import React from 'react';
-import Grid from '@mui/material/Grid/Grid';
-import { Link } from 'react-router-dom';
-import TeamCard from './TeamCard';
-import { Team } from '../../models/types';
+import React from "react";
+import Grid from "@mui/material/Grid/Grid";
+import { Link } from "react-router-dom";
+import TeamCard from "./TeamCard";
+import { Team } from "../../types";
 
 interface Props {
   teams: Team[];
@@ -11,16 +11,16 @@ interface Props {
 
 const TeamSection: React.FC<Props> = ({ teams, mobile }) => {
   return (
-    <Grid container>
+    <Grid container px={mobile ? undefined : 20}>
       {teams.map((team) => (
         <Grid
           item
           xs={12}
           sm={6}
-          md={4}
+          lg={4}
           component={Link}
           to={`/${team.teamId}`}
-          sx={{ textDecoration: 'none' }}
+          sx={{ textDecoration: "none" }}
           key={team.teamId}
         >
           <TeamCard

@@ -1,4 +1,4 @@
-import { imageLocationText } from './constants';
+import { imageLocationText } from "../constants";
 
 interface Props {
   locationImage: string;

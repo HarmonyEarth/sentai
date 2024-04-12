@@ -1,10 +1,10 @@
-import React, { useState } from 'react';
-import Grid from '@mui/material/Grid/Grid';
-import useFileUpload from '../../hooks/useFileUpload';
-import { FileState, Team } from '../../models/types';
-import FormImage from '../CMS/FormImage';
+import React, { useState } from "react";
+import Grid from "@mui/material/Grid/Grid";
+import useFileUpload from "../../hooks/useFileUpload";
+import { FileState, Team } from "../../types";
+import FormImage from "../CMS/FormImage";
 
-import TeamForm from './TeamForm';
+import TeamForm from "./TeamForm";
 
 interface Props {
   docId: string;
@@ -22,15 +22,15 @@ const TeamFormSection: React.FC<Props> = ({ docId, currentTeam, mobile }) => {
   const logoPercent = useFileUpload({
     file: logo as File,
     setFile: setTeamData,
-    fileId: 'logo',
-    structure: 'team',
+    fileId: "logo",
+    structure: "team",
     docId,
   });
   const symbolPercent = useFileUpload({
     file: symbol as File,
     setFile: setTeamData,
-    fileId: 'symbol',
-    structure: 'team',
+    fileId: "symbol",
+    structure: "team",
     docId,
   });
 
@@ -44,7 +44,7 @@ const TeamFormSection: React.FC<Props> = ({ docId, currentTeam, mobile }) => {
               firestoreImage={String(teamData.logo)}
               image={logo}
               imagePercent={logoPercent}
-              imageName={'logo'}
+              imageName={"logo"}
             />
           </Grid>
           <Grid item xs={6} md={3}>
@@ -53,7 +53,7 @@ const TeamFormSection: React.FC<Props> = ({ docId, currentTeam, mobile }) => {
               firestoreImage={String(teamData.symbol)}
               image={symbol}
               imagePercent={symbolPercent}
-              imageName={'symbol'}
+              imageName={"symbol"}
             />
           </Grid>
         </Grid>

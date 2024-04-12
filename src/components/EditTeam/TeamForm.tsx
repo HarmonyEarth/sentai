@@ -1,11 +1,11 @@
-import { doc, updateDoc } from 'firebase/firestore';
-import React from 'react';
-import { useNavigate } from 'react-router-dom';
-import { db } from '../../firebase';
-import { FileState, Team } from '../../models/types';
-import { teamInputData, teamInputFileData } from '../../models/team';
-import FormInput from '../CMS/FormInput';
-import makeItWEBP from '../../utils/makeItWEBP';
+import { doc, updateDoc } from "firebase/firestore";
+import React from "react";
+import { useNavigate } from "react-router-dom";
+import { db } from "../../firebase";
+import { FileState, Team } from "../../types";
+import { teamInputData, teamInputFileData } from "../../constants";
+import FormInput from "../CMS/FormInput";
+import replaceWithWEBP from "../../utils/replaceWithWEBP";
 
 interface Props {
   symbolPercent: number | null;
@@ -34,14 +34,14 @@ const TeamForm: React.FC<Props> = ({
     const file =
       e.target.files && e.target.files.length !== 0 && e.target.files[0];
 
-    if (id === 'symbol' && file) {
-      makeItWEBP({
+    if (id === "symbol" && file) {
+      replaceWithWEBP({
         filename: id,
         rawFile: file,
         setImage: setSymbol,
       });
-    } else if (id === 'logo' && file) {
-      makeItWEBP({
+    } else if (id === "logo" && file) {
+      replaceWithWEBP({
         filename: id,
         rawFile: file,
         setImage: setLogo,
@@ -52,14 +52,14 @@ const TeamForm: React.FC<Props> = ({
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    const teamDoc = doc(db, 'teams', docId);
+    const teamDoc = doc(db, "teams", docId);
     try {
       await updateDoc(teamDoc, {
         ...teamData,
       });
-      navigate('/cms');
+      navigate("/cms");
     } catch (err) {
-      console.log('error', err);
+      console.log("error", err);
     }
   };
 
@@ -70,7 +70,7 @@ const TeamForm: React.FC<Props> = ({
         return (
           <FormInput
             key={teamFormData.formData}
-            placeholder={String(teamFormData.placeholder) ?? ''}
+            placeholder={String(teamFormData.placeholder) ?? ""}
             teamFormData={teamFormData.formData}
             type={teamFormData.type}
             id={teamFormData.formData}
@@ -89,7 +89,7 @@ const TeamForm: React.FC<Props> = ({
           id={teamInputFile.formData}
           readonly={false}
           handleInput={handleTeamInput}
-          accept={teamInputFile.accept ?? ''}
+          accept={teamInputFile.accept ?? ""}
         />
       ))}
 

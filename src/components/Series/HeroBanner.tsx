@@ -1,10 +1,10 @@
-import React from 'react';
-import Grid from '@mui/material/Grid/Grid';
-import { Link } from 'react-router-dom';
-import HeroCard from './HeroCard';
-import Title from './Title';
-import { shuffle } from '../../utils/shuffle';
-import { Member, Team } from '../../models/types';
+import React from "react";
+import Grid from "@mui/material/Grid/Grid";
+import { Link } from "react-router-dom";
+import HeroCard from "./HeroCard";
+import Title from "./Title";
+import { shuffle } from "../../utils/shuffle";
+import { Member, Team } from "../../types";
 
 interface Props {
   teams: Team[];

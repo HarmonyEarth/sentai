@@ -1,11 +1,11 @@
-import React from 'react';
-import { Swiper, SwiperSlide } from 'swiper/react';
-import 'swiper/css';
-import 'swiper/css/free-mode';
-import { FreeMode } from 'swiper';
-import { Link } from 'react-router-dom';
-import LazyImage from '../Loading/LazyImage';
-import { Team } from '../../models/types';
+import React from "react";
+import { Swiper, SwiperSlide } from "swiper/react";
+import "swiper/css";
+import "swiper/css/free-mode";
+import { FreeMode } from "swiper";
+import { Link } from "react-router-dom";
+import LazyImage from "../Loading/LazyImage";
+import { Team } from "../../types";
 
 interface Props {
   teams: Team[];
@@ -25,7 +25,7 @@ const AllTeams: React.FC<Props> = ({ teams, mobile }) => {
             <LazyImage
               src={String(team.logo)}
               alt={team.fullTeamNameEN}
-              height={mobile ? '80px' : '120px'}
+              height={mobile ? "80px" : "120px"}
             />
           </Link>
         </SwiperSlide>

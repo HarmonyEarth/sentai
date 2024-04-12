@@ -1,15 +1,15 @@
-import React from 'react';
-import { SwiperSlide } from 'swiper/react';
-import 'swiper/css';
-import 'swiper/css/free-mode';
-import { FreeMode } from 'swiper';
-import { Link } from 'react-router-dom';
+import React from "react";
+import { SwiperSlide } from "swiper/react";
+import "swiper/css";
+import "swiper/css/free-mode";
+import { FreeMode } from "swiper";
+import { Link } from "react-router-dom";
 import {
   AllHeroesSwiper,
   HeroSlide,
-} from '../../styles/HeroDetails/AllHeroes.styles';
-import LazyImage from '../Loading/LazyImage';
-import { Member } from '../../models/types';
+} from "../../styles/HeroDetails/AllHeroes.styles";
+import LazyImage from "../Loading/LazyImage";
+import { Member } from "../../types";
 
 interface Props {
   members: Member[];

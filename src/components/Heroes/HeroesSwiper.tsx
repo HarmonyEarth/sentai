@@ -1,16 +1,16 @@
-import React, { useState } from 'react';
-import { A11y } from 'swiper';
-import 'swiper/css';
-import { SwiperSlide } from 'swiper/react';
-import { Swiper } from 'swiper/types';
+import React, { useState } from "react";
+import { A11y } from "swiper";
+import "swiper/css";
+import { SwiperSlide } from "swiper/react";
+import { Swiper } from "swiper/types";
 import {
   SenshiSwiper,
   SenshiSwiperStateImage,
-} from '../../styles/Heroes/HeroesSwiper.styles';
-import { Member, Team } from '../../models/types';
-import Grid from '@mui/material/Grid/Grid';
-import { Link } from 'react-router-dom';
-import LazyImage from '../Loading/LazyImage';
+} from "../../styles/Heroes/HeroesSwiper.styles";
+import { Member, Team } from "../../types";
+import Grid from "@mui/material/Grid/Grid";
+import { Link } from "react-router-dom";
+import LazyImage from "../Loading/LazyImage";
 
 interface Props {
   team: Team;
@@ -31,7 +31,7 @@ const HeroesSwiper: React.FC<Props> = ({ team, members }) => {
             key={member.id}
             src={String(member.heroHelmet)}
             alt=""
-            height={'50px'}
+            height={"50px"}
             onClick={() => swiper?.slideTo(index)}
           />
         ))}
@@ -43,8 +43,8 @@ const HeroesSwiper: React.FC<Props> = ({ team, members }) => {
           slidesPerView={1}
           modules={[A11y]}
           a11y={{
-            prevSlideMessage: 'Previous Hero',
-            nextSlideMessage: 'Next Hero',
+            prevSlideMessage: "Previous Hero",
+            nextSlideMessage: "Next Hero",
           }}
           onInit={(swiperInstance) => setSwiper((prev) => swiperInstance)}
           onRealIndexChange={(swiperInstance) =>

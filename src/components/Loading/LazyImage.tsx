@@ -1,11 +1,11 @@
-import React, { useEffect, useRef, useState } from 'react';
-import { siteLogo } from '../../utils/constants';
+import React, { useEffect, useRef, useState } from "react";
+import { siteLogo } from "../../constants";
 
 const loadingGif =
-  'https://firebasestorage.googleapis.com/v0/b/sentai-a6af6.appspot.com/o/images%2Floading%2Floading.webp?alt=media&token=35440339-02c8-4359-8a1e-4bce81879278';
+  "https://firebasestorage.googleapis.com/v0/b/sentai-a6af6.appspot.com/o/images%2Floading%2Floading.webp?alt=media&token=35440339-02c8-4359-8a1e-4bce81879278";
 
 const errorImage =
-  'https://firebasestorage.googleapis.com/v0/b/sentai-a6af6.appspot.com/o/images%2Floading%2FerrorLoading.png?alt=media&token=6b86061b-54e0-4b12-9062-a2113a3eadb9';
+  "https://firebasestorage.googleapis.com/v0/b/sentai-a6af6.appspot.com/o/images%2Floading%2FerrorLoading.png?alt=media&token=6b86061b-54e0-4b12-9062-a2113a3eadb9";
 
 interface Props {
   src: string;
@@ -70,7 +70,7 @@ const LazyImage: React.FC<Props> = ({
     <img
       src={siteLogo}
       ref={imgRef}
-      alt={'Placeholder'}
+      alt={"Placeholder"}
       loading="lazy"
       className={className}
       height={height}

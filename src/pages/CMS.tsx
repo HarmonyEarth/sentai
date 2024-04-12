@@ -1,13 +1,13 @@
-import React, { useMemo, useState } from 'react';
-import Grid from '@mui/material/Grid/Grid';
-import { Link } from 'react-router-dom';
-import DeleteButton from '../components/CMS/DeleteButton';
-import NewButton from '../components/CMS/NewButton';
-import { noImageIcon, siteFavIcon } from '../utils/constants';
-import { sortMembersByYear } from '../utils/sortMembersByYear';
-import { Helmet } from 'react-helmet-async';
-import LazyImage from '../components/Loading/LazyImage';
-import { Member, Team } from '../models/types';
+import React, { useMemo, useState } from "react";
+import Grid from "@mui/material/Grid/Grid";
+import { Link } from "react-router-dom";
+import DeleteButton from "../components/CMS/DeleteButton";
+import NewButton from "../components/CMS/NewButton";
+import { Purpose, noImageIcon, siteFavIcon } from "../constants";
+import { sortMembersByYear } from "../utils/sortMembersByYear";
+import { Helmet } from "react-helmet-async";
+import LazyImage from "../components/Loading/LazyImage";
+import { Member, Team } from "../types";
 
 interface Props {
   teams: Team[];
@@ -33,7 +33,7 @@ const CMS: React.FC<Props> = ({ teams, members }) => {
           <Grid item xs={6}>
             <br />
             <NewButton
-              purpose="team"
+              purpose={Purpose.Team}
               clicked={clicked}
               setClicked={setClicked}
             />
@@ -41,7 +41,7 @@ const CMS: React.FC<Props> = ({ teams, members }) => {
           <Grid item>
             <br />
             <NewButton
-              purpose="member"
+              purpose={Purpose.Member}
               clicked={clicked}
               setClicked={setClicked}
             />
@@ -57,7 +57,7 @@ const CMS: React.FC<Props> = ({ teams, members }) => {
                 <LazyImage
                   src={String(team.symbol) || noImageIcon}
                   alt={`${team.shortTeamName} Symbol`}
-                  height={'150px'}
+                  height={"150px"}
                 />
                 <h4>{`${team.year} ${team.shortTeamName}`}</h4>
                 <Link to={`/${team.teamId}`}>
@@ -70,7 +70,7 @@ const CMS: React.FC<Props> = ({ teams, members }) => {
                   clicked={clicked}
                   setClicked={setClicked}
                   docId={team.id}
-                  purpose={'team'}
+                  purpose={Purpose.Team}
                 />
               </Grid>
             ))}
@@ -86,7 +86,7 @@ const CMS: React.FC<Props> = ({ teams, members }) => {
                 <LazyImage
                   src={String(member.heroImage1) || noImageIcon}
                   alt={`${member.heroNameEN1}`}
-                  height={'150px'}
+                  height={"150px"}
                 />
                 <h4>{member.heroNameEN1}</h4>
                 {member.teamId && (
@@ -101,7 +101,7 @@ const CMS: React.FC<Props> = ({ teams, members }) => {
                   clicked={clicked}
                   setClicked={setClicked}
                   docId={member.id}
-                  purpose={'member'}
+                  purpose={Purpose.Member}
                 />
               </Grid>
             ))}

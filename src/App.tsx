@@ -1,38 +1,38 @@
-import { Suspense, lazy, useEffect, useState } from 'react';
-import { Routes, Route } from 'react-router-dom';
-import Navbar from './components/Navbar/Navbar';
-import { Toaster } from 'react-hot-toast';
-import RequireAuth from './HOC/RequireAuth';
-import useStream from './hooks/useStream';
-import { useAppDispatch } from './hooks/reduxTypedHooks';
-import { trackAuthStatus } from './auth';
-import { logUserIn, logUserOut } from './rtk/slice/userSlice';
-import { streamMembers, streamTeams } from './firebase';
-import useMediaQuery from '@mui/material/useMediaQuery/useMediaQuery';
-import useTheme from '@mui/material/styles/useTheme';
-import { HelmetProvider } from 'react-helmet-async';
-import Loading from './components/Loading/Loading';
-import { Member, Team } from './models/types';
+import { Suspense, lazy, useEffect, useState } from "react";
+import { Routes, Route } from "react-router-dom";
+import Navbar from "./components/Navbar/Navbar";
+import { Toaster } from "react-hot-toast";
+import RequireAuth from "./HOC/RequireAuth";
+import useStream from "./hooks/useStream";
+import { useAppDispatch } from "./hooks/reduxTypedHooks";
+import { trackAuthStatus } from "./auth";
+import { logUserIn, logUserOut } from "./rtk/slice/userSlice";
+import { streamMembers, streamTeams } from "./firebase";
+import useMediaQuery from "@mui/material/useMediaQuery/useMediaQuery";
+import useTheme from "@mui/material/styles/useTheme";
+import { HelmetProvider } from "react-helmet-async";
+import Loading from "./components/Loading/Loading";
+import { Member, Team } from "./types";
 
-const Series = lazy(() => import('./pages/Series'));
-const Heroes = lazy(() => import('./pages/Heroes'));
-const HeroDetails = lazy(() => import('./pages/HeroDetails'));
-const TeamDetails = lazy(() => import('./pages/TeamDetails'));
-const CMS = lazy(() => import('./pages/CMS'));
-const EditTeam = lazy(() => import('./pages/EditTeam'));
-const EditMember = lazy(() => import('./pages/EditMember'));
+const Series = lazy(() => import("./pages/Series"));
+const Heroes = lazy(() => import("./pages/Heroes"));
+const HeroDetails = lazy(() => import("./pages/HeroDetails"));
+const TeamDetails = lazy(() => import("./pages/TeamDetails"));
+const CMS = lazy(() => import("./pages/CMS"));
+const EditTeam = lazy(() => import("./pages/EditTeam"));
+const EditMember = lazy(() => import("./pages/EditMember"));
 
 function App() {
   const [teams, setTeams] = useState<Team[] | null>(null);
   const [members, setMembers] = useState<Member[] | null>(null);
 
   const theme = useTheme();
-  const mobile = useMediaQuery(theme.breakpoints.down('md'));
+  const mobile = useMediaQuery(theme.breakpoints.down("md"));
 
-  const extraSmall = useMediaQuery(theme.breakpoints.down('sm'));
-  const small = useMediaQuery(theme.breakpoints.between('sm', 'md'));
-  const large = useMediaQuery(theme.breakpoints.between('lg', 'xl'));
-  const extraLarge = useMediaQuery(theme.breakpoints.up('xl'));
+  const extraSmall = useMediaQuery(theme.breakpoints.down("sm"));
+  const small = useMediaQuery(theme.breakpoints.between("sm", "md"));
+  const large = useMediaQuery(theme.breakpoints.between("lg", "xl"));
+  const extraLarge = useMediaQuery(theme.breakpoints.up("xl"));
 
   const screenSizes = {
     extraSmall,
