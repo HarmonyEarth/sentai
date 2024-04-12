@@ -1,12 +1,12 @@
-import React from 'react';
+import React from "react";
 import {
   SenshiNameContainer,
   SenshiNameMainText,
   SenshiNameSecondaryText,
   SenshiNameTextContainer,
-} from '../../styles/HeroDetails/SenshiName.styles';
-import { senshiNameLocation } from '../../utils/senshiNameLocation';
-import { locationText } from '../../utils/constants';
+} from "../../styles/HeroDetails/SenshiName.styles";
+import { senshiNameLocation } from "../../utils/senshiNameLocation";
+import { locationText } from "../../constants";
 
 interface Props {
   heroNameEN: string;
@@ -55,10 +55,10 @@ const SenshiName: React.FC<Props> = ({
     location: locationJP,
   });
 
-  let margin = '0px';
+  let margin = "0px";
 
   if (locationEN === locationJP) {
-    margin = '96px';
+    margin = "96px";
   } else if (
     (locationEN === locationText.bottomRight &&
       locationJP === locationText.bottomLeft) ||
@@ -69,7 +69,7 @@ const SenshiName: React.FC<Props> = ({
     (locationEN === locationText.topRight &&
       locationJP === locationText.topLeft)
   ) {
-    margin = '6rem';
+    margin = "6rem";
   }
 
   return (

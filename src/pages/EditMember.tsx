@@ -1,9 +1,9 @@
-import React from 'react';
-import { useParams } from 'react-router-dom';
-import MemberFormSection from '../components/EditMember/MemberFormSection';
-import { Helmet } from 'react-helmet-async';
-import { siteFavIcon } from '../utils/constants';
-import { Member, ScreenSizesType, Team } from '../models/types';
+import React from "react";
+import { useParams } from "react-router-dom";
+import MemberFormSection from "../components/EditMember/MemberFormSection";
+import { Helmet } from "react-helmet-async";
+import { siteFavIcon } from "../constants";
+import { Member, ScreenSizesType, Team } from "../types";
 
 interface Props {
   members: Member[];

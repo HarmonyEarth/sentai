@@ -1,9 +1,10 @@
-import React from 'react';
+import React from "react";
+import { Purpose } from "../../constants";
 
 interface Props<T> {
   arrayData: T[];
   handleMemberSelect: (e: React.ChangeEvent<HTMLSelectElement>) => void;
-  purpose: string;
+  purpose: Purpose;
   optionPreview: (t: T) => string;
   getKey: (t: T) => string;
   getValue: (t: T) => string;

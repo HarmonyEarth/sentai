@@ -1,20 +1,21 @@
-import { doc, updateDoc } from 'firebase/firestore';
-import React from 'react';
-import { toast } from 'react-hot-toast';
-import { useNavigate } from 'react-router-dom';
-import { db } from '../../firebase';
-import { FileState, Member, Team } from '../../models/types';
+import { doc, updateDoc } from "firebase/firestore";
+import React from "react";
+import { toast } from "react-hot-toast";
+import { useNavigate } from "react-router-dom";
+import { db } from "../../firebase";
+import { FileState, Member, Team } from "../../types";
+import FormInput from "../CMS/FormInput";
+import FormSelect from "../CMS/FormSelect";
+import Grid from "@mui/material/Grid/Grid";
+import replaceWithWEBP from "../../utils/replaceWithWEBP";
 import {
+  Purpose,
   memberInputColorData,
   memberInputData,
   memberInputFileData,
   memberInputImageLocation,
   memberInputNameLocationData,
-} from '../../models/team';
-import FormInput from '../CMS/FormInput';
-import FormSelect from '../CMS/FormSelect';
-import Grid from '@mui/material/Grid/Grid';
-import makeItWEBP from '../../utils/makeItWEBP';
+} from "../../constants";
 
 interface Props {
   setHeroImage1: React.Dispatch<React.SetStateAction<FileState>>;
@@ -63,38 +64,38 @@ const MemberForm: React.FC<Props> = ({
     const file =
       e.target.files && e.target.files.length !== 0 && e.target.files[0];
 
-    if (id === 'heroImage1' && file) {
-      makeItWEBP({
+    if (id === "heroImage1" && file) {
+      replaceWithWEBP({
         filename: id,
         rawFile: file,
         setImage: setHeroImage1,
       });
-    } else if (id === 'heroImage2' && file) {
-      makeItWEBP({
+    } else if (id === "heroImage2" && file) {
+      replaceWithWEBP({
         filename: id,
         rawFile: file,
         setImage: setHeroImage2,
       });
-    } else if (id === 'heroImage3' && file) {
-      makeItWEBP({
+    } else if (id === "heroImage3" && file) {
+      replaceWithWEBP({
         filename: id,
         rawFile: file,
         setImage: setHeroImage3,
       });
-    } else if (id === 'heroImage4' && file) {
-      makeItWEBP({
+    } else if (id === "heroImage4" && file) {
+      replaceWithWEBP({
         filename: id,
         rawFile: file,
         setImage: setHeroImage4,
       });
-    } else if (id === 'heroHelmet' && file) {
-      makeItWEBP({
+    } else if (id === "heroHelmet" && file) {
+      replaceWithWEBP({
         filename: id,
         rawFile: file,
         setImage: setHeroHelmet,
       });
-    } else if (id === 'heroSymbol' && file) {
-      makeItWEBP({
+    } else if (id === "heroSymbol" && file) {
+      replaceWithWEBP({
         filename: id,
         rawFile: file,
         setImage: setHeroSymbol,
@@ -114,24 +115,24 @@ const MemberForm: React.FC<Props> = ({
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    const memberDoc = doc(db, 'members', docId);
+    const memberDoc = doc(db, "members", docId);
     try {
-      toast.loading('Sending updates to database...');
+      toast.loading("Sending updates to database...");
       await updateDoc(memberDoc, {
         ...memberData,
       });
       toast.dismiss();
       toast.success(`Successfully updated ${memberData.heroNameEN1}!`);
-      navigate('/cms');
+      navigate("/cms");
     } catch (err) {
-      console.log('error', err);
+      console.log("error", err);
       toast.dismiss();
-      toast.error('Failed to update!');
+      toast.error("Failed to update!");
     }
   };
 
   return (
-    <form id="editMemberForm" onSubmit={handleSubmit}>
+    <form onSubmit={handleSubmit}>
       <Grid container>
         <Grid item xs={12} sm={4}>
           {memberInputData.map((memberFormData) => {
@@ -140,7 +141,7 @@ const MemberForm: React.FC<Props> = ({
             return (
               <FormInput
                 key={memberFormData.formData}
-                placeholder={String(memberFormData.placeholder) ?? ''}
+                placeholder={String(memberFormData.placeholder) ?? ""}
                 teamFormData={memberFormData.formData}
                 type={memberFormData.type}
                 id={memberFormData.formData}
@@ -155,7 +156,7 @@ const MemberForm: React.FC<Props> = ({
           <FormSelect
             arrayData={memberInputColorData}
             handleMemberSelect={handleMemberSelect}
-            purpose="color"
+            purpose={Purpose.Color}
             optionPreview={(color) => color}
             getKey={(color) => color}
             getValue={(color) => color}
@@ -165,7 +166,7 @@ const MemberForm: React.FC<Props> = ({
           <FormSelect
             arrayData={teams}
             handleMemberSelect={handleMemberSelect}
-            purpose="teamId"
+            purpose={Purpose.TeamId}
             getKey={(team) => team.id}
             optionPreview={(team) => team.shortTeamName}
             getValue={(team) => team.teamId}
@@ -175,7 +176,7 @@ const MemberForm: React.FC<Props> = ({
           <FormSelect
             arrayData={memberInputNameLocationData}
             handleMemberSelect={handleMemberSelect}
-            purpose="locationEN"
+            purpose={Purpose.LocationEN}
             getKey={(location) => location.name}
             optionPreview={(location) => location.display}
             getValue={(location) => location.name}
@@ -185,7 +186,7 @@ const MemberForm: React.FC<Props> = ({
           <FormSelect
             arrayData={memberInputNameLocationData}
             handleMemberSelect={handleMemberSelect}
-            purpose="locationJP"
+            purpose={Purpose.LocationJP}
             getKey={(location) => location.name}
             optionPreview={(location) => location.display}
             getValue={(location) => location.name}
@@ -194,7 +195,7 @@ const MemberForm: React.FC<Props> = ({
           <FormSelect
             arrayData={memberInputImageLocation}
             handleMemberSelect={handleMemberSelect}
-            purpose="locationImage"
+            purpose={Purpose.LocationImage}
             getKey={(location) => location.imageLocationName}
             optionPreview={(location) => location.imageLocationName}
             getValue={(location) => location.imageLocationName}
@@ -211,7 +212,7 @@ const MemberForm: React.FC<Props> = ({
               id={memberInputFile.formData}
               readonly={false}
               handleInput={handleMemberInput}
-              accept={memberInputFile.accept ?? ''}
+              accept={memberInputFile.accept ?? ""}
             />
           ))}
         </Grid>

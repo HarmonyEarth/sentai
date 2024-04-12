@@ -1,10 +1,10 @@
-import React from 'react';
+import React from "react";
 
-import HeroBanner from '../components/Series/HeroBanner';
-import TeamSection from '../components/Series/TeamSection';
-import { Helmet } from 'react-helmet-async';
-import { siteFavIcon } from '../utils/constants';
-import { Member, Team } from '../models/types';
+import HeroBanner from "../components/Series/HeroBanner";
+import TeamSection from "../components/Series/TeamSection";
+import { Helmet } from "react-helmet-async";
+import { siteFavIcon } from "../constants";
+import { Member, Team } from "../types";
 
 interface Props {
   teams: Team[];

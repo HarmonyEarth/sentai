@@ -1,11 +1,11 @@
-import React, { useState } from 'react';
+import React, { useState } from "react";
 import {
   SenshiContainer,
   SenshiImage,
-} from '../../styles/HeroDetails/HeroContent.styles';
-import SenshiName from './SenshiName';
-import { senshiImageLocation } from '../../utils/senshiImageLocation';
-import { ScreenSizesType } from '../../models/types';
+} from "../../styles/HeroDetails/HeroContent.styles";
+import SenshiName from "./SenshiName";
+import { senshiImageLocation } from "../../utils/senshiImageLocation";
+import { ScreenSizesType } from "../../types";
 
 interface Props {
   heroImage3: string;

@@ -1,7 +1,7 @@
-import React from 'react';
-import { FileState } from '../../models/types';
-import { noImageIcon } from '../../utils/constants';
-import LazyImage from '../Loading/LazyImage';
+import React from "react";
+import { FileState } from "../../types";
+import { noImageIcon } from "../../constants";
+import LazyImage from "../Loading/LazyImage";
 
 interface Props {
   firestoreImage: string;
@@ -32,14 +32,14 @@ const FormImage: React.FC<Props> = ({
             : noImageIcon
         }
         alt={`Team ${imageName}`}
-        height={mobile ? '100px' : '200px'}
-        width={'auto'}
+        height={mobile ? "100px" : "200px"}
+        width={"auto"}
       />
 
       <h3>{capitalizedWord}</h3>
       <p>
-        {(imagePercent !== null && imagePercent < 100 && 'File Uploading') ||
-          (imagePercent === 100 && 'File Uploaded')}
+        {(imagePercent !== null && imagePercent < 100 && "File Uploading") ||
+          (imagePercent === 100 && "File Uploaded")}
       </p>
     </>
   );

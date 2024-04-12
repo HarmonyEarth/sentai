@@ -1,4 +1,4 @@
-import { locationText } from './constants';
+import { locationText } from "../constants";
 
 interface Props {
   location: string;

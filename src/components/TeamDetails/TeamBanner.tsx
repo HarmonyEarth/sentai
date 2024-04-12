@@ -1,9 +1,9 @@
-import React from 'react';
-import Grid from '@mui/material/Grid/Grid';
-import TeamMember from './TeamMember';
-import { Link } from 'react-router-dom';
-import { teamMemberGridSlots } from '../../utils/teamMemberGridSlots';
-import { Member } from '../../models/types';
+import React from "react";
+import Grid from "@mui/material/Grid/Grid";
+import TeamMember from "./TeamMember";
+import { Link } from "react-router-dom";
+import { teamMemberGridSlots } from "../../utils/teamMemberGridSlots";
+import { Member } from "../../types";
 
 interface Props {
   members: Member[];

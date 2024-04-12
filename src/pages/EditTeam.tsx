@@ -1,9 +1,9 @@
-import React from 'react';
-import { useParams } from 'react-router-dom';
-import TeamFormSection from '../components/EditTeam/TeamFormSection';
-import { Helmet } from 'react-helmet-async';
-import { siteFavIcon } from '../utils/constants';
-import { Team } from '../models/types';
+import React from "react";
+import { useParams } from "react-router-dom";
+import TeamFormSection from "../components/EditTeam/TeamFormSection";
+import { Helmet } from "react-helmet-async";
+import { siteFavIcon } from "../constants";
+import { Team } from "../types";
 
 interface Props {
   teams: Team[];

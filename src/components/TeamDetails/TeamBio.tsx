@@ -1,13 +1,13 @@
-import React from 'react';
-import Grid from '@mui/material/Grid/Grid';
+import React from "react";
+import Grid from "@mui/material/Grid/Grid";
 import {
   TeamBioContainer,
   TeamBioImage,
   TeamBioNameEN,
   TeamBioNameJP,
   TeamBioYear,
-} from '../../styles/TeamDetails/TeamBio.styles';
-import { Team } from '../../models/types';
+} from "../../styles/TeamDetails/TeamBio.styles";
+import { Team } from "../../types";
 
 interface Props {
   team: Team;
@@ -35,7 +35,7 @@ const TeamBio: React.FC<Props> = ({ team, mobile }) => {
         container={mobile ? true : false}
         item
         md={4}
-        direction={mobile ? 'row' : 'column'}
+        direction={mobile ? "row" : "column"}
       >
         <Grid item xs={mobile ? 6 : 12} md={4}>
           <TeamBioNameEN mobile={mobile}>{team.fullTeamNameEN}</TeamBioNameEN>

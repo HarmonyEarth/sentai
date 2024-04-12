@@ -1,16 +1,16 @@
-import React, { useMemo } from 'react';
-import { useParams } from 'react-router-dom';
-import HeroBackground from '../components/HeroDetails/HeroBackground';
-import { HeroContent } from '../components/HeroDetails/HeroContent';
-import HeroesBar from '../components/HeroesBar/HeroesBar';
-import ScrollToTop from '../components/HeroDetails/ScrollToTop';
+import React, { useMemo } from "react";
+import { useParams } from "react-router-dom";
+import HeroBackground from "../components/HeroDetails/HeroBackground";
+import { HeroContent } from "../components/HeroDetails/HeroContent";
+import HeroesBar from "../components/HeroesBar/HeroesBar";
+import ScrollToTop from "../components/HeroDetails/ScrollToTop";
 
-import { HeroDetailsContainer } from '../styles/HeroDetails/HeroDetails.styles';
-import { heroColor } from '../utils/heroColor';
-import { sortMembersByYear } from '../utils/sortMembersByYear';
-import { Helmet } from 'react-helmet-async';
-import { Member, ScreenSizesType, Team } from '../models/types';
-import AllHeroes from '../components/HeroDetails/AllHeroes';
+import { HeroDetailsContainer } from "../styles/HeroDetails/HeroDetails.styles";
+import { heroColor } from "../utils/heroColor";
+import { sortMembersByYear } from "../utils/sortMembersByYear";
+import { Helmet } from "react-helmet-async";
+import { Member, ScreenSizesType, Team } from "../types";
+import AllHeroes from "../components/HeroDetails/AllHeroes";
 
 interface Props {
   members: Member[];
@@ -56,7 +56,7 @@ const HeroDetails: React.FC<Props> = ({
     <>
       <Helmet>
         <title>
-          {currentMember.heroNameEN1} / {currentMember.heroNameEN2} -{' '}
+          {currentMember.heroNameEN1} / {currentMember.heroNameEN2} -{" "}
           {currentTeam.fullTeamNameEN}
         </title>
         <meta name="description" content={metaDescription} />

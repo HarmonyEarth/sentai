@@ -1,4 +1,4 @@
-import { Member, Team } from '../models/types';
+import { Member, Team } from "../types";
 
 interface Props {
   members: Member[];
@@ -22,7 +22,7 @@ export const sortMembersByYear = ({ members, teams }: Props) => {
 
   membersByYear.sort((a, b) => Number(a?.year) - Number(b?.year));
 
-  const incompleteMembers = members.filter((member) => member.teamId === '');
+  const incompleteMembers = members.filter((member) => member.teamId === "");
 
   const allMembers = incompleteMembers.concat(membersByYear);
   return allMembers;
