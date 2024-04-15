@@ -1,21 +1,21 @@
 import React, { useState } from "react";
 import Grid from "@mui/material/Grid/Grid";
 import useFileUpload from "../../hooks/useFileUpload";
-import { FileState, Member, ScreenSizesType, Team } from "../../types";
+import { FileState, Member, Team } from "../../types";
 import MemberForm from "./MemberForm";
-import { HeroDetailsContainer } from "../../styles/HeroDetails/HeroDetails.styles";
 import HeroBackground from "../HeroDetails/HeroBackground";
 import { heroColor } from "../../utils/heroColor";
 import HeroesBar from "../HeroesBar/HeroesBar";
 import { HeroContent } from "../HeroDetails/HeroContent";
 import ScrollToTop from "../HeroDetails/ScrollToTop";
+import { Purpose } from "../../constants";
+import { PreviewHeroDetails } from "../../pages/HeroDetails";
 
 interface Props {
   docId: string;
   currentMember: Member;
   teams: Team[];
   mobile: boolean;
-  screenSizes: ScreenSizesType;
 }
 
 const MemberFormSection: React.FC<Props> = ({
@@ -23,7 +23,6 @@ const MemberFormSection: React.FC<Props> = ({
   currentMember,
   teams,
   mobile,
-  screenSizes,
 }) => {
   const [heroImage1, setHeroImage1] = useState<FileState>();
   const [heroImage2, setHeroImage2] = useState<FileState>();
@@ -38,48 +37,48 @@ const MemberFormSection: React.FC<Props> = ({
   const heroImage1Percent = useFileUpload({
     file: heroImage1 as File,
     setFile: setMemberData,
-    fileId: "heroImage1",
-    structure: "member",
+    fileId: Purpose.HeroImage1,
+    structure: Purpose.Member,
     docId,
   });
 
   const heroImage2Percent = useFileUpload({
     file: heroImage2 as File,
     setFile: setMemberData,
-    fileId: "heroImage2",
-    structure: "member",
+    fileId: Purpose.HeroImage2,
+    structure: Purpose.Member,
     docId,
   });
 
   const heroImage3Percent = useFileUpload({
     file: heroImage3 as File,
     setFile: setMemberData,
-    fileId: "heroImage3",
-    structure: "member",
+    fileId: Purpose.HeroImage3,
+    structure: Purpose.Member,
     docId,
   });
 
   const heroImage4Percent = useFileUpload({
     file: heroImage4 as File,
     setFile: setMemberData,
-    fileId: "heroImage4",
-    structure: "member",
+    fileId: Purpose.HeroImage4,
+    structure: Purpose.Member,
     docId,
   });
 
   const heroHelmetPercent = useFileUpload({
     file: heroHelmet as File,
     setFile: setMemberData,
-    fileId: "heroHelmet",
-    structure: "member",
+    fileId: Purpose.HeroHelmet,
+    structure: Purpose.Member,
     docId,
   });
 
   const heroSymbolPercent = useFileUpload({
     file: heroSymbol as File,
     setFile: setMemberData,
-    fileId: "heroSymbol",
-    structure: "member",
+    fileId: Purpose.HeroSymbol,
+    structure: Purpose.Member,
     docId,
   });
 
@@ -117,32 +116,7 @@ const MemberFormSection: React.FC<Props> = ({
           </Grid>
         </Grid>
       </Grid>
-      <HeroDetailsContainer>
-        <HeroBackground
-          heroImage1={String(memberData.heroImage1)}
-          color={heroColor(memberData.color)}
-          mobile={mobile}
-        />
-        <HeroesBar
-          heroSymbol={String(memberData.heroSymbol)}
-          heroNameEN1={memberData.heroNameEN1}
-          heroNameEN2={memberData.heroNameEN2}
-          mobile={mobile}
-        />
-        <HeroContent
-          heroImage3={String(memberData.heroImage3)}
-          heroImage4={String(memberData.heroImage4)}
-          heroNameEN1={memberData.heroNameEN1}
-          heroNameEN2={memberData.heroNameEN2}
-          heroNameJP1={memberData.heroNameJP1}
-          heroNameJP2={memberData.heroNameJP2}
-          locationEN={memberData.locationEN}
-          locationJP={memberData.locationJP}
-          locationImage={memberData.locationImage}
-          mobile={mobile}
-          screenSizes={screenSizes}
-        />
-      </HeroDetailsContainer>
+      <PreviewHeroDetails currentMember={memberData} mobile={mobile} />
     </>
   );
 };

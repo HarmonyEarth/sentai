@@ -3,7 +3,7 @@ import React from "react";
 import { useNavigate } from "react-router-dom";
 import { db } from "../../firebase";
 import { FileState, Team } from "../../types";
-import { teamInputData, teamInputFileData } from "../../constants";
+import { Purpose, teamInputData, teamInputFileData } from "../../constants";
 import FormInput from "../CMS/FormInput";
 import replaceWithWEBP from "../../utils/replaceWithWEBP";
 
@@ -34,13 +34,13 @@ const TeamForm: React.FC<Props> = ({
     const file =
       e.target.files && e.target.files.length !== 0 && e.target.files[0];
 
-    if (id === "symbol" && file) {
+    if (id === Purpose.Symbol && file) {
       replaceWithWEBP({
         filename: id,
         rawFile: file,
         setImage: setSymbol,
       });
-    } else if (id === "logo" && file) {
+    } else if (id === Purpose.Logo && file) {
       replaceWithWEBP({
         filename: id,
         rawFile: file,

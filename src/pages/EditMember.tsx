@@ -3,21 +3,15 @@ import { useParams } from "react-router-dom";
 import MemberFormSection from "../components/EditMember/MemberFormSection";
 import { Helmet } from "react-helmet-async";
 import { siteFavIcon } from "../constants";
-import { Member, ScreenSizesType, Team } from "../types";
+import { Member, Team } from "../types";
 
 interface Props {
   members: Member[];
   teams: Team[];
   mobile: boolean;
-  screenSizes: ScreenSizesType;
 }
 
-const EditMember: React.FC<Props> = ({
-  members,
-  teams,
-  mobile,
-  screenSizes,
-}) => {
+const EditMember: React.FC<Props> = ({ members, teams, mobile }) => {
   const { id } = useParams();
 
   if (!id) {
@@ -41,7 +35,6 @@ const EditMember: React.FC<Props> = ({
         currentMember={currentMember}
         teams={teams}
         mobile={mobile}
-        screenSizes={screenSizes}
       />
     </>
   );

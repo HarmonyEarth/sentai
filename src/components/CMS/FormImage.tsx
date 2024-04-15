@@ -18,18 +18,17 @@ const FormImage: React.FC<Props> = ({
   imageName,
   mobile,
 }) => {
-  let word = imageName;
-  const capitalizedWord = word.charAt(0).toUpperCase() + word.slice(1);
+  const capitalizedWord =
+    imageName.charAt(0).toUpperCase() + imageName.slice(1);
 
   return (
     <>
       <LazyImage
         src={
-          firestoreImage
-            ? firestoreImage
-            : image
+          firestoreImage ??
+          (image
             ? URL.createObjectURL(image as Blob | MediaSource)
-            : noImageIcon
+            : noImageIcon)
         }
         alt={`Team ${imageName}`}
         height={mobile ? "100px" : "200px"}

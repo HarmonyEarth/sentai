@@ -1,8 +1,5 @@
-import React from 'react';
-import {
-  MouseTrailerContainer,
-  MouseTrailerText,
-} from '../../styles/HeroDetails/MouseTrailer.styles';
+import React from "react";
+import styled from "styled-components";
 
 const MouseTrailer = () => {
   return (
@@ -13,3 +10,9 @@ const MouseTrailer = () => {
 };
 
 export default MouseTrailer;
+
+//MARK: - Styled Components
+
+const MouseTrailerContainer = styled.div``;
+
+const MouseTrailerText = styled.h3``;

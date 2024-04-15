@@ -1,29 +1,29 @@
-import { imageLocationText } from "../constants";
+import { SenshiImageLocation } from "../constants";
 
 interface Props {
   locationImage: string;
 }
 
-export const senshiImageLocation = ({ locationImage }: Props) => {
+export const getSenshiImageLocation = ({ locationImage }: Props) => {
   let newLocation = {
     left: false,
     right: false,
   };
 
   switch (locationImage) {
-    case imageLocationText.left:
+    case SenshiImageLocation.Left:
       newLocation = {
         left: true,
         right: false,
       };
       break;
-    case imageLocationText.center:
+    case SenshiImageLocation.Center:
       newLocation = {
         left: false,
         right: false,
       };
       break;
-    case imageLocationText.right:
+    case SenshiImageLocation.Right:
       newLocation = {
         left: false,
         right: true,
