@@ -1,9 +1,6 @@
-import React from 'react';
-import {
-  TeamMemberCard,
-  TeamMemberStateImage,
-} from '../../styles/TeamDetails/TeamMember.styles';
-
+import React from "react";
+import styled from "styled-components";
+import LazyImage from "../Loading/LazyImage";
 interface Props {
   heroImage3: string;
   heroImage4: string;
@@ -41,3 +38,44 @@ const TeamMember: React.FC<Props> = ({
 };
 
 export default TeamMember;
+
+//MARK: - Styled Components
+
+interface CardProps {
+  color: string;
+  mobile: boolean;
+}
+
+interface HeroFormProps {
+  mobile: boolean;
+  heroState: boolean;
+}
+
+const TeamMemberCard = styled.div<CardProps>`
+  background: linear-gradient(
+    180deg,
+    transparent,
+    ${(props) => props.color} 120%
+  );
+  background-size: contain;
+  height: ${(props) => (props.mobile ? "15rem" : "37.5rem")};
+  width: 100%;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+`;
+
+const TeamMemberStateImage = styled(LazyImage)<HeroFormProps>`
+  z-index: -1;
+  position: absolute;
+  scale: ${(props) => (props.heroState === true ? 1.1 : "unset")};
+  height: inherit;
+  top: ${(props) => (props.heroState === true ? 0 : "unset")};
+  bottom: ${(props) => (props.heroState === false ? 0 : "unset")};
+  margin-top: ${(props) =>
+    props.heroState === true ? (props.mobile ? "0.75rem" : "1.9rem") : "unset"};
+  margin-bottom: ${(props) =>
+    props.heroState === false ? (props.mobile ? "-4rem" : "-10rem") : "unset"};
+`;

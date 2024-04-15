@@ -1,6 +1,7 @@
-import React, { useEffect, useState, useRef, useLayoutEffect } from 'react';
-import { ref, uploadBytesResumable, getDownloadURL } from 'firebase/storage';
-import { storage } from '../firebase';
+import React, { useEffect, useState, useRef, useLayoutEffect } from "react";
+import { ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
+import { storage } from "../firebase";
+import { Purpose } from "../constants";
 
 interface Props<T> {
   file: File;
@@ -34,18 +35,18 @@ const useFileUpload = <T>({
   useEffect(() => {
     const uploadFile = () => {
       const name = fileId;
-      const extensionWEBP = '.webp';
+      const extensionWEBP = ".webp";
       const type = file.type;
-      console.log('type', type);
+      console.log("type", type);
 
-      let fileURL = '';
+      let fileURL = "";
 
       switch (structure) {
-        case 'team':
-          fileURL = 'images/teams/' + docId + '/' + name + extensionWEBP;
+        case Purpose.Team:
+          fileURL = "images/teams/" + docId + "/" + name + extensionWEBP;
           break;
-        case 'member':
-          fileURL = 'images/members/' + docId + '/' + name + extensionWEBP;
+        case Purpose.Member:
+          fileURL = "images/members/" + docId + "/" + name + extensionWEBP;
           break;
         default:
           break;
@@ -55,19 +56,19 @@ const useFileUpload = <T>({
       const uploadTask = uploadBytesResumable(storageRef, file);
 
       uploadTask.on(
-        'state_changed',
+        "state_changed",
         (snapshot) => {
           const progress =
             (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
-          console.log('Upload is ' + progress + '% done');
+          console.log("Upload is " + progress + "% done");
           setPercent((prev) => progress);
 
           switch (snapshot.state) {
-            case 'paused':
-              console.log('Upload is paused');
+            case "paused":
+              console.log("Upload is paused");
               break;
-            case 'running':
-              console.log('Upload is running');
+            case "running":
+              console.log("Upload is running");
               break;
             default:
               break;

@@ -1,13 +1,10 @@
 import React from "react";
-import { SwiperSlide } from "swiper/react";
+import { SwiperSlide, Swiper } from "swiper/react";
 import "swiper/css";
 import "swiper/css/free-mode";
 import { FreeMode } from "swiper";
 import { Link } from "react-router-dom";
-import {
-  AllHeroesSwiper,
-  HeroSlide,
-} from "../../styles/HeroDetails/AllHeroes.styles";
+import styled from "styled-components";
 import LazyImage from "../Loading/LazyImage";
 import { Member } from "../../types";
 
@@ -54,3 +51,21 @@ const AllHeroes: React.FC<Props> = ({ members }) => {
 };
 
 export default AllHeroes;
+
+//MARK: - Styled Components
+
+const AllHeroesSwiper = styled(Swiper)`
+  width: 100%;
+`;
+
+const HeroSlide = styled.div`
+  background-color: #000000;
+  width: fit-content;
+  height: 200px;
+  width: 100px;
+
+  img {
+    min-height: 250px;
+    width: 100%;
+  }
+`;

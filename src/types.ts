@@ -31,10 +31,3 @@ export interface Member {
   locationJP: string;
   locationImage: string;
 }
-
-export type ScreenSizesType = {
-  extraSmall: boolean;
-  small: boolean;
-  large: boolean;
-  extraLarge: boolean;
-};

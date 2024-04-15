@@ -1,30 +1,24 @@
 import React, { useMemo } from "react";
 import { useParams } from "react-router-dom";
+import styled from "styled-components";
+import { Helmet } from "react-helmet-async";
 import HeroBackground from "../components/HeroDetails/HeroBackground";
 import { HeroContent } from "../components/HeroDetails/HeroContent";
 import HeroesBar from "../components/HeroesBar/HeroesBar";
 import ScrollToTop from "../components/HeroDetails/ScrollToTop";
-
-import { HeroDetailsContainer } from "../styles/HeroDetails/HeroDetails.styles";
 import { heroColor } from "../utils/heroColor";
 import { sortMembersByYear } from "../utils/sortMembersByYear";
-import { Helmet } from "react-helmet-async";
-import { Member, ScreenSizesType, Team } from "../types";
+
+import { Member, Team } from "../types";
 import AllHeroes from "../components/HeroDetails/AllHeroes";
 
 interface Props {
   members: Member[];
   teams: Team[];
   mobile: boolean;
-  screenSizes: ScreenSizesType;
 }
 
-const HeroDetails: React.FC<Props> = ({
-  members,
-  teams,
-  mobile,
-  screenSizes,
-}) => {
+const HeroDetails: React.FC<Props> = ({ members, teams, mobile }) => {
   const { teamId, heroId } = useParams();
 
   if (!heroId) {
@@ -52,6 +46,7 @@ const HeroDetails: React.FC<Props> = ({
 
   const metaDescription = `${currentMember.heroNameEN1} / ${currentMember.heroNameEN2} 
   from ${currentTeam.year}'s ${currentTeam.fullTeamNameEN}`;
+
   return (
     <>
       <Helmet>
@@ -91,7 +86,6 @@ const HeroDetails: React.FC<Props> = ({
           locationJP={currentMember.locationJP}
           locationImage={currentMember.locationImage}
           mobile={mobile}
-          screenSizes={screenSizes}
         />
 
         <AllHeroes members={membersByYear} />
@@ -101,3 +95,50 @@ const HeroDetails: React.FC<Props> = ({
 };
 
 export default HeroDetails;
+
+interface PreviewProps {
+  currentMember: Member;
+  mobile: boolean;
+}
+
+export const PreviewHeroDetails: React.FC<PreviewProps> = ({
+  currentMember,
+  mobile,
+}) => {
+  return (
+    <HeroDetailsContainer>
+      <HeroBackground
+        heroImage1={String(currentMember.heroImage1)}
+        color={heroColor(currentMember.color)}
+        mobile={mobile}
+      />
+      <HeroesBar
+        heroSymbol={String(currentMember.heroSymbol)}
+        heroNameEN1={currentMember.heroNameEN1}
+        heroNameEN2={currentMember.heroNameEN2}
+        mobile={mobile}
+      />
+      <HeroContent
+        heroImage3={String(currentMember.heroImage3)}
+        heroImage4={String(currentMember.heroImage4)}
+        heroNameEN1={currentMember.heroNameEN1}
+        heroNameEN2={currentMember.heroNameEN2}
+        heroNameJP1={currentMember.heroNameJP1}
+        heroNameJP2={currentMember.heroNameJP2}
+        locationEN={currentMember.locationEN}
+        locationJP={currentMember.locationJP}
+        locationImage={currentMember.locationImage}
+        mobile={mobile}
+      />
+    </HeroDetailsContainer>
+  );
+};
+
+//MARK: - Styled Components
+
+const HeroDetailsContainer = styled.div`
+  max-width: 100vw;
+  min-height: 100vh;
+  position: relative;
+  overflow: hidden;
+`;

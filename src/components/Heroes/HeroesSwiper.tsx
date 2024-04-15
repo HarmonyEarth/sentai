@@ -1,16 +1,14 @@
 import React, { useState } from "react";
 import { A11y } from "swiper";
 import "swiper/css";
-import { SwiperSlide } from "swiper/react";
-import { Swiper } from "swiper/types";
-import {
-  SenshiSwiper,
-  SenshiSwiperStateImage,
-} from "../../styles/Heroes/HeroesSwiper.styles";
-import { Member, Team } from "../../types";
+import { SwiperSlide, Swiper } from "swiper/react";
+import { Swiper as SwiperType } from "swiper/types";
+import styled from "styled-components";
+
 import Grid from "@mui/material/Grid/Grid";
 import { Link } from "react-router-dom";
 import LazyImage from "../Loading/LazyImage";
+import { Member, Team } from "../../types";
 
 interface Props {
   team: Team;
@@ -18,7 +16,7 @@ interface Props {
 }
 
 const HeroesSwiper: React.FC<Props> = ({ team, members }) => {
-  const [swiper, setSwiper] = useState<Swiper | null>(null);
+  const [swiper, setSwiper] = useState<SwiperType | null>(null);
   const [activeIndex, setActiveIndex] = useState(0);
 
   return (
@@ -73,3 +71,11 @@ const HeroesSwiper: React.FC<Props> = ({ team, members }) => {
 };
 
 export default HeroesSwiper;
+
+//MARK: - Styled Components
+
+const SenshiSwiper = styled(Swiper)``;
+
+const SenshiSwiperStateImage = styled(LazyImage)`
+  height: 100px;
+`;

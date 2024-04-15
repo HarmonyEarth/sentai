@@ -64,37 +64,37 @@ const MemberForm: React.FC<Props> = ({
     const file =
       e.target.files && e.target.files.length !== 0 && e.target.files[0];
 
-    if (id === "heroImage1" && file) {
+    if (id === Purpose.HeroImage1 && file) {
       replaceWithWEBP({
         filename: id,
         rawFile: file,
         setImage: setHeroImage1,
       });
-    } else if (id === "heroImage2" && file) {
+    } else if (id === Purpose.HeroImage2 && file) {
       replaceWithWEBP({
         filename: id,
         rawFile: file,
         setImage: setHeroImage2,
       });
-    } else if (id === "heroImage3" && file) {
+    } else if (id === Purpose.HeroImage3 && file) {
       replaceWithWEBP({
         filename: id,
         rawFile: file,
         setImage: setHeroImage3,
       });
-    } else if (id === "heroImage4" && file) {
+    } else if (id === Purpose.HeroImage4 && file) {
       replaceWithWEBP({
         filename: id,
         rawFile: file,
         setImage: setHeroImage4,
       });
-    } else if (id === "heroHelmet" && file) {
+    } else if (id === Purpose.HeroHelmet && file) {
       replaceWithWEBP({
         filename: id,
         rawFile: file,
         setImage: setHeroHelmet,
       });
-    } else if (id === "heroSymbol" && file) {
+    } else if (id === Purpose.HeroSymbol && file) {
       replaceWithWEBP({
         filename: id,
         rawFile: file,

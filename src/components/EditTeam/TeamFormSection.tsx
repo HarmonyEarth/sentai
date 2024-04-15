@@ -5,6 +5,7 @@ import { FileState, Team } from "../../types";
 import FormImage from "../CMS/FormImage";
 
 import TeamForm from "./TeamForm";
+import { Purpose } from "../../constants";
 
 interface Props {
   docId: string;
@@ -22,15 +23,15 @@ const TeamFormSection: React.FC<Props> = ({ docId, currentTeam, mobile }) => {
   const logoPercent = useFileUpload({
     file: logo as File,
     setFile: setTeamData,
-    fileId: "logo",
-    structure: "team",
+    fileId: Purpose.Logo,
+    structure: Purpose.Team,
     docId,
   });
   const symbolPercent = useFileUpload({
     file: symbol as File,
     setFile: setTeamData,
-    fileId: "symbol",
-    structure: "team",
+    fileId: Purpose.Symbol,
+    structure: Purpose.Team,
     docId,
   });
 
@@ -44,7 +45,7 @@ const TeamFormSection: React.FC<Props> = ({ docId, currentTeam, mobile }) => {
               firestoreImage={String(teamData.logo)}
               image={logo}
               imagePercent={logoPercent}
-              imageName={"logo"}
+              imageName={Purpose.Logo}
             />
           </Grid>
           <Grid item xs={6} md={3}>
@@ -53,7 +54,7 @@ const TeamFormSection: React.FC<Props> = ({ docId, currentTeam, mobile }) => {
               firestoreImage={String(teamData.symbol)}
               image={symbol}
               imagePercent={symbolPercent}
-              imageName={"symbol"}
+              imageName={Purpose.Symbol}
             />
           </Grid>
         </Grid>

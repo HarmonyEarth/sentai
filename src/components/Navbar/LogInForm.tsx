@@ -1,19 +1,19 @@
-import React, { useState } from 'react';
-import Modal from '@mui/material/Modal/Modal';
-import Grid from '@mui/material/Grid/Grid';
-import { logIn } from '../../auth';
-import { LogInContainer } from '../../styles/Navbar/LogInForm.styles';
+import React, { useState } from "react";
+import Modal from "@mui/material/Modal/Modal";
+import Grid from "@mui/material/Grid/Grid";
+import styled from "styled-components";
+import { logIn } from "../../auth";
 
 const LogInForm = () => {
   const [open, setOpen] = useState(false);
   const handleOpen = () => setOpen((prev) => true);
   const handleClose = () => setOpen((prev) => false);
 
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
 
   const logInFormId = document.getElementById(
-    'logInFormElementId'
+    "logInFormElementId"
   ) as HTMLFormElement;
 
   const handleEmailChange = (e: React.FormEvent<HTMLInputElement>): void => {
@@ -31,7 +31,7 @@ const LogInForm = () => {
       await logIn({ email, password });
       logInFormId.reset();
     } catch (err) {
-      console.log('error', err);
+      console.log("error", err);
     }
   };
   return (
@@ -79,3 +79,20 @@ const LogInForm = () => {
 };
 
 export default LogInForm;
+
+//MARK: - Styled Components
+
+const LogInContainer = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 380px;
+  height: 220px;
+  background-color: white;
+  border: 2px solid #000;
+  box-shadow: 24px;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+`;

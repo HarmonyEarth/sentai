@@ -1,16 +1,16 @@
 import { Suspense, lazy, useEffect, useState } from "react";
 import { Routes, Route } from "react-router-dom";
-import Navbar from "./components/Navbar/Navbar";
+import { useTheme } from "@mui/material/styles";
+import useMediaQuery from "@mui/material/useMediaQuery/useMediaQuery";
+import { HelmetProvider } from "react-helmet-async";
 import { Toaster } from "react-hot-toast";
+import Navbar from "./components/Navbar/Navbar";
 import RequireAuth from "./HOC/RequireAuth";
 import useStream from "./hooks/useStream";
 import { useAppDispatch } from "./hooks/reduxTypedHooks";
 import { trackAuthStatus } from "./auth";
 import { logUserIn, logUserOut } from "./rtk/slice/userSlice";
 import { streamMembers, streamTeams } from "./firebase";
-import useMediaQuery from "@mui/material/useMediaQuery/useMediaQuery";
-import useTheme from "@mui/material/styles/useTheme";
-import { HelmetProvider } from "react-helmet-async";
 import Loading from "./components/Loading/Loading";
 import { Member, Team } from "./types";
 
@@ -28,18 +28,6 @@ function App() {
 
   const theme = useTheme();
   const mobile = useMediaQuery(theme.breakpoints.down("md"));
-
-  const extraSmall = useMediaQuery(theme.breakpoints.down("sm"));
-  const small = useMediaQuery(theme.breakpoints.between("sm", "md"));
-  const large = useMediaQuery(theme.breakpoints.between("lg", "xl"));
-  const extraLarge = useMediaQuery(theme.breakpoints.up("xl"));
-
-  const screenSizes = {
-    extraSmall,
-    small,
-    large,
-    extraLarge,
-  };
 
   const dispatch = useAppDispatch();
 
@@ -119,7 +107,6 @@ function App() {
                   members={completeMembers}
                   teams={completeTeams}
                   mobile={mobile}
-                  screenSizes={screenSizes}
                 />
               </Suspense>
             }
@@ -149,12 +136,7 @@ function App() {
             element={
               <RequireAuth>
                 <Suspense fallback={<Loading />}>
-                  <EditMember
-                    members={members}
-                    teams={teams}
-                    mobile={mobile}
-                    screenSizes={screenSizes}
-                  />
+                  <EditMember members={members} teams={teams} mobile={mobile} />
                 </Suspense>
               </RequireAuth>
             }
