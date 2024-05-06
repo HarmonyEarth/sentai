@@ -5,11 +5,10 @@ import { Purpose } from "../constants";
 
 interface Props<T> {
   file: File;
-  fileId: string;
+  fileId: Purpose;
   docId: string;
   setFile: React.Dispatch<React.SetStateAction<T>>;
-  structure: string;
-  year?: number | string;
+  structure: Purpose;
 }
 
 const useCallbackRef = (callback: any) => {
@@ -26,7 +25,6 @@ const useFileUpload = <T>({
   fileId,
   setFile,
   structure,
-  year,
 }: Props<T>) => {
   //Upload Percentage
   const [percent, setPercent] = useState<number | null>(null);
@@ -34,19 +32,18 @@ const useFileUpload = <T>({
   const addFileToData = useCallbackRef(setFile);
   useEffect(() => {
     const uploadFile = () => {
-      const name = fileId;
       const extensionWEBP = ".webp";
-      const type = file.type;
-      console.log("type", type);
+      // const type = file.type;
+      // console.log("type", type);
 
       let fileURL = "";
 
       switch (structure) {
         case Purpose.Team:
-          fileURL = "images/teams/" + docId + "/" + name + extensionWEBP;
+          fileURL = "images/teams/" + docId + "/" + fileId + extensionWEBP;
           break;
         case Purpose.Member:
-          fileURL = "images/members/" + docId + "/" + name + extensionWEBP;
+          fileURL = "images/members/" + docId + "/" + fileId + extensionWEBP;
           break;
         default:
           break;
@@ -88,7 +85,7 @@ const useFileUpload = <T>({
       );
     };
     file && uploadFile();
-  }, [file, docId, fileId, structure, year, addFileToData]);
+  }, [file, docId, fileId, structure, addFileToData]);
 
   return percent;
 };

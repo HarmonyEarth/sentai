@@ -4,7 +4,6 @@ import { Helmet } from "react-helmet-async";
 import TeamBio from "../components/TeamDetails/TeamBio";
 import TeamBanner from "../components/TeamDetails/TeamBanner";
 import AllTeams from "../components/TeamDetails/AllTeams";
-import ScrollToTop from "../components/HeroDetails/ScrollToTop";
 import { Member, Team } from "../types";
 
 interface Props {
@@ -43,7 +42,6 @@ const TeamDetails: React.FC<Props> = ({ teams, members, mobile }) => {
           sizes="16x16"
         />
       </Helmet>
-      <ScrollToTop />
       <TeamBanner members={currentMembers} mobile={mobile} />
       <TeamBio team={currentTeam} mobile={mobile} />
       <AllTeams teams={teams} mobile={mobile} />
