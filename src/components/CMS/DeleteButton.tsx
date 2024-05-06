@@ -1,6 +1,6 @@
 import { deleteDoc, doc } from "firebase/firestore";
 import { deleteObject, listAll, ref } from "firebase/storage";
-import React from "react";
+import React, { useState } from "react";
 import { toast } from "react-hot-toast";
 import { db, storage } from "../../firebase";
 import { Purpose } from "../../constants";
@@ -18,7 +18,10 @@ const DeleteButton: React.FC<Props> = ({
   docId,
   purpose,
 }) => {
-  const handleClick = async () => {
+  const [showConfirmation, setShowConfirmation] = useState(false);
+
+  const handleConfirm = async () => {
+    setShowConfirmation(false);
     if (purpose === Purpose.Member) {
       let memberImageListRef = ref(storage, `images/members/${docId}/`);
 
@@ -56,10 +59,26 @@ const DeleteButton: React.FC<Props> = ({
       }
     }
   };
+
+  const handleClick = () => {
+    setShowConfirmation(true);
+  };
+  const handleDecline = () => {
+    setShowConfirmation(false);
+  };
   return (
-    <button onClick={handleClick} disabled={clicked} type="button">
-      Delete
-    </button>
+    <>
+      <button onClick={handleClick} disabled={clicked} type="button">
+        Delete
+      </button>
+      {showConfirmation && (
+        <dialog open>
+          <p>Are you sure you wish to delete? Yes or no?</p>
+          <button onClick={handleConfirm}>Yes</button>
+          <button onClick={handleDecline}>No</button>
+        </dialog>
+      )}
+    </>
   );
 };
 

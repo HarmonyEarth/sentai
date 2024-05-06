@@ -3,11 +3,6 @@ import Grid from "@mui/material/Grid/Grid";
 import useFileUpload from "../../hooks/useFileUpload";
 import { FileState, Member, Team } from "../../types";
 import MemberForm from "./MemberForm";
-import HeroBackground from "../HeroDetails/HeroBackground";
-import { heroColor } from "../../utils/heroColor";
-import HeroesBar from "../HeroesBar/HeroesBar";
-import { HeroContent } from "../HeroDetails/HeroContent";
-import ScrollToTop from "../HeroDetails/ScrollToTop";
 import { Purpose } from "../../constants";
 import { PreviewHeroDetails } from "../../pages/HeroDetails";
 
@@ -84,36 +79,32 @@ const MemberFormSection: React.FC<Props> = ({
 
   return (
     <>
-      <ScrollToTop />
-      <Grid container sx={{ backgroundColor: "white" }}>
-        <Grid
-          container
-          item
-          justifyContent="space-around"
-          alignItems={"center"}
-          xs={12}
-        >
-          <Grid item>
-            <h4>Member Form</h4>
-            <MemberForm
-              setHeroImage1={setHeroImage1}
-              setHeroImage2={setHeroImage2}
-              setHeroImage3={setHeroImage3}
-              setHeroImage4={setHeroImage4}
-              setHeroHelmet={setHeroHelmet}
-              setHeroSymbol={setHeroSymbol}
-              setMemberData={setMemberData}
-              memberData={memberData}
-              heroImage1Percent={heroImage1Percent}
-              heroImage2Percent={heroImage2Percent}
-              heroImage3Percent={heroImage3Percent}
-              heroImage4Percent={heroImage4Percent}
-              heroHelmetPercent={heroHelmetPercent}
-              heroSymbolPercent={heroSymbolPercent}
-              docId={docId}
-              teams={teams}
-            />
-          </Grid>
+      <Grid
+        container
+        justifyContent="space-around"
+        alignItems={"center"}
+        sx={{ backgroundColor: "white" }}
+      >
+        <Grid item>
+          <h3>Member Form</h3>
+          <MemberForm
+            setHeroImage1={setHeroImage1}
+            setHeroImage2={setHeroImage2}
+            setHeroImage3={setHeroImage3}
+            setHeroImage4={setHeroImage4}
+            setHeroHelmet={setHeroHelmet}
+            setHeroSymbol={setHeroSymbol}
+            setMemberData={setMemberData}
+            memberData={memberData}
+            heroImage1Percent={heroImage1Percent}
+            heroImage2Percent={heroImage2Percent}
+            heroImage3Percent={heroImage3Percent}
+            heroImage4Percent={heroImage4Percent}
+            heroHelmetPercent={heroHelmetPercent}
+            heroSymbolPercent={heroSymbolPercent}
+            docId={docId}
+            teams={teams}
+          />
         </Grid>
       </Grid>
       <PreviewHeroDetails currentMember={memberData} mobile={mobile} />

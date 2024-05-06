@@ -5,7 +5,6 @@ import { Helmet } from "react-helmet-async";
 import HeroBackground from "../components/HeroDetails/HeroBackground";
 import { HeroContent } from "../components/HeroDetails/HeroContent";
 import HeroesBar from "../components/HeroesBar/HeroesBar";
-import ScrollToTop from "../components/HeroDetails/ScrollToTop";
 import { heroColor } from "../utils/heroColor";
 import { sortMembersByYear } from "../utils/sortMembersByYear";
 
@@ -62,7 +61,6 @@ const HeroDetails: React.FC<Props> = ({ members, teams, mobile }) => {
           sizes="16x16"
         />
       </Helmet>
-      <ScrollToTop />
       <HeroDetailsContainer>
         <HeroBackground
           heroImage1={String(currentMember.heroImage1)}

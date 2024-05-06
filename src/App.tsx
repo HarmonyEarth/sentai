@@ -4,15 +4,16 @@ import { useTheme } from "@mui/material/styles";
 import useMediaQuery from "@mui/material/useMediaQuery/useMediaQuery";
 import { HelmetProvider } from "react-helmet-async";
 import { Toaster } from "react-hot-toast";
-import Navbar from "./components/Navbar/Navbar";
 import RequireAuth from "./HOC/RequireAuth";
 import useStream from "./hooks/useStream";
 import { useAppDispatch } from "./hooks/reduxTypedHooks";
-import { trackAuthStatus } from "./auth";
 import { logUserIn, logUserOut } from "./rtk/slice/userSlice";
-import { streamMembers, streamTeams } from "./firebase";
 import Loading from "./components/Loading/Loading";
+import ScrollToTop from "./components/Navbar/ScrollToTop";
+import Navbar from "./components/Navbar/Navbar";
 import { Member, Team } from "./types";
+import { streamMembers, streamTeams } from "./firebase";
+import { trackAuthStatus } from "./auth";
 
 const Series = lazy(() => import("./pages/Series"));
 const Heroes = lazy(() => import("./pages/Heroes"));
@@ -60,6 +61,7 @@ function App() {
     <>
       <Navbar />
       <Toaster />
+      <ScrollToTop />
       <HelmetProvider>
         <Routes>
           <Route
