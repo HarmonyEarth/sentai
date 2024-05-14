@@ -9,7 +9,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "@mui/material": "^5.11.15",
+    "@mui/material": "^5.15.17",
     "@reduxjs/toolkit": "^1.9.3",
     "embla-carousel-react": "^8.0.0-rc22",
     "firebase": "^9.18.0",
