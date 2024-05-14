@@ -31,7 +31,7 @@ const HeroesBar: React.FC<Props> = ({
             alt={`${heroNameEN2 || "Super Sentai"} Symbol`}
           />
           {!heroNameEN1 || !heroNameEN2 ? (
-            <h3>Display Heroes</h3>
+            <h3>Display Heroes by Series</h3>
           ) : (
             <h3>
               {heroNameEN1} / {heroNameEN2}

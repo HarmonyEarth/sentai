@@ -2,7 +2,7 @@ import React from "react";
 import { Member, Team } from "../types";
 import { Helmet } from "react-helmet-async";
 import { siteFavIcon } from "../constants";
-import HeroesSwiper from "../components/Heroes/HeroesSwiper";
+import HeroesCarousel from "../components/Heroes/HeroesCarousel";
 import HeroesBar from "../components/HeroesBar/HeroesBar";
 
 interface Props {
@@ -24,9 +24,10 @@ const Heroes: React.FC<Props> = ({ teams, members, mobile }) => {
       </Helmet>
       <HeroesBar mobile={mobile} />
       {teams.map((team) => (
-        <HeroesSwiper
+        <HeroesCarousel
           members={members.filter((member) => member.teamId === team.teamId)}
           team={team}
+          key={team.teamId}
         />
       ))}
     </>

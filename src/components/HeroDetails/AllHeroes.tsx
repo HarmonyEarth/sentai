@@ -1,61 +1,74 @@
 import React from "react";
-import { SwiperSlide, Swiper } from "swiper/react";
-import "swiper/css";
-import "swiper/css/free-mode";
-import { FreeMode } from "swiper";
-import { Link } from "react-router-dom";
 import styled from "styled-components";
-import LazyImage from "../Loading/LazyImage";
+import { Link } from "react-router-dom";
 import { Member } from "../../types";
+import useEmblaCarousel from "embla-carousel-react";
+import LazyImage from "../Loading/LazyImage";
+import { handleEmblaScrollClick } from "../../utils/handleEmblaScrollClick";
 
 interface Props {
   members: Member[];
 }
 
 const AllHeroes: React.FC<Props> = ({ members }) => {
+  const [emblaRef, emblaApi] = useEmblaCarousel({
+    dragFree: true,
+  });
+
   return (
-    <AllHeroesSwiper
-      freeMode={true}
-      modules={[FreeMode]}
-      breakpoints={{
-        200: { slidesPerView: 2.5 },
-        370: { slidesPerView: 3.4 },
-        480: { slidesPerView: 4.5 },
-        640: { slidesPerView: 6.2 },
-        768: { slidesPerView: 7.2 },
-        856: { slidesPerView: 8.3 },
-        1024: { slidesPerView: 10 },
-        1280: { slidesPerView: 12.3 },
-        1368: { slidesPerView: 14.6 },
-        1640: { slidesPerView: 16.2 },
-        2100: { slidesPerView: 21.2 },
-        2400: { slidesPerView: 24.2 },
-        2500: { slidesPerView: 28.4 },
-      }}
-    >
-      {members.map((member) => (
-        <SwiperSlide key={member.id}>
-          <HeroSlide>
-            <Link to={`/${member.teamId}/${member.heroId}`}>
-              <LazyImage
-                src={String(member.heroImage2)}
-                alt={member.heroNameEN2}
-                height="200px"
-              />
-            </Link>
-          </HeroSlide>
-        </SwiperSlide>
-      ))}
-    </AllHeroesSwiper>
-  );
+    <Embla>
+      <EmblaViewport ref={emblaRef}>
+        <EmblaContainer>
+          {members.map((member, index) => (
+            <EmblaSlide
+              key={member.id}
+              onClick={() => handleEmblaScrollClick(index, emblaApi)}
+            >
+              <HeroSlide>
+                <Link to={`/${member.teamId}/${member.heroId}`}>
+                  <LazyImage
+                    src={String(member.heroImage2)}
+                    alt={member.heroNameEN2}
+                    height="200px"
+                  />
+                </Link>
+              </HeroSlide>
+            </EmblaSlide>
+          ))}
+        </EmblaContainer>
+      </EmblaViewport>
+    </Embla>
+  ); // Add a closing curly brace here
 };
 
 export default AllHeroes;
 
 //MARK: - Styled Components
 
-const AllHeroesSwiper = styled(Swiper)`
-  width: 100%;
+const Embla = styled.section`
+  border-top: #000 1px solid;
+  padding-top: 1.5rem;
+  margin: auto;
+  --slide-height: 19rem;
+  --slide-spacing: 0.3rem;
+  --slide-size: 6.25rem;
+`;
+
+const EmblaViewport = styled.div`
+  overflow: hidden;
+`;
+
+const EmblaContainer = styled.div`
+  backface-visibility: hidden;
+  display: flex;
+  touch-action: pan-y pinch-zoom;
+  margin-left: calc(var(--slide-spacing) * -1);
+`;
+
+const EmblaSlide = styled.div`
+  flex: 0 0 var(--slide-size);
+  min-width: 0;
+  padding-left: var(--slide-spacing);
 `;
 
 const HeroSlide = styled.div`

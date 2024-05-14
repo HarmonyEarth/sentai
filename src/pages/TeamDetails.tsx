@@ -44,7 +44,7 @@ const TeamDetails: React.FC<Props> = ({ teams, members, mobile }) => {
       </Helmet>
       <TeamBanner members={currentMembers} mobile={mobile} />
       <TeamBio team={currentTeam} mobile={mobile} />
-      <AllTeams teams={teams} mobile={mobile} />
+      <AllTeams teams={teams} />
     </>
   );
 };

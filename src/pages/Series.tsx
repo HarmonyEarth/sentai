@@ -23,7 +23,7 @@ const Series: React.FC<Props> = ({ teams, members, mobile }) => {
         />
         <link rel="icon" href={siteFavIcon} type="image/x-icon" sizes="16x16" />
       </Helmet>
-      <HeroBanner teams={teams} members={members} mobile={mobile} />
+      <HeroBanner members={members} mobile={mobile} />
       <TeamSection teams={teams} mobile={mobile} />
     </>
   );
