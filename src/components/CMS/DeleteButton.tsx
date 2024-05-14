@@ -1,6 +1,6 @@
 import { deleteDoc, doc } from "firebase/firestore";
 import { deleteObject, listAll, ref } from "firebase/storage";
-import React, { useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { toast } from "react-hot-toast";
 import { db, storage } from "../../firebase";
 import { Purpose } from "../../constants";
@@ -19,6 +19,24 @@ const DeleteButton: React.FC<Props> = ({
   purpose,
 }) => {
   const [showConfirmation, setShowConfirmation] = useState(false);
+  const dialogRef = useRef<HTMLDialogElement>(null);
+
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (
+        dialogRef.current &&
+        !dialogRef.current.contains(event.target as Node)
+      ) {
+        setShowConfirmation(false);
+      }
+    };
+
+    document.addEventListener("mousedown", handleClickOutside);
+
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, []);
 
   const handleConfirm = async () => {
     setShowConfirmation(false);
@@ -72,7 +90,7 @@ const DeleteButton: React.FC<Props> = ({
         Delete
       </button>
       {showConfirmation && (
-        <dialog open>
+        <dialog open ref={dialogRef}>
           <p>Are you sure you wish to delete? Yes or no?</p>
           <button onClick={handleConfirm}>Yes</button>
           <button onClick={handleDecline}>No</button>

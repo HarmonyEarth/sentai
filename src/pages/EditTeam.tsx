@@ -6,7 +6,7 @@ import { siteFavIcon } from "../constants";
 import { Team } from "../types";
 
 interface Props {
-  teams: Team[];
+  teams: Team[] | null;
   mobile: boolean;
 }
 
@@ -17,7 +17,7 @@ const EditTeam: React.FC<Props> = ({ teams, mobile }) => {
     return <h1>Document does not exist</h1>;
   }
 
-  const currentTeam = teams.find((element) => element.id === id);
+  const currentTeam = teams?.find((element) => element.id === id);
 
   if (!currentTeam) {
     return <h1>Document does not exist</h1>;

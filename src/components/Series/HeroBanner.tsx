@@ -7,12 +7,11 @@ import { shuffle } from "../../utils/shuffle";
 import { Member, Team } from "../../types";
 
 interface Props {
-  teams: Team[];
   members: Member[];
   mobile: boolean;
 }
 
-const HeroBanner: React.FC<Props> = ({ teams, members, mobile }) => {
+const HeroBanner: React.FC<Props> = ({ members, mobile }) => {
   const shuffledMembers = shuffle(structuredClone(members));
 
   return (
