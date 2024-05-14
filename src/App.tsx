@@ -1,7 +1,7 @@
 import { Suspense, lazy, useEffect, useState } from "react";
 import { Routes, Route } from "react-router-dom";
 import { useTheme } from "@mui/material/styles";
-import useMediaQuery from "@mui/material/useMediaQuery/useMediaQuery";
+import { useMediaQuery } from "@mui/material";
 import { HelmetProvider } from "react-helmet-async";
 import { Toaster } from "react-hot-toast";
 import RequireAuth from "./HOC/RequireAuth";
@@ -14,6 +14,7 @@ import Navbar from "./components/Navbar/Navbar";
 import { Member, Team } from "./types";
 import { streamMembers, streamTeams } from "./firebase";
 import { trackAuthStatus } from "./auth";
+import Footer from "./components/Footer/Footer";
 
 const Series = lazy(() => import("./pages/Series"));
 const Heroes = lazy(() => import("./pages/Heroes"));
@@ -45,17 +46,17 @@ function App() {
     });
   }, [dispatch]);
 
-  if (!teams || !members) return <Loading />;
+  const completeMembers = members
+    ? members.filter((member) => Object.values(member).every((value) => value))
+    : [];
 
-  const completeMembers = members.filter((member) =>
-    Object.values(member).every((value) => value)
-  );
-
-  const completeTeams = teams.filter(
-    (team) =>
-      completeMembers.some((member) => member.teamId === team.teamId) &&
-      Object.values(team).every((value) => value)
-  );
+  const completeTeams = teams
+    ? teams.filter(
+        (team) =>
+          completeMembers.some((member) => member.teamId === team.teamId) &&
+          Object.values(team).every((value) => value)
+      )
+    : [];
 
   return (
     <>
@@ -154,6 +155,7 @@ function App() {
           />
         </Routes>
       </HelmetProvider>
+      <Footer />
     </>
   );
 }

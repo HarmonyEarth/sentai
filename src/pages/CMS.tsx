@@ -10,15 +10,15 @@ import LazyImage from "../components/Loading/LazyImage";
 import { Member, Team } from "../types";
 
 interface Props {
-  teams: Team[];
-  members: Member[];
+  teams: Team[] | null;
+  members: Member[] | null;
 }
 
 const CMS: React.FC<Props> = ({ teams, members }) => {
   const [clicked, setClicked] = useState(false);
 
   const membersByYear = useMemo(
-    () => sortMembersByYear({ members, teams }),
+    () => (members && teams ? sortMembersByYear({ members, teams }) : []),
     [members, teams]
   );
 
@@ -47,7 +47,7 @@ const CMS: React.FC<Props> = ({ teams, members }) => {
             />
           </Grid>
         </Grid>
-        {teams.length > 0 && (
+        {teams && teams.length > 0 && (
           <Grid container item>
             <Grid item xs={12}>
               <h3>Click to edit or delete a team</h3>
@@ -76,7 +76,7 @@ const CMS: React.FC<Props> = ({ teams, members }) => {
             ))}
           </Grid>
         )}
-        {members.length > 0 && (
+        {members && members.length > 0 && (
           <Grid container item>
             <Grid item xs={12}>
               <h3>Click to edit or delete a member</h3>
