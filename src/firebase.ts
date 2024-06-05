@@ -1,6 +1,6 @@
-import { initializeApp } from 'firebase/app';
+import { initializeApp } from "firebase/app";
 
-import { getAuth } from 'firebase/auth';
+import { getAuth } from "firebase/auth";
 
 import {
   collection,
@@ -12,8 +12,9 @@ import {
   query,
   QuerySnapshot,
   Unsubscribe,
-} from 'firebase/firestore';
-import { getStorage } from 'firebase/storage';
+} from "firebase/firestore";
+import { getStorage } from "firebase/storage";
+import { Collections, Purpose } from "./constants";
 
 export const firebaseConfig = {
   apiKey: import.meta.env.VITE_FIREBASE_API_KEY,
@@ -36,16 +37,16 @@ export const auth = getAuth(app);
 // Initialize Cloud Firestore and get a reference to the service
 export const db = getFirestore(app);
 
-const teamsColRef = collection(db, 'teams');
+const teamsColRef = collection(db, Collections.Teams);
 
-const teamsQuery = query(teamsColRef, orderBy('year', 'asc'));
+const teamsQuery = query(teamsColRef, orderBy(Purpose.Year, "asc"));
 
-const membersColRef = collection(db, 'members');
+const membersColRef = collection(db, Collections.Members);
 
 const membersQuery = query(
   membersColRef,
-  orderBy('teamId', 'asc'),
-  orderBy('position', 'asc')
+  orderBy(Purpose.TeamId, "asc"),
+  orderBy(Purpose.Position, "asc")
 );
 
 type SnapshotType = (snapshot: QuerySnapshot<DocumentData>) => void;

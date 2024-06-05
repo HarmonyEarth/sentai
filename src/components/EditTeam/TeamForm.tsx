@@ -3,7 +3,12 @@ import React from "react";
 import { useNavigate } from "react-router-dom";
 import { db } from "../../firebase";
 import { FileState, Team } from "../../types";
-import { Purpose, teamInputData, teamInputFileData } from "../../constants";
+import {
+  Collections,
+  Purpose,
+  teamInputData,
+  teamInputFileData,
+} from "../../constants";
 import FormInput from "../CMS/FormInput";
 import replaceWithWEBP from "../../utils/replaceWithWEBP";
 
@@ -52,7 +57,7 @@ const TeamForm: React.FC<Props> = ({
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    const teamDoc = doc(db, "teams", docId);
+    const teamDoc = doc(db, Collections.Teams, docId);
     try {
       await updateDoc(teamDoc, {
         ...teamData,
@@ -62,6 +67,10 @@ const TeamForm: React.FC<Props> = ({
       console.log("error", err);
     }
   };
+
+  const isUploadInProgress = [symbolPercent, logoPercent].some(
+    (percent) => percent !== null && percent < 100
+  );
 
   return (
     <form onSubmit={handleSubmit}>
@@ -94,13 +103,7 @@ const TeamForm: React.FC<Props> = ({
       ))}
 
       <br />
-      <button
-        disabled={
-          (logoPercent !== null && logoPercent < 100) ||
-          (symbolPercent !== null && symbolPercent < 100)
-        }
-        type="submit"
-      >
+      <button type="submit" disabled={isUploadInProgress}>
         Submit to Database
       </button>
     </form>

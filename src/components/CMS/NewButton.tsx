@@ -3,7 +3,7 @@ import React from "react";
 import { toast } from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
 import { db } from "../../firebase";
-import { Purpose } from "../../constants";
+import { Collections, Purpose } from "../../constants";
 
 interface Props {
   purpose: Purpose;
@@ -27,7 +27,7 @@ const NewButton: React.FC<Props> = ({ purpose, clicked, setClicked }) => {
       try {
         setClicked((prev) => true);
         toast.loading("Loading New Member...");
-        const { id } = await addDoc(collection(db, "members"), {
+        const { id } = await addDoc(collection(db, Collections.Members), {
           heroId: "",
           color: "",
           position: "",
@@ -61,7 +61,7 @@ const NewButton: React.FC<Props> = ({ purpose, clicked, setClicked }) => {
       try {
         setClicked((prev) => true);
         toast.loading("Loading New Team...");
-        const { id } = await addDoc(collection(db, "teams"), {
+        const { id } = await addDoc(collection(db, Collections.Teams), {
           shortTeamName: newTeamName,
           fullTeamNameEN: "",
           fullTeamNameJP: "",
