@@ -20,28 +20,21 @@ interface Props {
 const HeroDetails: React.FC<Props> = ({ members, teams, mobile }) => {
   const { teamId, heroId } = useParams();
 
-  if (!heroId) {
-    return <h1>Hero does not exist</h1>;
-  }
   const currentMember = members.find((element) => element.heroId === heroId);
-
-  if (!currentMember) {
-    return <h1>Hero does not exist or is incomplete</h1>;
-  }
-
-  if (!teamId) {
-    return <h1>Team does not exist</h1>;
-  }
   const currentTeam = teams.find((element) => element.teamId === teamId);
-
-  if (!currentTeam) {
-    return <h1>Team does not exist or is incomplete</h1>;
-  }
 
   const membersByYear = useMemo(
     () => sortMembersByYear({ members, teams }),
     [members, teams]
   );
+
+  if (!heroId || !currentMember) {
+    return <h1>Hero does not exist or is incomplete</h1>;
+  }
+
+  if (!teamId || !currentTeam) {
+    return <h1>Team does not exist or is incomplete</h1>;
+  }
 
   const metaDescription = `${currentMember.heroNameEN1} / ${currentMember.heroNameEN2} 
   from ${currentTeam.year}'s ${currentTeam.fullTeamNameEN}`;
@@ -85,7 +78,6 @@ const HeroDetails: React.FC<Props> = ({ members, teams, mobile }) => {
           locationImage={currentMember.locationImage}
           mobile={mobile}
         />
-
         <AllHeroes members={membersByYear} />
       </HeroDetailsContainer>
     </>
@@ -135,8 +127,6 @@ export const PreviewHeroDetails: React.FC<PreviewProps> = ({
 //MARK: - Styled Components
 
 const HeroDetailsContainer = styled.div`
-  max-width: 100vw;
-  min-height: 100vh;
   position: relative;
   overflow: hidden;
 `;

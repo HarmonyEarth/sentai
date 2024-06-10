@@ -80,7 +80,7 @@ interface StyledProps {
 
 const SenshiNameContainer = styled.div<{ mobile: boolean }>`
   position: relative;
-  height: 100vh;
+  height: 80rem;
   h2 {
     margin: 0;
     display: block;
@@ -88,6 +88,60 @@ const SenshiNameContainer = styled.div<{ mobile: boolean }>`
   }
   z-index: ${(props) => (props.mobile ? 1 : 0)};
   cursor: ${(props) => props.mobile && "pointer"};
+
+  h1,
+  h2 {
+    background: linear-gradient(
+      270deg,
+      #ff0000,
+      #eeff00,
+      #18ff00,
+      #0049ff,
+      #fe00ff,
+      #ffab00
+    );
+    background-size: 400% 400%;
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-stroke: 0.25rem transparent;
+    -webkit-animation: SentaiGradient 55s ease infinite;
+    -moz-animation: SentaiGradient 55s ease infinite;
+    animation: SentaiGradient 55s ease infinite;
+  }
+
+  @-webkit-keyframes SentaiGradient {
+    0% {
+      background-position: 0% 50%;
+    }
+    50% {
+      background-position: 100% 50%;
+    }
+    100% {
+      background-position: 0% 50%;
+    }
+  }
+  @-moz-keyframes SentaiGradient {
+    0% {
+      background-position: 0% 50%;
+    }
+    50% {
+      background-position: 100% 50%;
+    }
+    100% {
+      background-position: 0% 50%;
+    }
+  }
+  @keyframes SentaiGradient {
+    0% {
+      background-position: 0% 50%;
+    }
+    50% {
+      background-position: 100% 50%;
+    }
+    100% {
+      background-position: 0% 50%;
+    }
+  }
 `;
 
 const SenshiNameTextContainer = styled.div<StyledProps>`
