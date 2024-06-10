@@ -1,7 +1,20 @@
 import React from "react";
 import styled from "styled-components";
+import useJukebox from "../../hooks/useJukebox";
 
 const Footer = () => {
+  const {
+    videoUrl,
+    setVideoUrl,
+    audioFormat,
+    audioURL,
+    isLoading,
+    error,
+    fetchAudio,
+    videoDescription,
+    videoTitle,
+  } = useJukebox();
+
   return <FooterContainer></FooterContainer>;
 };
 
@@ -11,5 +24,5 @@ export default Footer;
 
 const FooterContainer = styled.footer`
   background-color: white;
-  min-height: 100px;
+  display: flex;
 `;

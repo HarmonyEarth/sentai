@@ -30,6 +30,7 @@ export enum SenshiImageLocation {
 export enum Purpose {
   Member = "member",
   Team = "team",
+  Song = "song",
   Color = "color",
   TeamId = "teamId",
   HeroId = "heroId",
@@ -201,3 +202,10 @@ export const teamInputFileData = [
     accept: "image/*",
   },
 ];
+
+export enum Collections {
+  Teams = "teams",
+  Members = "members",
+  Songs = "songs",
+  GalleryImages = "galleryImages",
+}

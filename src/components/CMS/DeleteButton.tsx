@@ -3,7 +3,7 @@ import { deleteObject, listAll, ref } from "firebase/storage";
 import React, { useEffect, useRef, useState } from "react";
 import { toast } from "react-hot-toast";
 import { db, storage } from "../../firebase";
-import { Purpose } from "../../constants";
+import { Collections, Purpose } from "../../constants";
 
 interface Props {
   clicked: boolean;
@@ -48,7 +48,7 @@ const DeleteButton: React.FC<Props> = ({
         setClicked((prev) => true);
         toast.loading(`Deleting Member...`);
         await deleteFolder(memberImageListRef.fullPath);
-        await deleteDoc(doc(db, "members", docId));
+        await deleteDoc(doc(db, Collections.Members, docId));
         toast.dismiss();
         toast.success("Successfully deleted!");
       } catch (err) {
@@ -66,7 +66,7 @@ const DeleteButton: React.FC<Props> = ({
         setClicked((prev) => true);
         toast.loading(`Deleting Team...`);
         await deleteFolder(teamImageListRef.fullPath);
-        await deleteDoc(doc(db, "teams", docId));
+        await deleteDoc(doc(db, Collections.Teams, docId));
         toast.dismiss();
         toast.success("Successfully deleted!");
       } catch (err) {
