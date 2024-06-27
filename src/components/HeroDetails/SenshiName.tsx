@@ -1,5 +1,5 @@
 import React from "react";
-import styled from "styled-components";
+import styled, { keyframes } from "styled-components";
 import {
   getSenshiNameLocation,
   modifyLocation,
@@ -78,16 +78,29 @@ interface StyledProps {
   marginBottom?: string;
 }
 
+const SentaiGradient = keyframes`
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+`;
+
 const SenshiNameContainer = styled.div<{ mobile: boolean }>`
   position: relative;
   height: 80rem;
+  z-index: ${(props) => (props.mobile ? 1 : 0)};
+  cursor: ${(props) => props.mobile && "pointer"};
+
   h2 {
     margin: 0;
     display: block;
     padding: 10px 2px;
   }
-  z-index: ${(props) => (props.mobile ? 1 : 0)};
-  cursor: ${(props) => props.mobile && "pointer"};
 
   h1,
   h2 {
@@ -104,43 +117,7 @@ const SenshiNameContainer = styled.div<{ mobile: boolean }>`
     -webkit-background-clip: text;
     background-clip: text;
     -webkit-text-stroke: 0.25rem transparent;
-    -webkit-animation: SentaiGradient 55s ease infinite;
-    -moz-animation: SentaiGradient 55s ease infinite;
-    animation: SentaiGradient 55s ease infinite;
-  }
-
-  @-webkit-keyframes SentaiGradient {
-    0% {
-      background-position: 0% 50%;
-    }
-    50% {
-      background-position: 100% 50%;
-    }
-    100% {
-      background-position: 0% 50%;
-    }
-  }
-  @-moz-keyframes SentaiGradient {
-    0% {
-      background-position: 0% 50%;
-    }
-    50% {
-      background-position: 100% 50%;
-    }
-    100% {
-      background-position: 0% 50%;
-    }
-  }
-  @keyframes SentaiGradient {
-    0% {
-      background-position: 0% 50%;
-    }
-    50% {
-      background-position: 100% 50%;
-    }
-    100% {
-      background-position: 0% 50%;
-    }
+    animation: ${SentaiGradient} 55s ease infinite;
   }
 `;
 
