@@ -64,7 +64,7 @@ const HeroContent: React.FC<Props> = ({ member, mobile }) => {
           transformation={!transformation}
           onClick={handleTransformation}
         />
-        <CustomCursor visible={isCursorInWrapper} />
+        {!mobile && isCursorInWrapper && <CustomCursor />}
       </SenshiImageContainer>
       {/* <div style={{ height: "400px", backgroundColor: "red", zIndex: 1 }} />  Insert gallery carousel here*/}
     </SenshiContainer>
