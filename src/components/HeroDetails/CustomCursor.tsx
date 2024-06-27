@@ -2,22 +2,18 @@ import React from "react";
 import styled from "styled-components";
 import useMousePosition from "../../hooks/useMousePosition";
 
-interface Props {
-  visible: boolean;
-}
-
-const CustomCursor: React.FC<Props> = ({ visible }) => {
+const CustomCursor = () => {
   const { clientX, clientY } = useMousePosition();
-  return visible ? (
+  return (
     <CursorContainer x={clientX} y={clientY}>
       Transform Hero
     </CursorContainer>
-  ) : null;
+  );
 };
 
 export default CustomCursor;
 
-//MARK: Styled Components
+//MARK: - Styled Components
 
 interface StyledProps {
   x: number;
