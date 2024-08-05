@@ -21,6 +21,7 @@ interface StyledProps {
 }
 
 const CursorContainer = styled.div<StyledProps>`
+  display: ${(props) => (props.x && props.y ? "block" : "none")};
   pointer-events: none;
   position: fixed;
   top: ${(props) => props.y + 60}px;

@@ -12,7 +12,7 @@ interface Props {
 
 const HeroContent: React.FC<Props> = ({ member, mobile }) => {
   const [transformation, setTransformation] = useState(false);
-  const [isCursorInWrapper, setIsCursorInWrapper] = useState(false);
+  const [cursor, setCursor] = useState(false);
   const handleTransformation = () => {
     setTransformation((prev) => !prev);
   };
@@ -32,7 +32,7 @@ const HeroContent: React.FC<Props> = ({ member, mobile }) => {
   const imageLocations = getSenshiImageLocation({ locationImage });
 
   const handleMouseEnterLeave = () => {
-    setIsCursorInWrapper((prev) => !prev);
+    setCursor((prev) => !prev);
   };
 
   return (
@@ -64,9 +64,9 @@ const HeroContent: React.FC<Props> = ({ member, mobile }) => {
           transformation={!transformation}
           onClick={handleTransformation}
         />
-        {!mobile && isCursorInWrapper && <CustomCursor />}
+        {!mobile && cursor && <CustomCursor />}
       </SenshiImageContainer>
-      {/* <div style={{ height: "400px", backgroundColor: "red", zIndex: 1 }} />  Insert gallery carousel here*/}
+      <div style={{ height: "400px", backgroundColor: "red", zIndex: 1 }} />
     </SenshiContainer>
   );
 };

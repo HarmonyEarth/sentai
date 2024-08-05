@@ -37,13 +37,14 @@ function App() {
   useStream({ setFileArray: setMembers, streamData: streamMembers });
 
   useEffect(() => {
-    trackAuthStatus((user) => {
+    const unsubscribe = trackAuthStatus((user) => {
       if (user) {
         dispatch(logUserIn());
       } else {
         dispatch(logUserOut());
       }
     });
+    return () => unsubscribe();
   }, [dispatch]);
 
   const completeMembers = members
