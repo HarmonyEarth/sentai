@@ -1,10 +1,10 @@
-import React, { useState } from "react";
-import styled from "styled-components";
-import SenshiName from "./SenshiName";
-import { getSenshiImageLocation } from "../../utils/getSenshiImageLocation";
-import LazyImage from "../Loading/LazyImage";
-import { Member } from "../../types";
-import CustomCursor from "./CustomCursor";
+import React, { useState } from 'react';
+import styled from 'styled-components';
+import SenshiName from './SenshiName';
+import { getSenshiImageLocation } from '../../utils/getSenshiImageLocation';
+import LazyImage from '../Loading/LazyImage';
+import { Member } from '../../types';
+import CustomCursor from './CustomCursor';
 interface Props {
   member: Member;
   mobile: boolean;
@@ -12,7 +12,7 @@ interface Props {
 
 const HeroContent: React.FC<Props> = ({ member, mobile }) => {
   const [transformation, setTransformation] = useState(false);
-  const [isCursorInWrapper, setIsCursorInWrapper] = useState(false);
+  const [cursor, setCursor] = useState(false);
   const handleTransformation = () => {
     setTransformation((prev) => !prev);
   };
@@ -32,7 +32,7 @@ const HeroContent: React.FC<Props> = ({ member, mobile }) => {
   const imageLocations = getSenshiImageLocation({ locationImage });
 
   const handleMouseEnterLeave = () => {
-    setIsCursorInWrapper((prev) => !prev);
+    setCursor((prev) => !prev);
   };
 
   return (
@@ -64,9 +64,10 @@ const HeroContent: React.FC<Props> = ({ member, mobile }) => {
           transformation={!transformation}
           onClick={handleTransformation}
         />
-        {!mobile && isCursorInWrapper && <CustomCursor />}
+        {!mobile && cursor && <CustomCursor />}
       </SenshiImageContainer>
-      {/* <div style={{ height: "400px", backgroundColor: "red", zIndex: 1 }} />  Insert gallery carousel here*/}
+      {/* <div style={{ height: "400px", backgroundColor: "red", zIndex: 1 }} /> 
+         Placeholder for Hero Gallery  */}
     </SenshiContainer>
   );
 };
@@ -92,13 +93,13 @@ const SenshiContainer = styled.div`
 const SenshiImageContainer = styled.div<StyledProps>`
   position: absolute;
   align-self: center;
-  left: ${(props) => (props.locationLeft && !props.mobile ? 0 : "unset")};
-  right: ${(props) => (props.locationRight && !props.mobile ? 0 : "unset")};
+  left: ${(props) => (props.locationLeft && !props.mobile ? 0 : 'unset')};
+  right: ${(props) => (props.locationRight && !props.mobile ? 0 : 'unset')};
   height: 85vh;
 `;
 
 const SenshiImage = styled(LazyImage)<{ transformation: boolean }>`
-  display: ${(props) => (props.transformation ? "none" : "unset")};
+  display: ${(props) => (props.transformation ? 'none' : 'unset')};
   scale: 1.1;
   height: 100%;
   cursor: pointer;
