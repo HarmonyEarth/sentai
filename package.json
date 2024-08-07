@@ -35,6 +35,7 @@
     "@vitejs/plugin-react-swc": "^3.0.0",
     "typescript": "^4.9.3",
     "vercel": "^34.2.7",
-    "vite": "^4.2.0"
+    "vite": "^4.2.0",
+    "vite-plugin-vercel": "^8.0.0"
   }
 }
