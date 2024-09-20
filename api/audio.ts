@@ -1,34 +1,34 @@
-import { VercelRequest, VercelResponse } from "@vercel/node";
-import ytdl from "ytdl-core";
+import { VercelRequest, VercelResponse } from '@vercel/node';
+import ytdl from 'ytdl-core';
 
 export default async (req: VercelRequest, res: VercelResponse) => {
-  const videoUrl: string = req.query.url as string;
+  const songUrl: string = req.query.url as string;
 
   try {
-    const videoInfo = await ytdl.getInfo(videoUrl);
-    const videoDescription = videoInfo.videoDetails.description;
-    const videoTitle = videoInfo.videoDetails.title;
-    const audioFormats = ytdl.filterFormats(videoInfo.formats, "audioonly");
+    const songInfo = await ytdl.getInfo(songUrl);
+    const songDescription = songInfo.videoDetails.description;
+    const songTitle = songInfo.videoDetails.title;
+    const audioFormats = ytdl.filterFormats(songInfo.formats, 'audioonly');
 
     res.status(200).json({
       audioURL: audioFormats[0].url,
       audioFormat: audioFormats[0].mimeType,
       description:
-        videoDescription && removeMetadata(videoDescription, videoTitle),
-      videoTitle,
+        songDescription && removeMetadata(songDescription, songTitle),
+      songTitle,
     });
   } catch (error) {
-    res.status(500).json({ error: "Error fetching audio formats" });
+    res.status(500).json({ error: 'Error fetching audio formats' });
   }
 };
 
-const removeMetadata = (text: string, videoTitle: string): string => {
+const removeMetadata = (text: string, songTitle: string): string => {
   // Find the index of the video title in the text
-  const titleIndex = text.indexOf(videoTitle);
+  const titleIndex = text.indexOf(songTitle);
 
   // If the title is found, remove the title and the two characters immediately following it
   if (titleIndex !== -1) {
-    text = text.substring(titleIndex + videoTitle.length + 2); // Adding 2 for the two characters following the title
+    text = text.substring(titleIndex + songTitle.length + 2); // Adding 2 for the two characters following the title
   }
 
   // Define patterns to remove
@@ -40,12 +40,12 @@ const removeMetadata = (text: string, videoTitle: string): string => {
 
   // Iterate over patterns and remove them from the text
   patterns.forEach((pattern) => {
-    text = text.replace(pattern, "");
+    text = text.replace(pattern, '');
   });
 
   // Remove the video title
-  text = text.replace(videoTitle, "");
+  text = text.replace(songTitle, '');
 
   // Remove extra spaces and return the cleaned text
-  return text.trim().replace(/\s+/g, " ");
+  return text.trim().replace(/\s+/g, ' ');
 };

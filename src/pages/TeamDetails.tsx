@@ -1,10 +1,10 @@
-import React from "react";
-import { useParams } from "react-router-dom";
-import { Helmet } from "react-helmet-async";
-import TeamBio from "../components/TeamDetails/TeamBio";
-import TeamBanner from "../components/TeamDetails/TeamBanner";
-import AllTeams from "../components/TeamDetails/AllTeams";
-import { Member, Team } from "../types";
+import React from 'react';
+import { useParams } from 'react-router-dom';
+import { Helmet } from 'react-helmet-async';
+import type { Member, Team } from '../types';
+import TeamBanner from '../components/TeamDetails/TeamBanner';
+import AllTeams from '../components/TeamDetails/AllTeams';
+import TeamBioSection from '../components/TeamDetails/TeamBioSection';
 
 interface Props {
   teams: Team[];
@@ -43,7 +43,7 @@ const TeamDetails: React.FC<Props> = ({ teams, members, mobile }) => {
         />
       </Helmet>
       <TeamBanner members={currentMembers} mobile={mobile} />
-      <TeamBio team={currentTeam} mobile={mobile} />
+      <TeamBioSection team={currentTeam} mobile={mobile} />
       <AllTeams teams={teams} />
     </>
   );
